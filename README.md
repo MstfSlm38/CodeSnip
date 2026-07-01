@@ -46,32 +46,38 @@ Tüm veriler cihazınızda saklanır ve uygulama internet bağlantısı gerektir
 
 ### Gereksinimler
 
-- Node.js (18 veya üzeri önerilir)
+- Node.js (v18 veya üzeri)
 - npm
 
-### Depoyu klonlayın
+### 1- Depoyu klonlayın
 
 ```bash
 git clone https://github.com/MstfSlm38/CodeSnip.git
-cd CodeSnip
 ```
 
-### Bağımlılıkları yükleyin
+### 2- Oluşturulan Klasöre Gidin
+
+```bash
+cd codesnip
+```
+
+### 3- Bağımlılıkları yükleyin
 
 ```bash
 npm install
+npm install electron --save-dev
 ```
 
-### Geliştirici modunda çalıştırın
+### 4- Geliştirici modunda çalıştırın
 
 ```bash
 npm start
 ```
 
-### Üretim sürümünü oluşturun
+### 5- Üretim sürümünü paketleyin
 
 ```bash
-npm run build
+npm run dist
 ```
 ---
 
@@ -92,8 +98,12 @@ npm run build
 
 | Kısayol | Açıklama |
 |---------|----------|
-| `Ctrl + Space` | Spotlight aramasını açar veya kapatır |
-| `Esc` | Açık pencereyi kapatır |
+| `Ctrl + Shift + S` | **Global Kısayol:** Uygulama arkada açık olsa bile ekrana getirir ve Spotlight aramayı açar. |
+| `Ctrl + Space` | Uygulama içindeyken Spotlight arama panelini hızlıca açar veya kapatır. |
+| `Esc` | Açık olan Spotlight arama panelini kapatır. |
+| `Space` | Spotlight arama listesindeyken seçili kodun **Quick Look (Hızlı Önizleme)** panelini açar. |
+| `Arrow Up / Down` | Spotlight arama sonuçları arasında yukarı-aşağı gezinmeyi sağlar. |
+| `Enter` | Spotlight aramasında seçilen kodu ana arama çubuğuna aktarır (Veya `+kategori` formatındaysa hızlı kod ekler).
 
 ---
 
@@ -107,9 +117,25 @@ npm run build
 ---
 
 ## Yol Haritası
+- [x] v1.0 — İlk Sürüm
+  - [x] v1.1 — Hotfix ve Favorileme Özelliği
 
-- [x] v2.0 — Spotlight, Paylaşım ve yenilenen Liquid Glass tasarımı
-- [ ] v2.5 — JSON dışa/içe aktarma
-- [ ] v3.0 — İsteğe bağlı uçtan uca şifreli bulut senkronizasyonu
-- [ ] v3.5 — Visual Studio Code uzantısı
-- [ ] v4.0 — Eklenti (Plugin) sistemi
+- [x] 26Q2 — Spotlight, Paylaşım ve Yenilenen Liquid Glass Tasarımı
+  - [x] 26Q2.5 — JSON dışa/içe aktarma, Daha İyi Spotlight ve Sürüm İsmi Değişikliği
+
+- [ ] 26Q3 — MacOS Desteği
+- [ ] 26Q4 — Visual Studio Code uzantısı
+- [ ] 27Q1 — Eklenti (Plugin) sistemi
+
+>[!NOTE]
+>Yol haritası yeni özelliklerden veya çıkan buglardan dolayı zamanla değişebilir.
+
+## Katkıda Bulunma
+
+Projeyi geliştirmemize yardımcı olmak ister misiniz? 
+-  Bu depoyu fork edin (`Fork` butonuna basın).
+-  Yeni bir özellik için dal oluşturun (`git checkout -b yeni-ozellik`).
+-  Değişikliklerinizi kaydedin (`git commit -am 'Yeni özellik eklendi'`).
+-  Dalınızı gönderin (`git push origin yeni-ozellik`).
+-  Bir **Pull Request** (Değişiklik İsteği) oluşturun.
+-  Ya da eğer proje'de hata bulursanız Bug Report kısmından bize bildirebilirsiniz!
