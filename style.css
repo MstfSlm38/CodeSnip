@@ -823,22 +823,26 @@ input:checked+.slider:before {
     display: flex;
     height: 100%;
     align-items: center;
-    /* Sürükleme alanının butonları kilitlememesi için no-drag yapıyoruz */
-    -webkit-app-region: no-drag;
+    /* ⚠️ Sürükleme alanının butonları kilitlemesini engellemek için kesinlikle no-drag: */
+    -webkit-app-region: no-drag !important;
+    position: relative;
+    z-index: 10000;
+    /* Sürükleme alanının tamamen üstüne çıkmasını sağlıyoruz */
 }
 
 /* Ortak Buton Özellikleri */
 .control-btn {
     background: transparent;
     border: none;
-    height: 50px;
-    /* Üst barın yüksekliği ile tam eşit */
+    height: 45px;
+    /* Üst barın yüksekliği olan 45px ile tam eşit olmalı (CSS'te yukarısı 45px yapılmış) */
     width: 46px;
-    /* Windows standardı genişlik */
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    -webkit-app-region: no-drag !important;
+    /* Butonların kendisinde de tıklamayı garantiye alıyoruz */
     transition: background-color 0.15s ease;
 }
 
@@ -960,10 +964,13 @@ input:checked+.slider:before {
     border-top: 1px solid rgba(255, 255, 255, 0.03);
 }
 
+/* v26Q2.5 — Spotlight Boş Durum / İpucu Alanı Düzenlemesi */
 .spotlight-hint {
+    width: 100%;
+    padding: 10px !important;
+    /* Yazının etrafına nefes aldıracak boşluk */
     color: rgba(255, 255, 255, 0.4);
-    font-size: 12px;
-    padding: 4px 8px;
+    font-size: 13px;
 }
 
 .spotlight-hint span {
@@ -1032,4 +1039,192 @@ input:checked+.slider:before {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+.version-26Q2-5 {
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.backup-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.backup-buttons .glass-btn {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+/* v26Q2.5 Özel Parlama Efektleri */
+#exportBtn:hover {
+    background: rgba(0, 173, 181, 0.15);
+    border-color: #00adb5;
+    box-shadow: 0 0 10px rgba(0, 173, 181, 0.3);
+}
+
+#importBtn:hover {
+    background: rgba(255, 87, 34, 0.15);
+    border-color: #ff5722;
+    box-shadow: 0 0 10px rgba(255, 87, 34, 0.3);
+}
+
+/* ==========================================================================
+   🔍 26Q2.5 — macOS Spotlight Alt Panel ve Quick Look (Önizleme) CSS Eklemeleri
+   ========================================================================== */
+
+/* Sonuç alanı devreye girdiğinde alt paneli yan yana yerleşime hazırlar */
+#spotlight-results {
+    padding: 0 !important;
+    /* Eski padding'i ezerek sıfırlıyoruz */
+    max-height: 400px !important;
+    /* Listenin rahatça sığması için yükselttik */
+    background: rgba(0, 0, 0, 0.25) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+    display: flex;
+    /* Sol tarafta liste, sağ tarafta önizleme olmasını sağlar */
+    overflow: hidden !important;
+}
+
+/* Sol taraftaki kod başlıkları listesi */
+.spotlight-list {
+    flex: 1;
+    max-height: 380px;
+    overflow-y: auto;
+    padding: 8px 0;
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Listelenen her bir arama sonucu satırı */
+.spotlight-item {
+    padding: 10px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 13px;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+/* Klavyeden Aşağı/Yukarı ok tuşlarıyla seçilen veya mouse ile üzerine gelinen satır */
+.spotlight-item:hover,
+.spotlight-item.active {
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+}
+
+/* Satırların sağındaki dil/kategori etiketleri */
+.item-category {
+    font-size: 10px;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.5px;
+}
+
+.spotlight-item.active .item-category {
+    background: #00adb5;
+    /* Seçili satırdaki kategori senin neon mavisi rengini alır */
+    color: #fff;
+}
+
+/* 📑 SAĞ TARAFTAKİ MINI QUICK LOOK (ÖNİZLEME) PANELİ */
+.spotlight-quick-preview {
+    flex: 1.3;
+    /* Kod içeriği rahat okunsun diye sağ tarafı bir tık daha geniş yaptık */
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.2);
+    display: none;
+    /* JavaScript'ten Space tuşuna basılana kadar gizli kalır */
+    flex-direction: column;
+    max-height: 380px;
+    border-left: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+/* Önizleme panelinin içindeki kod alanı */
+.spotlight-quick-preview pre {
+    margin: 0 !important;
+    padding: 10px !important;
+    background: transparent !important;
+    /* Çift arka plan olmasın diye temizledik */
+    border: none !important;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.spotlight-quick-preview pre code {
+    font-size: 12px !important;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    /* Kodların taşmasını engeller, alt satıra katlar */
+}
+
+/* İsteğe bağlı: Listenin scrollbar'ını şıklaştırmak için */
+.spotlight-list::-webkit-scrollbar,
+.spotlight-quick-preview pre::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.spotlight-list::-webkit-scrollbar-thumb,
+.spotlight-quick-preview pre::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+/* ================= v26Q2.5 — MODERN VE İNCE SCROLLBAR TASARIMI ================= */
+
+/* 1. Kod Blokları (pre) ve Tüm Uygulama İçin Genel Scrollbar Genişliği/Yüksekliği */
+::-webkit-scrollbar {
+    width: 8px;
+    /* Dikey kaydırma çubuğu kalınlığı */
+    height: 8px;
+    /* Yatay kaydırma çubuğu kalınlığı (O beyaz çubukları inceltir) */
+}
+
+/* 2. Kaydırma Çubuğunun Arkasındaki Yol (Track) */
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    /* Hafif şeffaf siyah, arka planla bütünleşir */
+    border-radius: 10px;
+}
+
+/* 3. Kaydırılan Tutamaç Çubuğu (Thumb) */
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.12);
+    /* Beyaz yerine çok hafif, şık bir gri ton */
+    border-radius: 10px;
+    border: 2px solid transparent;
+    /* İçeride biraz daha estetik durması için */
+    transition: background-color 0.2s ease;
+}
+
+/* 4. Fareyle Çubuğun Üzerine Gelindiğinde Parlama Efekti (Hover) */
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 173, 181, 0.4);
+    /* Üzerine gelince projenin imza neon mavisine/turkuazına göz kırpar */
+}
+
+/* 5. Köşe Birleşim Noktaları (Corner) */
+::-webkit-scrollbar-corner {
+    background: transparent;
 }
