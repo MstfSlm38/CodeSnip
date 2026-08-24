@@ -78,8 +78,8 @@ Screenshots
 
 Beta Screenshots
 
-[!WARNING]
-These are beta screenshots. Most things may change over time.
+>[!WARNING]
+>These are beta screenshots. Most things may change over time.
 
 <p align="center">
 <img src="screenshot_beta-1.png" width="900">
@@ -89,19 +89,22 @@ These are beta screenshots. Most things may change over time.
 
 
 
-Keyboard Shortcuts
+## Keyboard Shortcuts
 
-Shortcut	Description
-Ctrl + Shift + S	Global Shortcut: Brings the application to the foreground and opens Spotlight search even when the application is running in the background.
-Ctrl + Space	Opens or closes the Spotlight search panel while the application is active.
-Esc	Closes the currently open Spotlight search panel.
-Space	Opens the Quick Look preview panel for the selected code while browsing Spotlight search results.
-Arrow Up / Down	Navigates up and down through Spotlight search results.
-Enter	Transfers the selected code to the main search bar (or quickly adds a code if the input is in +category format).
+Shortcut	## Keyboard Shortcuts
+
+| Shortcut | Description |
+|----------|-------------|
+| `Ctrl + Shift + S` | **Global Shortcut:** Brings the application to the foreground and opens Spotlight search even when the application is running in the background. |
+| `Ctrl + Space` | Opens or closes the Spotlight search panel while the application is active. |
+| `Esc` | Closes the currently open Spotlight search panel. |
+| `Space` | Opens the **Quick Look** preview panel for the selected code while browsing Spotlight search results. |
+| `Arrow Up / Down` | Navigates up and down through Spotlight search results. |
+| `Enter` | Transfers the selected code to the main search bar (or quickly adds a code if the input is in `+category` format).
 
 
 
-Technologies Used
+## Technologies Used
 
 * Electron
 * JavaScript
@@ -111,7 +114,7 @@ Technologies Used
 
 
 
-Roadmap
+## Roadmap
 
 * v1.0 — Initial Release
     * v1.1 — Hotfixes and Favorites Feature
