@@ -46,21 +46,24 @@ All data is stored locally on your device, and the application works without req
 - npm
 ### 1- Clone the Repository
 ```bash
-git clone https://github.com/Light-Bulb-Team/CodeSnip.git
+git clone https://github.com/MstfSlm38/CodeSnip.git
+```
 
 2- Navigate to the Created Folder
-
+```bash
 cd codesnip
-
+```
 3- Install Dependencies
 
+```bash
 npm install
 npm install electron --save-dev
+```
 
 4- Build the Production Version
-
+```bash
 npm run dist
-
+```
 
 
 Screenshots
