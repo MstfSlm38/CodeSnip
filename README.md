@@ -15,14 +15,19 @@
   Organize, search, and share your code snippets, terminal commands, and prompts in one application.
 </p>
 <img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/1e01968b-ef57-46bb-a8e7-743f0b2e65e5" />
----
+
+
+
 ## About
 CodeSnip is a modern Electron application designed for developers, designers, and users who work with artificial intelligence.
 You can organize code snippets into categories, search instantly, copy them with a single click, and create Base64-based sharing links.
 All data is stored locally on your device, and the application works without requiring an internet connection.
+
 > [!TIP]
 > Since the application works completely offline, your data stays on your device.
----
+
+
+
 ## Features
 - Liquid Glass user interface
 - Global Spotlight search (`Ctrl + Space`)
@@ -33,7 +38,8 @@ All data is stored locally on your device, and the application works without req
 - Built-in category system
 - Fast search and filtering
 - Electron-based desktop application
----
+
+
 ## Installation
 ### Requirements
 - Node.js (v18 or newer)
@@ -55,7 +61,7 @@ npm install electron --save-dev
 
 npm run dist
 
-⸻
+
 
 Screenshots
 
@@ -65,7 +71,7 @@ Screenshots
 <img src="screenshot_2.png" width="900">
 </p>
 
-⸻
+
 
 Beta Screenshots
 
@@ -78,7 +84,7 @@ These are beta screenshots. Most things may change over time.
 <img src="screenshot_beta-2.png" width="900">
 </p>
 
-⸻
+
 
 Keyboard Shortcuts
 
@@ -90,7 +96,7 @@ Space	Opens the Quick Look preview panel for the selected code while browsing Sp
 Arrow Up / Down	Navigates up and down through Spotlight search results.
 Enter	Transfers the selected code to the main search bar (or quickly adds a code if the input is in +category format).
 
-⸻
+
 
 Technologies Used
 
@@ -100,7 +106,7 @@ Technologies Used
 * CSS3
 * Node.js
 
-⸻
+
 
 Roadmap
 
@@ -114,8 +120,8 @@ Roadmap
 * 26Q4 — Application Optimization, Full macOS and Linux Support (Slackware and Gentoo)
 * 27Q1 — Plugin System and Code Preview
 
-[!NOTE]
-The roadmap may change over time due to new features or newly discovered bugs.
+>[!NOTE]
+>The roadmap may change over time due to new features or newly discovered bugs.
 
 Contributing
 
