@@ -41,6 +41,7 @@ All data is stored locally on your device, and the application works without req
 
 
 ## Installation
+
 ### Requirements
 - Node.js (v18 or newer)
 - npm
@@ -116,15 +117,15 @@ Shortcut	## Keyboard Shortcuts
 
 ## Roadmap
 
-[x] v1.0 — Initial Release
-[x] v1.1 — Hotfixes and Favorites Feature
-[x] 26Q2 (v2.0) — Spotlight, Sharing, and Redesigned Liquid Glass UI
-  [x] 26Q2.5 — JSON Export/Import, Improved Spotlight, and Version Naming Update
-[x] 26Q3 — Linux Support (Debian, Arch, Red Hat), Improved Appearance, Customization, and Category Management
-  [x] 26Q3.1 — Critical Hotfixes
-  [x] 26Q3.5 — Important Hotfixes, New Spanish Language Support, and Light Theme Improvements
-[x] 26Q4 — Application Optimization, Full macOS and Linux Support (Slackware and Gentoo)
-[x] 27Q1 — Plugin System and Code Preview
+- [x] v1.0 — Initial Release
+- [x] v1.1 — Hotfixes and Favorites Feature
+- [x] 26Q2 (v2.0) — Spotlight, Sharing, and Redesigned Liquid Glass UI
+  - [x] 26Q2.5 — JSON Export/Import, Improved Spotlight, and Version Naming Update
+- [x] 26Q3 — Linux Support (Debian, Arch, Red Hat), Improved Appearance, Customization, and Category Management
+  - [x] 26Q3.1 — Critical Hotfixes
+  - [ ] 26Q3.5 — Important Hotfixes, New Spanish Language Support, and Light Theme Improvements
+ - [ ] 26Q4 — Application Optimization, Full macOS and Linux Support (Slackware and Gentoo)
+ - [ ] 27Q1 — Plugin System and Code Preview
 
 >[!NOTE]
 >The roadmap may change over time due to new features or newly discovered bugs.
