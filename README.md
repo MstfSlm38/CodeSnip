@@ -49,24 +49,24 @@ All data is stored locally on your device, and the application works without req
 git clone https://github.com/MstfSlm38/CodeSnip.git
 ```
 
-2- Navigate to the Created Folder
+### 2- Navigate to the Created Folder
 ```bash
 cd codesnip
 ```
-3- Install Dependencies
+### 3- Install Dependencies
 
 ```bash
 npm install
 npm install electron --save-dev
 ```
 
-4- Build the Production Version
+### 4- Build the Production Version
 ```bash
 npm run dist
 ```
 
 
-Screenshots
+## Screenshots
 
 <p align="center">
 <img src="screenshot_1.png" width="900">
@@ -76,7 +76,7 @@ Screenshots
 
 
 
-Beta Screenshots
+## Beta Screenshots
 
 >[!WARNING]
 >These are beta screenshots. Most things may change over time.
@@ -116,15 +116,15 @@ Shortcut	## Keyboard Shortcuts
 
 ## Roadmap
 
-* v1.0 — Initial Release
-    * v1.1 — Hotfixes and Favorites Feature
-* 26Q2 (v2.0) — Spotlight, Sharing, and Redesigned Liquid Glass UI
-    * 26Q2.5 — JSON Export/Import, Improved Spotlight, and Version Naming Update
-* 26Q3 — Linux Support (Debian, Arch, Red Hat), Improved Appearance, Customization, and Category Management
-    * 26Q3.1 — Critical Hotfixes
-    * 26Q3.5 — Important Hotfixes, New Spanish Language Support, and Light Theme Improvements
-* 26Q4 — Application Optimization, Full macOS and Linux Support (Slackware and Gentoo)
-* 27Q1 — Plugin System and Code Preview
+[x] v1.0 — Initial Release
+[x] v1.1 — Hotfixes and Favorites Feature
+[x] 26Q2 (v2.0) — Spotlight, Sharing, and Redesigned Liquid Glass UI
+  [x] 26Q2.5 — JSON Export/Import, Improved Spotlight, and Version Naming Update
+[x] 26Q3 — Linux Support (Debian, Arch, Red Hat), Improved Appearance, Customization, and Category Management
+  [x] 26Q3.1 — Critical Hotfixes
+  [x] 26Q3.5 — Important Hotfixes, New Spanish Language Support, and Light Theme Improvements
+[x] 26Q4 — Application Optimization, Full macOS and Linux Support (Slackware and Gentoo)
+[x] 27Q1 — Plugin System and Code Preview
 
 >[!NOTE]
 >The roadmap may change over time due to new features or newly discovered bugs.
