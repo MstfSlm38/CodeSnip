@@ -130,7 +130,7 @@ Shortcut	## Keyboard Shortcuts
 >[!NOTE]
 >The roadmap may change over time due to new features or newly discovered bugs.
 
-Contributing
+## Contributing
 
 Would you like to help improve the project?
 
@@ -141,7 +141,7 @@ Would you like to help improve the project?
 * Create a Pull Request.
 * Or, if you find a bug in the project, feel free to report it in the Issues section!
 
-License
+## License
 
 This project is licensed under the MIT License. See the LICENSE⁠￼ file for more details.
 
