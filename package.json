@@ -1,11 +1,15 @@
 {
-  "name": "codesnip-app",
-  "version": "26Q3.1",
+  "name": "CodeSnip-26Q3.1",
+  "version": "26.3.1",
+  "description": "Geliştiriciler için modern ve performanslı kod yönetim aracı.",
+  "author": "Selim <m.selimaydeniz@gmail.com>",
+  "homepage": "https://github.com/Light-Bulb-Team/CodeSnip",
   "main": "main.js",
-  "license": "MIT",
   "scripts": {
     "start": "electron .",
-    "dist": "electron-builder --windows"
+    "dist:win": "electron-builder --windows",
+    "dist:linux": "electron-builder --linux",
+    "dist:all": "electron-builder --windows --linux"
   },
   "build": {
     "appId": "com.selim.codesnip",
@@ -14,8 +18,19 @@
       "target": "portable",
       "icon": "icon.ico"
     },
+    "linux": {
+      "target": [
+        "tar.gz"
+      ],
+      "icon": "icon.png",
+      "category": "Development"
+    },
     "directories": {
       "output": "dist"
     }
+  },
+  "devDependencies": {
+    "electron": "^43.0.0",
+    "electron-builder": "^26.15.3"
   }
 }
