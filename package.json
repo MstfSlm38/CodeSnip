@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "start": "electron .",
-    "dist": "electron-builder --windows"
+    "dist": "electron-builder --windows",
+    "dist:win": "electron-builder --windows"
   },
   "build": {
     "appId": "com.selim.codesnip",
