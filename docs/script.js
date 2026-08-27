@@ -33,3 +33,20 @@ const reveal = new IntersectionObserver(entries => entries.forEach(entry => {
   if (entry.isIntersecting) { entry.target.classList.add('visible'); reveal.unobserve(entry.target); }
 }), {threshold:.08});
 document.querySelectorAll('.feature,.shot,.release,.cta').forEach(el => reveal.observe(el));
+
+// Final visual polish for the existing CodeSnip Pages layout.
+const polish = document.createElement('style');
+polish.textContent = `
+.brand { gap: 9px; }
+.brand img { width: 32px; height: 32px; flex: 0 0 32px; display: block; object-fit: contain; border-radius: 8px; }
+.mock-sidebar img { width: 30px; height: 30px; display: block; object-fit: contain; margin: 0 0 30px 0; border-radius: 7px; }
+.nav-actions { display: flex; align-items: center; gap: 14px; }
+.language { display: inline-flex; align-items: center; gap: 4px; padding: 4px; border: 1px solid rgba(255,255,255,.10); border-radius: 11px; background: rgba(255,255,255,.045); box-shadow: inset 0 1px 0 rgba(255,255,255,.04); backdrop-filter: blur(14px); }
+.language > span { color: rgba(255,255,255,.25); font-size: 11px; user-select: none; }
+.lang { appearance: none; border: 0; background: transparent; color: #8f96a3; font: 700 11px/1 Inter,system-ui,sans-serif; letter-spacing: .04em; min-width: 31px; height: 26px; padding: 0 7px; border-radius: 8px; cursor: pointer; transition: .18s ease; }
+.lang:hover { color: #dceff0; background: rgba(0,173,181,.10); }
+.lang.active { color: #041316; background: #00adb5; box-shadow: 0 4px 14px rgba(0,173,181,.18); }
+@media (max-width: 850px) { .brand img { width: 30px; height: 30px; flex-basis: 30px; } .nav-actions { gap: 8px; } }
+@media (max-width: 560px) { .brand img { width: 28px; height: 28px; flex-basis: 28px; border-radius: 7px; } .language { padding: 3px; } .lang { min-width: 29px; height: 24px; font-size: 10px; } }
+`;
+document.head.appendChild(polish);
