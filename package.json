@@ -8,6 +8,10 @@
     "dist": "electron-builder --windows",
     "dist:win": "electron-builder --windows"
   },
+  "devDependencies": {
+    "electron": "^31.0.0",
+    "electron-builder": "^26.15.3"
+  },
   "build": {
     "appId": "com.selim.codesnip",
     "productName": "CodeSnip",
