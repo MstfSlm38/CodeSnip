@@ -1,0 +1,41 @@
+name: CodeSnip Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build and Release CodeSnip
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Windows application
+        run: npm run dist:win
+
+      - name: Create GitHub Release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $assets = Get-ChildItem -Path dist -Filter *.exe | ForEach-Object { $_.FullName }
+          if (-not $assets) {
+            throw 'No Windows executable was produced.'
+          }
+          gh release create "${{ github.ref_name }}" $assets --generate-notes --title "CodeSnip ${{ github.ref_name }}"

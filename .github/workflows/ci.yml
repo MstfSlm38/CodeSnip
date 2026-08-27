@@ -1,0 +1,57 @@
+name: CodeSnip CI
+
+on:
+  push:
+    branches:
+      - 26Q2.5
+      - main
+      - '26Q3*'
+  pull_request:
+    branches:
+      - 26Q2.5
+      - main
+      - '26Q3*'
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build CodeSnip
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --include=dev
+
+      - name: Normalize Electron version
+        shell: pwsh
+        run: npm pkg set version=26.2.5
+
+      - name: Build Windows application
+        run: npx electron-builder --win portable --publish never
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+
+      - name: Verify Windows build
+        shell: pwsh
+        run: |
+          $exe = Get-ChildItem -Path dist -Filter *.exe -ErrorAction Stop
+          if (-not $exe) { throw 'Windows executable was not produced.' }
+          $exe | Format-Table Name, Length
+
+      - name: Upload Windows build
+        uses: actions/upload-artifact@v4
+        with:
+          name: CodeSnip-Windows
+          path: dist/*.exe
+          if-no-files-found: error
