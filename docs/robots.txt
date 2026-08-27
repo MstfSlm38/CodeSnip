@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mstfslm38.github.io/CodeSnip/sitemap.xml
