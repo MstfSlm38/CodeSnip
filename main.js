@@ -4,18 +4,23 @@ const path = require('path');
 let mainWindow;
 
 function createWindow() {
+    const isMac = process.platform === 'darwin';
+
     mainWindow = new BrowserWindow({
         width: 1200,
         height: 800,
-        icon: path.join(__dirname, 'icon.ico'),
-        frame: false, // Custom titlebar için çerçeveyi kaldırdık
+        minWidth: 900,
+        minHeight: 600,
+        icon: isMac ? undefined : path.join(__dirname, 'icon.ico'),
+        frame: false,
+        titleBarStyle: isMac ? 'hiddenInset' : 'hidden',
+        trafficLightPosition: isMac ? { x: 12, y: 15 } : undefined,
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false
         }
     });
 
-    // Menüyü güvenli bir şekilde fonksiyon içinde kaldırıyoruz
     mainWindow.setMenu(null);
     mainWindow.loadFile('index.html');
 
@@ -24,7 +29,6 @@ function createWindow() {
     });
 }
 
-// 🎛️ Frontend'den (index.html) gelen Pencere Buton Kontrolleri
 ipcMain.on('window-minimize', () => {
     if (mainWindow) mainWindow.minimize();
 });
@@ -43,18 +47,14 @@ ipcMain.on('window-close', () => {
     if (mainWindow) mainWindow.close();
 });
 
-// 🎹 Uygulama hazır olduğunda tetiklenen alan
 app.whenReady().then(() => {
     createWindow();
 
-    // Global Kısayol Kaydı (Ctrl + Shift + S)
     globalShortcut.register('CommandOrControl+Shift+S', () => {
         if (mainWindow) {
             if (mainWindow.isMinimized()) mainWindow.restore();
             mainWindow.show();
             mainWindow.focus();
-
-            // Frontend sürecine spotlight sinyali gönder
             mainWindow.webContents.send('global-spotlight-trigger');
         }
     });
@@ -64,12 +64,10 @@ app.whenReady().then(() => {
     });
 });
 
-// Tüm pencereler kapandığında uygulamayı kapat
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') app.quit();
 });
 
-// Uygulama tamamen kapatılırken kısayolları hafızadan temizle
 app.on('will-quit', () => {
     globalShortcut.unregisterAll();
 });
