@@ -1,280 +1,109 @@
 <!doctype html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="CodeSnip — Next-Gen Code & Prompt Manager.">
+    <meta name="description" content="CodeSnip — Next-Gen Code & Prompt Manager. Store, search and organize code snippets, terminal commands and AI prompts offline.">
     <meta name="theme-color" content="#00adb5">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="CodeSnip — Next-Gen Code & Prompt Manager">
+    <meta property="og:description" content="A fast, offline-first workspace for code snippets, terminal commands and AI prompts.">
+    <meta property="og:url" content="https://mstfslm38.github.io/CodeSnip/">
+    <meta property="og:image" content="https://mstfslm38.github.io/CodeSnip/screenshot_1.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CodeSnip — Next-Gen Code & Prompt Manager">
+    <meta name="twitter:description" content="A fast, offline-first workspace for code snippets, terminal commands and AI prompts.">
+    <meta name="twitter:image" content="https://mstfslm38.github.io/CodeSnip/screenshot_1.png">
     <link rel="icon" href="https://raw.githubusercontent.com/MstfSlm38/CodeSnip/26Q2.5/icon.ico" type="image/x-icon">
+    <link rel="canonical" href="https://mstfslm38.github.io/CodeSnip/">
     <title>CodeSnip — Next-Gen Code & Prompt Manager</title>
-    <meta name="google-site-verification" content="MQTVKaLOa_HItk6HezCSvqxTY5IhxWJSgl9KCh1mOlI" />
+    <meta name="google-site-verification" content="MQTVKaLOa_HItk6HezCSvqxTY5IhxWJSgl9KCh1mOlI">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script type="application/ld+json">
+    {
+      "@context":"https://schema.org",
+      "@type":"SoftwareApplication",
+      "name":"CodeSnip",
+      "applicationCategory":"DeveloperApplication",
+      "operatingSystem":"Windows, Linux",
+      "description":"Next-Gen Code & Prompt Manager for code snippets, terminal commands and AI prompts.",
+      "url":"https://mstfslm38.github.io/CodeSnip/",
+      "license":"https://opensource.org/licenses/MIT"
+    }
+    </script>
 </head>
-
 <body>
-    <header class="nav-wrap">
-        <nav class="nav container">
-            <a class="brand" href="#top"><img src="https://raw.githubusercontent.com/MstfSlm38/CodeSnip/26Q2.5/icon.ico"
-                    alt="CodeSnip logo"><span>CodeSnip</span></a>
-            <div class="nav-links"><a href="#features" data-i18n="features">Features</a><a href="#screenshots"
-                    data-i18n="screenshots">Screenshots</a><a href="#roadmap" data-i18n="roadmap">Roadmap</a><a
-                    href="https://github.com/MstfSlm38/CodeSnip" data-i18n="github">GitHub</a></div>
-            <div class="nav-actions">
-                <div class="language"><button id="lang-en" class="lang active">EN</button><span>/</span><button
-                        id="lang-tr" class="lang">TR</button></div><button class="menu" id="menu"
-                    aria-label="Open menu">☰</button>
+<header class="nav-wrap">
+    <nav class="nav container" aria-label="Primary navigation">
+        <a class="brand" href="#top"><img src="https://raw.githubusercontent.com/MstfSlm38/CodeSnip/26Q2.5/icon.ico" alt="CodeSnip logo"><span>CodeSnip</span></a>
+        <div class="nav-links" id="site-navigation">
+            <a href="#features" data-i18n="features">Features</a>
+            <a href="#screenshots" data-i18n="screenshots">Screenshots</a>
+            <a href="#roadmap" data-i18n="roadmap">Roadmap</a>
+            <a href="https://github.com/MstfSlm38/CodeSnip" data-i18n="github">GitHub</a>
+        </div>
+        <div class="nav-actions">
+            <div class="language" aria-label="Language selector">
+                <button id="lang-en" class="lang active" type="button">EN</button><span aria-hidden="true">/</span><button id="lang-tr" class="lang" type="button">TR</button>
             </div>
-        </nav>
-    </header>
-    <main id="top">
-        <section class="hero container">
-            <div class="hero-copy"><span class="eyebrow" data-i18n="eyebrow">NEXT-GENERATION CODE & PROMPT
-                    MANAGER</span>
-                <h1 data-i18n="heroTitle">Your code.<br><span>Organized.</span></h1>
-                <p class="lead" data-i18n="heroText">A modern, fast and completely offline desktop app for code
-                    snippets, terminal commands and AI prompts.</p>
-                <div class="actions"><a class="btn primary" href="https://github.com/MstfSlm38/CodeSnip/releases"
-                        data-i18n="download">Download CodeSnip ↗</a><a class="btn secondary"
-                        href="https://github.com/MstfSlm38/CodeSnip" data-i18n="source">View source</a></div>
-                <div class="meta"><span>Electron</span><i></i><span>MIT License</span><i></i><span
-                        data-i18n="offline">Offline-first</span></div>
-            </div>
-            <div class="hero-card glass">
-                <div class="window-bar"><span></span><span></span><span></span><b>CodeSnip</b></div>
-                <div class="mock-sidebar"><img
-                        src="https://raw.githubusercontent.com/MstfSlm38/CodeSnip/26Q2.5/icon.ico" alt="">
-                    <div class="mock-line active"></div>
-                    <div class="mock-line"></div>
-                    <div class="mock-line"></div>
-                    <div class="mock-line short"></div>
-                </div>
-                <div class="mock-main">
-                    <div class="mock-search">⌕ &nbsp; Search snippets...</div>
-                    <div class="mock-title">My snippets</div>
-                    <div class="snippet"><small>JavaScript</small><strong>fetchData()</strong><span>async function
-                            fetchData() { ... }</span></div>
-                    <div class="snippet"><small>PowerShell</small><strong>Build project</strong><span>npm run
-                            dist</span></div>
-                    <div class="snippet"><small>Prompt</small><strong>Code reviewer</strong><span>Review this code for
-                            bugs...</span></div>
-                </div>
-            </div>
-        </section>
-        <section class="trusted container"><span data-i18n="builtFor">BUILT FOR PEOPLE WHO BUILD</span>
-            <div><b>Developers</b><b>AI Users</b><b>Designers</b><b>Power Users</b></div>
-        </section>
-        <section id="features" class="section container">
-            <div class="section-head"><span class="eyebrow" data-i18n="featureEyebrow">FEATURES</span>
-                <h2 data-i18n="featureTitle">Everything you need.<br>Nothing you don't.</h2>
-                <p data-i18n="featureIntro">CodeSnip keeps your frequently used code and prompts close, searchable and
-                    available even without an internet connection.</p>
-            </div>
-            <div class="feature-grid">
-                <article class="feature glass">
-                    <div class="icon">⌕</div>
-                    <h3 data-i18n="f1t">Spotlight Search</h3>
-                    <p data-i18n="f1p">Find snippets instantly with global Spotlight search. Use Ctrl + Shift + S from
-                        anywhere.</p>
-                </article>
-                <article class="feature glass">
-                    <div class="icon">✦</div>
-                    <h3 data-i18n="f2t">Liquid Glass UI</h3>
-                    <p data-i18n="f2p">A clean, modern interface designed around fast navigation and a focused
-                        workspace.</p>
-                </article>
-                <article class="feature glass">
-                    <div class="icon">↗</div>
-                    <h3 data-i18n="f3t">Share with Base64</h3>
-                    <p data-i18n="f3p">Create compact Base64-based sharing links for snippets without sending your data
-                        to a server.</p>
-                </article>
-                <article class="feature glass">
-                    <div class="icon">◉</div>
-                    <h3 data-i18n="f4t">Offline by Design</h3>
-                    <p data-i18n="f4p">Your snippets stay local. CodeSnip works without requiring an internet
-                        connection.</p>
-                </article>
-                <article class="feature glass">
-                    <div class="icon">文</div>
-                    <h3 data-i18n="f5t">TR / EN</h3>
-                    <p data-i18n="f5p">Switch between Turkish and English and keep the workspace comfortable for your
-                        workflow.</p>
-                </article>
-                <article class="feature glass">
-                    <div class="icon">▦</div>
-                    <h3 data-i18n="f6t">Categories</h3>
-                    <p data-i18n="f6p">Organize snippets into categories and filter your collection quickly as it grows.
-                    </p>
-                </article>
-            </div>
-        </section>
-        <section id="screenshots" class="section container screenshots">
-            <div class="section-head"><span class="eyebrow" data-i18n="workspace">THE WORKSPACE</span>
-                <h2 data-i18n="workspaceTitle">Made to stay out of your way.</h2>
-            </div>
-            <div class="shots">
-                <figure class="shot large"><img
-                        src="https://github.com/user-attachments/assets/1e01968b-ef57-46bb-a8e7-743f0b2e65e5"
-                        alt="CodeSnip application interface"></figure>
-                <figure class="shot"><img
-                        src="https://github.com/user-attachments/assets/e31ec191-3f60-4b64-9a4b-7a8306fd653d"
-                        alt="CodeSnip screenshot"></figure>
-                <figure class="shot"><img
-                        src="https://github.com/user-attachments/assets/83036436-5c32-43c4-aa88-24eea23bbb24"
-                        alt="CodeSnip screenshot"></figure>
-            </div>
-        </section>
-        <section class="roadmap section" id="roadmap">
-            <div class="section-heading reveal">
-                <p class="eyebrow" data-i18n="roadmapEyebrow">ROADMAP</p>
-                <h2 data-i18n="roadmapTitle">
-                    Built in releases.<br>
-                    Always moving forward.
-                </h2>
-            </div>
-
-            <div class="roadmap-list">
-
-                <!-- v1.0 -->
-                <article class="release reveal">
-                    <div class="release-version">v1.0</div>
-                    <div class="release-content">
-                        <span class="release-status completed" data-i18n="completed">
-                            Completed
-                        </span>
-                        <h3 data-i18n="r1t">Initial Release</h3>
-                        <p data-i18n="r1p">
-                            CodeSnip starts its journey.
-                        </p>
-                    </div>
-                </article>
-
-                <!-- v1.1 -->
-                <article class="release reveal">
-                    <div class="release-version">v1.1</div>
-                    <div class="release-content">
-                        <span class="release-status completed" data-i18n="completed">
-                            Completed
-                        </span>
-                        <h3>Hotfixes & Favorites</h3>
-                        <p data-i18n="r2p">
-                            Hotfixes, favorites and early improvements.
-                        </p>
-                    </div>
-                </article>
-
-                <!-- 26Q2 -->
-                <article class="release reveal">
-                    <div class="release-version">26Q2</div>
-                    <div class="release-content">
-                        <span class="release-status completed" data-i18n="completed">
-                            Completed
-                        </span>
-                        <h3>26Q2 — v2.0</h3>
-                        <p data-i18n="r2p">
-                            Spotlight, sharing and redesigned Liquid Glass UI.
-                        </p>
-
-                        <div class="release-sub">
-                            <strong>26Q2.5</strong>
-                            <span data-i18n="r3p">
-                                JSON Export/Import, improved Spotlight and version naming update.
-                            </span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- 26Q3 -->
-                <article class="release reveal current-release">
-                    <div class="release-version">26Q3</div>
-                    <div class="release-content">
-                        <span class="release-status current" data-i18n="current">
-                            Current
-                        </span>
-
-                        <h3 data-i18n="r3qTitle">
-                            Linux Support & Customization
-                        </h3>
-
-                        <p data-i18n="r3q">
-                            Linux support for Debian, Arch and Red Hat, improved appearance,
-                            customization and category management.
-                        </p>
-
-                        <div class="release-sub">
-                            <strong>26Q3.1</strong>
-                            <span data-i18n="r31p">
-                                Critical hotfixes.
-                            </span>
-                        </div>
-
-                        <div class="release-sub upcoming">
-                            <strong>26Q3.5</strong>
-                            <span data-i18n="r35p">
-                                Important hotfixes, Spanish language support and light theme improvements.
-                            </span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- 26Q4 -->
-                <article class="release reveal">
-                    <div class="release-version">26Q4</div>
-                    <div class="release-content">
-                        <span class="release-status planned" data-i18n="planned">
-                            Planned
-                        </span>
-
-                        <h3 data-i18n="r4qTitle">
-                            Optimization & Platform Expansion
-                        </h3>
-
-                        <p data-i18n="r4q">
-                            Application optimization and full macOS and Linux support,
-                            including Slackware and Gentoo.
-                        </p>
-                    </div>
-                </article>
-
-                <!-- 27Q1 -->
-                <article class="release reveal">
-                    <div class="release-version">27Q1</div>
-                    <div class="release-content">
-                        <span class="release-status planned" data-i18n="planned">
-                            Planned
-                        </span>
-
-                        <h3 data-i18n="r5qTitle">
-                            Plugins & Code Preview
-                        </h3>
-
-                        <p data-i18n="r5q">
-                            A plugin system and built-in code preview capabilities.
-                        </p>
-                    </div>
-                </article>
-
-            </div>
-        </section>
-        <section class="cta container glass">
-            <div><span class="eyebrow" data-i18n="ready">READY?</span>
-                <h2 data-i18n="ctaTitle">Keep your best code one shortcut away.</h2>
-                <p data-i18n="ctaText">Download CodeSnip or explore the source on GitHub.</p>
-            </div>
-            <div class="actions"><a class="btn primary" href="https://github.com/MstfSlm38/CodeSnip/releases"
-                    data-i18n="get">Get CodeSnip ↗</a><a class="btn secondary"
-                    href="https://github.com/MstfSlm38/CodeSnip" data-i18n="github">GitHub</a></div>
-        </section>
-    </main>
-    <footer class="footer container">
-        <div><b>CodeSnip</b><span data-i18n="tagline">Next-Gen Code & Prompt Manager</span></div>
-        <div><span>MIT License</span><a href="https://github.com/MstfSlm38/CodeSnip">MstfSlm38/CodeSnip</a></div>
-    </footer>
-    <script src="script.js"></script>
+            <button class="menu" id="menu" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-navigation">☰</button>
+        </div>
+    </nav>
+</header>
+<main id="top">
+    <section class="hero container">
+        <div class="hero-copy">
+            <span class="eyebrow" data-i18n="eyebrow">NEXT-GENERATION CODE &amp; PROMPT MANAGER</span>
+            <h1 data-i18n="heroTitle">Your code.<br><span>Organized.</span></h1>
+            <p class="lead" data-i18n="heroText">A modern, fast and completely offline desktop app for code snippets, terminal commands and AI prompts.</p>
+            <div class="actions"><a class="btn primary" href="https://github.com/MstfSlm38/CodeSnip/releases" data-i18n="download">Download CodeSnip ↗</a><a class="btn secondary" href="https://github.com/MstfSlm38/CodeSnip" data-i18n="source">View source</a></div>
+            <div class="meta"><span>Electron</span><i></i><span>MIT License</span><i></i><span data-i18n="offline">Offline-first</span></div>
+        </div>
+        <div class="hero-card glass" aria-hidden="true">
+            <div class="window-bar"><span></span><span></span><span></span><b>CodeSnip</b></div>
+            <div class="mock-sidebar"><img src="https://raw.githubusercontent.com/MstfSlm38/CodeSnip/26Q2.5/icon.ico" alt=""><div class="mock-line active"></div><div class="mock-line"></div><div class="mock-line"></div><div class="mock-line short"></div></div>
+            <div class="mock-main"><div class="mock-search">⌕ &nbsp; Search snippets...</div><div class="mock-title">My snippets</div><div class="snippet"><small>JavaScript</small><strong>fetchData()</strong><span>async function fetchData() { ... }</span></div><div class="snippet"><small>PowerShell</small><strong>Build project</strong><span>npm run dist</span></div><div class="snippet"><small>Prompt</small><strong>Code reviewer</strong><span>Review this code for bugs...</span></div></div>
+        </div>
+    </section>
+    <section class="trusted container"><span data-i18n="builtFor">BUILT FOR PEOPLE WHO BUILD</span><div><b>Developers</b><b>AI Users</b><b>Designers</b><b>Power Users</b></div></section>
+    <section id="features" class="section container">
+        <div class="section-head"><span class="eyebrow" data-i18n="featureEyebrow">FEATURES</span><h2 data-i18n="featureTitle">Everything you need.<br>Nothing you don't.</h2><p data-i18n="featureIntro">CodeSnip keeps your frequently used code and prompts close, searchable and available even without an internet connection.</p></div>
+        <div class="feature-grid">
+            <article class="feature glass"><div class="icon">⌕</div><h3 data-i18n="f1t">Spotlight Search</h3><p data-i18n="f1p">Find snippets instantly with global Spotlight search. Use Ctrl + Shift + S from anywhere.</p></article>
+            <article class="feature glass"><div class="icon">✦</div><h3 data-i18n="f2t">Liquid Glass UI</h3><p data-i18n="f2p">A clean, modern interface designed around fast navigation and a focused workspace.</p></article>
+            <article class="feature glass"><div class="icon">↗</div><h3 data-i18n="f3t">Share with Base64</h3><p data-i18n="f3p">Create compact Base64-based sharing links for snippets without sending your data to a server.</p></article>
+            <article class="feature glass"><div class="icon">◉</div><h3 data-i18n="f4t">Offline by Design</h3><p data-i18n="f4p">Your snippets stay local. CodeSnip works without requiring an internet connection.</p></article>
+            <article class="feature glass"><div class="icon">文</div><h3 data-i18n="f5t">TR / EN</h3><p data-i18n="f5p">Switch between Turkish and English and keep the workspace comfortable for your workflow.</p></article>
+            <article class="feature glass"><div class="icon">▦</div><h3 data-i18n="f6t">Categories</h3><p data-i18n="f6p">Organize snippets into categories and filter your collection quickly as it grows.</p></article>
+            <article class="feature glass"><div class="icon">↕</div><h3 data-i18n="f7t">Backup &amp; Restore</h3><p data-i18n="f7p">Export and import your snippet library as JSON so your local data is easy to back up and move.</p></article>
+            <article class="feature glass"><div class="icon">◌</div><h3 data-i18n="f8t">Customization</h3><p data-i18n="f8p">Personalize the workspace with appearance, blur, transparency, accent and background options.</p></article>
+        </div>
+    </section>
+    <section id="screenshots" class="section container screenshots">
+        <div class="section-head"><span class="eyebrow" data-i18n="workspace">THE WORKSPACE</span><h2 data-i18n="workspaceTitle">Made to stay out of your way.</h2></div>
+        <div class="shots">
+            <figure class="shot large"><img src="screenshot_1.png" alt="CodeSnip application interface"></figure>
+            <figure class="shot"><img src="screenshot_2.png" alt="CodeSnip workspace screenshot" loading="lazy"></figure>
+            <figure class="shot"><img src="screenshot_beta-1.png" alt="CodeSnip interface screenshot" loading="lazy"></figure>
+        </div>
+    </section>
+    <section class="roadmap section" id="roadmap">
+        <div class="section-heading reveal"><p class="eyebrow" data-i18n="roadmapEyebrow">ROADMAP</p><h2 data-i18n="roadmapTitle">Built in releases.<br>Always moving forward.</h2></div>
+        <div class="roadmap-list">
+            <article class="release reveal"><div class="release-version">v1.0</div><div class="release-content"><span class="release-status completed" data-i18n="completed">Completed</span><h3 data-i18n="r1t">Initial Release</h3><p data-i18n="r1p">CodeSnip starts its journey.</p></div></article>
+            <article class="release reveal"><div class="release-version">v1.1</div><div class="release-content"><span class="release-status completed" data-i18n="completed">Completed</span><h3 data-i18n="r2t">Hotfixes &amp; Favorites</h3><p data-i18n="r2p">Hotfixes, favorites and early improvements.</p></div></article>
+            <article class="release reveal"><div class="release-version">26Q2</div><div class="release-content"><span class="release-status completed" data-i18n="completed">Completed</span><h3 data-i18n="r3t">26Q2 — v2.0</h3><p data-i18n="r3p">Spotlight, sharing and redesigned Liquid Glass UI.</p><div class="release-sub"><strong>26Q2.5</strong><span data-i18n="r25p">JSON Export/Import, improved Spotlight and version naming update.</span></div></div></article>
+            <article class="release reveal current-release"><div class="release-version">26Q3</div><div class="release-content"><span class="release-status current" data-i18n="current">Current</span><h3 data-i18n="r3qTitle">Linux Support &amp; Customization</h3><p data-i18n="r3q">Linux support for Debian, Arch and Red Hat, improved appearance, customization and category management.</p><div class="release-sub"><strong>26Q3.1</strong><span data-i18n="r31p">Critical hotfixes.</span></div><div class="release-sub upcoming"><strong>26Q3.5</strong><span data-i18n="r35p">Important hotfixes, Spanish language support and light theme improvements.</span></div></div></article>
+            <article class="release reveal"><div class="release-version">26Q4</div><div class="release-content"><span class="release-status planned" data-i18n="planned">Planned</span><h3 data-i18n="r4qTitle">macOS Support &amp; Performance</h3><p data-i18n="r4q">Application optimization and macOS expansion, while continuing platform-specific Linux improvements.</p></div></article>
+            <article class="release reveal"><div class="release-version">27Q1</div><div class="release-content"><span class="release-status planned" data-i18n="planned">Planned</span><h3 data-i18n="r5qTitle">Plugins &amp; Code Preview</h3><p data-i18n="r5q">A plugin system and built-in code preview capabilities.</p></div></article>
+        </div>
+    </section>
+    <section class="cta container glass"><div><span class="eyebrow" data-i18n="ready">READY?</span><h2 data-i18n="ctaTitle">Keep your best code one shortcut away.</h2><p data-i18n="ctaText">Download CodeSnip or explore the source on GitHub.</p></div><div class="actions"><a class="btn primary" href="https://github.com/MstfSlm38/CodeSnip/releases" data-i18n="get">Get CodeSnip ↗</a><a class="btn secondary" href="https://github.com/MstfSlm38/CodeSnip" data-i18n="github">GitHub</a></div></section>
+</main>
+<footer class="footer container"><div><b>CodeSnip</b><span data-i18n="tagline">Next-Gen Code &amp; Prompt Manager</span></div><div><span>MIT License</span><a href="https://github.com/MstfSlm38/CodeSnip">MstfSlm38/CodeSnip</a></div></footer>
+<script src="script.js"></script>
 </body>
-
 </html>
