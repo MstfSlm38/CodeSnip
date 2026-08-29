@@ -9,30 +9,22 @@
     <meta property="og:title" content="CodeSnip — Next-Gen Code & Prompt Manager">
     <meta property="og:description" content="A fast, offline-first workspace for code snippets, terminal commands and AI prompts.">
     <meta property="og:url" content="https://mstfslm38.github.io/CodeSnip/">
-    <meta property="og:image" content="https://mstfslm38.github.io/CodeSnip/screenshot_1.png">
+    <meta property="og:image" content="https://raw.githubusercontent.com/MstfSlm38/CodeSnip/26Q2.5/screenshot_1.png">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="CodeSnip — Next-Gen Code & Prompt Manager">
     <meta name="twitter:description" content="A fast, offline-first workspace for code snippets, terminal commands and AI prompts.">
-    <meta name="twitter:image" content="https://mstfslm38.github.io/CodeSnip/screenshot_1.png">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/MstfSlm38/CodeSnip/26Q2.5/screenshot_1.png">
     <link rel="icon" href="https://raw.githubusercontent.com/MstfSlm38/CodeSnip/26Q2.5/icon.ico" type="image/x-icon">
     <link rel="canonical" href="https://mstfslm38.github.io/CodeSnip/">
     <title>CodeSnip — Next-Gen Code & Prompt Manager</title>
     <meta name="google-site-verification" content="MQTVKaLOa_HItk6HezCSvqxTY5IhxWJSgl9KCh1mOlI">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script type="application/ld+json">
-    {
-      "@context":"https://schema.org",
-      "@type":"SoftwareApplication",
-      "name":"CodeSnip",
-      "applicationCategory":"DeveloperApplication",
-      "operatingSystem":"Windows, Linux",
-      "description":"Next-Gen Code & Prompt Manager for code snippets, terminal commands and AI prompts.",
-      "url":"https://mstfslm38.github.io/CodeSnip/",
-      "license":"https://opensource.org/licenses/MIT"
-    }
+    {"@context":"https://schema.org","@type":"SoftwareApplication","name":"CodeSnip","applicationCategory":"DeveloperApplication","operatingSystem":"Windows, Linux","description":"Next-Gen Code & Prompt Manager for code snippets, terminal commands and AI prompts.","url":"https://mstfslm38.github.io/CodeSnip/","license":"https://opensource.org/licenses/MIT"}
     </script>
 </head>
 <body>
@@ -49,7 +41,7 @@
             <div class="language" aria-label="Language selector">
                 <button id="lang-en" class="lang active" type="button">EN</button><span aria-hidden="true">/</span><button id="lang-tr" class="lang" type="button">TR</button>
             </div>
-            <button class="menu" id="menu" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-navigation">☰</button>
+            <button class="menu" id="menu" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-navigation"><i class="bi bi-list" aria-hidden="true"></i></button>
         </div>
     </nav>
 </header>
@@ -59,35 +51,35 @@
             <span class="eyebrow" data-i18n="eyebrow">NEXT-GENERATION CODE &amp; PROMPT MANAGER</span>
             <h1 data-i18n="heroTitle">Your code.<br><span>Organized.</span></h1>
             <p class="lead" data-i18n="heroText">A modern, fast and completely offline desktop app for code snippets, terminal commands and AI prompts.</p>
-            <div class="actions"><a class="btn primary" href="https://github.com/MstfSlm38/CodeSnip/releases" data-i18n="download">Download CodeSnip ↗</a><a class="btn secondary" href="https://github.com/MstfSlm38/CodeSnip" data-i18n="source">View source</a></div>
+            <div class="actions"><a class="btn primary" href="https://github.com/MstfSlm38/CodeSnip/releases" data-i18n="download">Download CodeSnip <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a><a class="btn secondary" href="https://github.com/MstfSlm38/CodeSnip" data-i18n="source">View source</a></div>
             <div class="meta"><span>Electron</span><i></i><span>MIT License</span><i></i><span data-i18n="offline">Offline-first</span></div>
         </div>
         <div class="hero-card glass" aria-hidden="true">
             <div class="window-bar"><span></span><span></span><span></span><b>CodeSnip</b></div>
             <div class="mock-sidebar"><img src="https://raw.githubusercontent.com/MstfSlm38/CodeSnip/26Q2.5/icon.ico" alt=""><div class="mock-line active"></div><div class="mock-line"></div><div class="mock-line"></div><div class="mock-line short"></div></div>
-            <div class="mock-main"><div class="mock-search">⌕ &nbsp; Search snippets...</div><div class="mock-title">My snippets</div><div class="snippet"><small>JavaScript</small><strong>fetchData()</strong><span>async function fetchData() { ... }</span></div><div class="snippet"><small>PowerShell</small><strong>Build project</strong><span>npm run dist</span></div><div class="snippet"><small>Prompt</small><strong>Code reviewer</strong><span>Review this code for bugs...</span></div></div>
+            <div class="mock-main"><div class="mock-search"><i class="bi bi-search" aria-hidden="true"></i>&nbsp; Search snippets...</div><div class="mock-title">My snippets</div><div class="snippet"><small>JavaScript</small><strong>fetchData()</strong><span>async function fetchData() { ... }</span></div><div class="snippet"><small>PowerShell</small><strong>Build project</strong><span>npm run dist</span></div><div class="snippet"><small>Prompt</small><strong>Code reviewer</strong><span>Review this code for bugs...</span></div></div>
         </div>
     </section>
     <section class="trusted container"><span data-i18n="builtFor">BUILT FOR PEOPLE WHO BUILD</span><div><b>Developers</b><b>AI Users</b><b>Designers</b><b>Power Users</b></div></section>
     <section id="features" class="section container">
         <div class="section-head"><span class="eyebrow" data-i18n="featureEyebrow">FEATURES</span><h2 data-i18n="featureTitle">Everything you need.<br>Nothing you don't.</h2><p data-i18n="featureIntro">CodeSnip keeps your frequently used code and prompts close, searchable and available even without an internet connection.</p></div>
         <div class="feature-grid">
-            <article class="feature glass"><div class="icon">⌕</div><h3 data-i18n="f1t">Spotlight Search</h3><p data-i18n="f1p">Find snippets instantly with global Spotlight search. Use Ctrl + Shift + S from anywhere.</p></article>
-            <article class="feature glass"><div class="icon">✦</div><h3 data-i18n="f2t">Liquid Glass UI</h3><p data-i18n="f2p">A clean, modern interface designed around fast navigation and a focused workspace.</p></article>
-            <article class="feature glass"><div class="icon">↗</div><h3 data-i18n="f3t">Share with Base64</h3><p data-i18n="f3p">Create compact Base64-based sharing links for snippets without sending your data to a server.</p></article>
-            <article class="feature glass"><div class="icon">◉</div><h3 data-i18n="f4t">Offline by Design</h3><p data-i18n="f4p">Your snippets stay local. CodeSnip works without requiring an internet connection.</p></article>
-            <article class="feature glass"><div class="icon">文</div><h3 data-i18n="f5t">TR / EN</h3><p data-i18n="f5p">Switch between Turkish and English and keep the workspace comfortable for your workflow.</p></article>
-            <article class="feature glass"><div class="icon">▦</div><h3 data-i18n="f6t">Categories</h3><p data-i18n="f6p">Organize snippets into categories and filter your collection quickly as it grows.</p></article>
-            <article class="feature glass"><div class="icon">↕</div><h3 data-i18n="f7t">Backup &amp; Restore</h3><p data-i18n="f7p">Export and import your snippet library as JSON so your local data is easy to back up and move.</p></article>
-            <article class="feature glass"><div class="icon">◌</div><h3 data-i18n="f8t">Customization</h3><p data-i18n="f8p">Personalize the workspace with appearance, blur, transparency, accent and background options.</p></article>
+            <article class="feature glass"><div class="icon"><i class="bi bi-search" aria-hidden="true"></i></div><h3 data-i18n="f1t">Spotlight Search</h3><p data-i18n="f1p">Find snippets instantly with global Spotlight search. Use Ctrl + Shift + S from anywhere.</p></article>
+            <article class="feature glass"><div class="icon"><i class="bi bi-stars" aria-hidden="true"></i></div><h3 data-i18n="f2t">Liquid Glass UI</h3><p data-i18n="f2p">A clean, modern interface designed around fast navigation and a focused workspace.</p></article>
+            <article class="feature glass"><div class="icon"><i class="bi bi-share" aria-hidden="true"></i></div><h3 data-i18n="f3t">Share with Base64</h3><p data-i18n="f3p">Create compact Base64-based sharing links for snippets without sending your data to a server.</p></article>
+            <article class="feature glass"><div class="icon"><i class="bi bi-cloud-slash" aria-hidden="true"></i></div><h3 data-i18n="f4t">Offline by Design</h3><p data-i18n="f4p">Your snippets stay local. CodeSnip works without requiring an internet connection.</p></article>
+            <article class="feature glass"><div class="icon"><i class="bi bi-translate" aria-hidden="true"></i></div><h3 data-i18n="f5t">TR / EN</h3><p data-i18n="f5p">Switch between Turkish and English and keep the workspace comfortable for your workflow.</p></article>
+            <article class="feature glass"><div class="icon"><i class="bi bi-grid" aria-hidden="true"></i></div><h3 data-i18n="f6t">Categories</h3><p data-i18n="f6p">Organize snippets into categories and filter your collection quickly as it grows.</p></article>
+            <article class="feature glass"><div class="icon"><i class="bi bi-arrow-down-up" aria-hidden="true"></i></div><h3 data-i18n="f7t">Backup &amp; Restore</h3><p data-i18n="f7p">Export and import your snippet library as JSON so your local data is easy to back up and move.</p></article>
+            <article class="feature glass"><div class="icon"><i class="bi bi-sliders2" aria-hidden="true"></i></div><h3 data-i18n="f8t">Customization</h3><p data-i18n="f8p">Personalize the workspace with appearance, blur, transparency, accent and background options.</p></article>
         </div>
     </section>
     <section id="screenshots" class="section container screenshots">
         <div class="section-head"><span class="eyebrow" data-i18n="workspace">THE WORKSPACE</span><h2 data-i18n="workspaceTitle">Made to stay out of your way.</h2></div>
         <div class="shots">
-            <figure class="shot large"><img src="screenshot_1.png" alt="CodeSnip application interface"></figure>
-            <figure class="shot"><img src="screenshot_2.png" alt="CodeSnip workspace screenshot" loading="lazy"></figure>
-            <figure class="shot"><img src="screenshot_beta-1.png" alt="CodeSnip interface screenshot" loading="lazy"></figure>
+            <figure class="shot large"><img src="https://raw.githubusercontent.com/MstfSlm38/CodeSnip/26Q2.5/screenshot_1.png" alt="CodeSnip application interface"></figure>
+            <figure class="shot"><img src="https://raw.githubusercontent.com/MstfSlm38/CodeSnip/26Q2.5/screenshot_2.png" alt="CodeSnip workspace screenshot" loading="lazy"></figure>
+            <figure class="shot"><img src="https://raw.githubusercontent.com/MstfSlm38/CodeSnip/26Q2.5/screenshot_beta-1.png" alt="CodeSnip interface screenshot" loading="lazy"></figure>
         </div>
     </section>
     <section class="roadmap section" id="roadmap">
@@ -101,7 +93,7 @@
             <article class="release reveal"><div class="release-version">27Q1</div><div class="release-content"><span class="release-status planned" data-i18n="planned">Planned</span><h3 data-i18n="r5qTitle">Plugins &amp; Code Preview</h3><p data-i18n="r5q">A plugin system and built-in code preview capabilities.</p></div></article>
         </div>
     </section>
-    <section class="cta container glass"><div><span class="eyebrow" data-i18n="ready">READY?</span><h2 data-i18n="ctaTitle">Keep your best code one shortcut away.</h2><p data-i18n="ctaText">Download CodeSnip or explore the source on GitHub.</p></div><div class="actions"><a class="btn primary" href="https://github.com/MstfSlm38/CodeSnip/releases" data-i18n="get">Get CodeSnip ↗</a><a class="btn secondary" href="https://github.com/MstfSlm38/CodeSnip" data-i18n="github">GitHub</a></div></section>
+    <section class="cta container glass"><div><span class="eyebrow" data-i18n="ready">READY?</span><h2 data-i18n="ctaTitle">Keep your best code one shortcut away.</h2><p data-i18n="ctaText">Download CodeSnip or explore the source on GitHub.</p></div><div class="actions"><a class="btn primary" href="https://github.com/MstfSlm38/CodeSnip/releases" data-i18n="get">Get CodeSnip <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a><a class="btn secondary" href="https://github.com/MstfSlm38/CodeSnip" data-i18n="github">GitHub</a></div></section>
 </main>
 <footer class="footer container"><div><b>CodeSnip</b><span data-i18n="tagline">Next-Gen Code &amp; Prompt Manager</span></div><div><span>MIT License</span><a href="https://github.com/MstfSlm38/CodeSnip">MstfSlm38/CodeSnip</a></div></footer>
 <script src="script.js"></script>
