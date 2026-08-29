@@ -32,5 +32,10 @@
     "directories": {
       "output": "dist"
     }
+  },
+  "mobile": {
+    "ios": true,
+    "ipados": true,
+    "entry": "index.html"
   }
 }
