@@ -2,12 +2,12 @@
     box-sizing: border-box;
 }
 
-* {
-    box-sizing: border-box;
-}
-
 body {
-    background-color: #0f141c;
+    /* Eski rengi yedek olarak tuttuk, hemen arkasına resmi bağlıyoruz */
+    background: #0f141c url('abstract.png') no-repeat center center fixed;
+    background-size: cover;
+    /* Resmi ekrana tam yayar, boşluk bırakmaz */
+
     color: #f5f6f9;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     margin: 0;
@@ -15,9 +15,26 @@ body {
     overflow: hidden;
     transition: background-color 0.3s, color 0.3s;
 
-    /* Body üzerinde ekstra padding veya position bırakmıyoruz, tertemiz */
     display: flex;
     flex-direction: column;
+}
+
+/* Liquid Glass aktifken arka plana pürüzsüzlük katacak katman */
+body.liquid-glass::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: inherit;
+    filter: blur(2px);
+    /* Arka plan görselini hafifçe yumuşatmak için */
+    z-index: -1;
+}
+
+.border-highlight {
+    border-color: var(--theme-color) !important;
 }
 
 /* GÜNCELLENEN ÜST BAR TASARIMI */
@@ -135,8 +152,11 @@ nav {
     flex: 1;
     padding: 30px;
     overflow-y: auto;
-    background-color: #0f141c;
-    /* Mat ve derin koyu tema tabanı */
+
+    /* DÜZELTME: Mat renk yerine %45 saydamlık ve cam bulanıklığı ekledik */
+    background-color: rgba(15, 20, 28, 0.45) !important;
+    backdrop-filter: blur(20px);
+
     transition: background-color 0.3s;
 }
 
@@ -153,16 +173,30 @@ header h2 {
     gap: 20px;
 }
 
-/* Kod Kartları Genel Yapısı */
+/* Kod Kartları Genel Yapısı (Liquid Glass Güncellemesi) */
 .snip-card {
     border-radius: 12px;
     padding: 20px;
+
+    /* DÜZELTME: Kart zeminini yarı saydam yapıp arkasını bulandırdık */
+    background-color: rgba(30, 35, 45, 0.5) !important;
+    backdrop-filter: blur(12px);
+
+    /* İnce cam yansıması kenarlık */
+    border: 1px solid rgba(255, 255, 255, 0.06);
+
     transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s, border-color 0.3s;
 }
 
+/* Karta Yaklaştığında (Hover) Cam Parlaması Efekti */
 .snip-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+
+    /* Üzerine gelince cam biraz daha aydınlanıp parlasın */
+    background-color: rgba(40, 45, 60, 0.6) !important;
+    border-color: rgba(255, 255, 255, 0.15);
+
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
 }
 
 .snip-header {
@@ -180,16 +214,6 @@ header h2 {
 }
 
 /* Butonlar */
-.copy-btn {
-    background-color: rgba(255, 255, 255, 0.07);
-    color: #e4e6eb;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 6px 14px;
-    border-radius: 6px;
-    font-size: 13px;
-    cursor: pointer;
-    transition: all 0.2s;
-}
 
 .copy-btn:hover {
     background-color: #007aff;
@@ -202,15 +226,77 @@ header h2 {
     gap: 8px;
 }
 
+
+/* ==========================================================================
+   KART BUTONLARI (MİLİMETRİK EŞİTLEME GÜNCELLEMESİ)
+   ========================================================================== */
+
+.copy-btn,
+.delete-btn,
+.share-btn,
+.edit-btn {
+    /* Hepsine sabit yükseklik vererek tarayıcı farklılıklarını sıfırlıyoruz */
+    height: 32px;
+
+    /* İçerikleri (metin ve ikonları) dikeyde tam ortalıyoruz */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    /* Yatay boşluklar ve fontlar tamamen aynı */
+    padding: 0 14px;
+    font-size: 13px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: inherit;
+    box-sizing: border-box;
+    /* Border'ların yüksekliğe dahil olmasını sağlar */
+    transition: all 0.2s ease;
+}
+
+/* Kopyala Butonu Özel Renkleri */
+.copy-btn {
+    background-color: rgba(255, 255, 255, 0.07);
+    color: #e4e6eb;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Sil Butonu Özel Renkleri */
 .delete-btn {
     background-color: rgba(255, 61, 48, 0.15);
     color: #ff453a;
     border: 1px solid rgba(255, 61, 48, 0.2);
-    padding: 6px 12px;
-    border-radius: 6px;
-    font-size: 12px;
-    cursor: pointer;
-    transition: all 0.2s;
+}
+
+/* Paylaş Butonu Özel Renkleri */
+.share-btn {
+    background: rgba(85, 255, 7, 0.15);
+    color: #7fff07;
+    border: 1px solid rgba(139, 255, 7, 0.3);
+    gap: 4px;
+    /* İkon ile yazı arasındaki boşluk */
+}
+
+.share-btn:hover {
+    background: #a8ff07;
+    color: #111;
+    /* Koyu temada yazı net okunsun diye */
+    box-shadow: 0 0 8px rgba(181, 255, 7, 0.4);
+}
+
+/* Düzenle Butonu Özel Renkleri */
+.edit-btn {
+    background: rgba(255, 193, 7, 0.15);
+    color: #ffc107;
+    border: 1px solid rgba(255, 193, 7, 0.3);
+    gap: 4px;
+}
+
+.edit-btn:hover {
+    background: #ffc107;
+    color: #111;
+    /* Koyu temada yazı net okunsun diye */
+    box-shadow: 0 0 8px rgba(255, 193, 7, 0.4);
 }
 
 .delete-btn:hover {
@@ -219,15 +305,29 @@ header h2 {
 }
 
 /* Kod Editörü / Blokları Görünümü */
+/* Kod Editörü / Blokları Görünümü (Liquid Glass Güncellemesi) */
 pre {
-    background-color: #080b11;
-    /* Kodların içi tam bir terminal gibi simsiyah ve net */
+    /* DÜZELTME: Sabit koyu renk yerine yarı saydam bir ton verdik */
+    background-color: rgba(10, 13, 20, 0.4) !important;
+
+    /* Kodların arkasında da cam akıcılığı devam etsin */
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
     padding: 15px;
     border-radius: 8px;
     margin: 0;
     overflow-x: auto;
-    border: 1px solid rgba(255, 255, 255, 0.03);
+
+    /* Hafif parlayan şık bir iç kenarlık */
+    border: 1px solid rgba(255, 255, 255, 0.05);
     transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Fareyle kod bloğunun üzerine gelindiğinde hafif bir parlamayla canlansın */
+pre:hover {
+    background-color: rgba(15, 20, 30, 0.55) !important;
+    border-color: rgba(255, 255, 255, 0.12);
 }
 
 code {
@@ -237,11 +337,14 @@ code {
 }
 
 /* ================= MODERN SIVI CAM (LIQUID GLASS) EFEKTİ ================= */
+/* style.css içindeki mevcut tanımı dinamik değişkenlerle güncelleyelim */
 .liquid_glass {
-    background: rgba(255, 255, 255, 0.03) !important;
-    backdrop-filter: blur(16px) !important;
-    -webkit-backdrop-filter: blur(16px) !important;
+    background: rgba(255, 255, 255, var(--glass-opacity, 0.03)) !important;
+    backdrop-filter: blur(var(--glass-blur, 16px)) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur, 16px)) !important;
     border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.05), var(--glow-color, rgba(0, 0, 0, 0));
+    transition: all 0.3s ease;
 }
 
 /* ================= MAT GÖRÜNÜM (CAM EFEKTİ KAPALIYKEN) ================= */
@@ -336,22 +439,6 @@ code {
     transition: opacity 0.3s;
 }
 
-#scratchpad {
-    width: 100%;
-    height: 130px;
-    background: rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.04);
-    border-radius: 8px;
-    color: #ffffff;
-    padding: 12px;
-    font-family: inherit;
-    font-size: 13px;
-    resize: none;
-    /* Düzgün durması için manuel büyütmeyi kapattık */
-    outline: none;
-    transition: border-color 0.2s;
-}
-
 #scratchpad:focus {
     border-color: #007aff;
 }
@@ -426,13 +513,42 @@ code {
 }
 
 .form-group select {
-    flex: 1;
-    background-color: #080b11;
+    /* Temel tasarım */
+    background: #080b11;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 15px 17px;
+    /* Biraz daha iç boşluk verdik */
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+    /* Kutunun genişliği tam sığması için */
+
+    /* 🌟 Sihirli dokunuş: Varsayılan tarayıcı stilini tamamen kapat */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    /* Kendi özel ok simgemizi ekliyoruz (çünkü appearance: none ok'u yok eder) */
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    padding-right: 30px;
+    /* Okun yazının üstüne binmemesi için */
+}
+
+/* Üzerine gelince belirginleşsin */
+.form-group select:hover {
+    border-color: rgba(255, 255, 255, 0.25);
+    background-color: #111622;
 }
 
 .form-group textarea {
     width: 100%;
-    height: 120px;
+    height: 150px;
     resize: vertical;
 }
 
@@ -443,13 +559,18 @@ code {
 }
 
 .save-btn {
-    background-color: #30d158;
-    color: white;
-    border: none;
-    padding: 10px 20px;
+    background: rgba(85, 255, 7, 0.15);
+    color: #7fff07;
+    border: 1px solid rgba(139, 255, 7, 0.3);
     border-radius: 6px;
-    cursor: pointer;
-    font-weight: 500;
+}
+
+.save-btn:hover {
+    background: #a8ff07;
+    color: #111;
+    /* Koyu temada yazı net okunsun diye */
+    box-shadow: 0 0 8px rgba(181, 255, 7, 0.4);
+    border-radius: 6px;
 }
 
 .cancel-btn {
@@ -463,8 +584,21 @@ code {
 
 /* Sol Menü Footer (Ayarlar Butonu) */
 .sidebar-footer {
+    margin-top: auto;
+    /* Üstteki elemanlardan tamamen bağımsız en alta itilmesi için garanti */
     padding-top: 15px;
-    margin-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    /* İsteğe bağlı: Üstüne şık ince bir çizgi */
+    align-items: center;
+}
+
+/* Footer içindeki ayarlar butonunun tasarımı (gerekirse genişlik ayarı) */
+.sidebar-footer button {
+    width: 100%;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .settings-toggle-btn {
@@ -498,24 +632,144 @@ code {
     z-index: 9999;
 }
 
+/* ==========================================================================
+   🔍 AYARLAR PENCERESİ - CHROMIUM BUG ARINDIRILMIŞ KESİN ÇÖZÜM
+   ========================================================================== */
+
+/* Modalı taşıyan ve tüm ekranı kaplayan karartma katmanı */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Arka planı biraz daha koyulaştırarak alttaki blur çakışmasını nötrlüyoruz */
+    background: rgba(5, 7, 12, 0.85) !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* Ayarlar Penceresinin Ana Kutusu */
 .modal-content {
     width: 540px;
     max-height: 85vh;
     overflow-y: auto;
-    padding: 30px;
+    padding: 0 30px 30px 30px;
     border-radius: 16px;
-    background-color: #161e2b;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
+    position: relative;
+
+    /* ⚠️ CHROMIUM BLUR BUG ÇÖZÜMÜ: 
+       Üst üste binen filtreler patlamaya sebep olduğu için buradaki blur'u sıfırladık.
+       Arkayı tamamen kapatan, asil ve opak bir gece laciverti verdik: */
+    background-color: #111622 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+
+    /* Şık ve ince çerçeve çizgisi */
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85) !important;
+
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
+/* Üst Sabit Başlık Alanı (Aşağı kaydırırken yazılar arkaya gizlenir) */
 .modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: sticky;
+    top: 0;
+    padding: 25px 0 15px 0;
     margin-bottom: 25px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    padding-bottom: 15px;
+    z-index: 10;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    /* İçerik kutusuyla birebir aynı, opak renk olmak zorunda: */
+    background-color: #111622 !important;
+}
+
+/* ☀️ Jilet Gibi Açık Tema (Light Theme) Aktifken Ayarlar Görünümü */
+.light-theme .modal-content {
+    background-color: #e8e6e6 !important;
+    border: 1px solid rgba(0, 0, 0, 0.15) !important;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+.light-theme .modal-header {
+    background-color: #e8e6e6 !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* --------------------------------------------------------------------------
+   A) LIQUID GLASS AKTİFKEN (body elementinde .liquid-glass sınıfı VARKEN)
+   -------------------------------------------------------------------------- */
+body.liquid-glass .modal-content {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+body.liquid-glass .modal-header {
+    /* Yazılar arkadan kayarken hafifçe süzülmesi için yarı saydam cam efekti */
+    background-color: rgba(22, 30, 43, 0.6) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+
+    /* Sağdan soldan taşma yapmaması için iç boşluk dengeleyici */
+    padding: 25px 15px 15px 15px;
+    margin: 0 -15px 25px -15px;
+}
+
+
+/* --------------------------------------------------------------------------
+   B) LIQUID GLASS KAPALIYKEN (body elementinde .liquid-glass sınıfı YOKKEN)
+   -------------------------------------------------------------------------- */
+body:not(.liquid-glass) .modal-content {
+    /* Orijinal asil koyu lacivert mat görünüm */
+    background-color: #161e2b !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7) !important;
+}
+
+body:not(.liquid-glass) .modal-header {
+    /* Arkadan kayan yazılar üste binmesin diye tamamen opak mat arka plan */
+    background-color: #161e2b !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+
+    /* Düz temada ekstra margin taşmalarına gerek yok, sıfırlıyoruz */
+    padding: 25px 0 15px 0;
+    margin: 0 0 25px 0;
+}
+
+
+/* --------------------------------------------------------------------------
+   C) MODERN KAPATMA BUTONU
+   -------------------------------------------------------------------------- */
+.modal-header button,
+.close-modal-btn {
+    background: rgba(255, 255, 255, 0.05);
+    color: #a0a5b5;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.modal-header button:hover,
+.close-modal-btn:hover {
+    background-color: rgba(255, 255, 255, 0.12) !important;
+    color: #ffffff !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
 }
 
 .modal-header h2 {
@@ -602,12 +856,15 @@ code {
     color: white;
 }
 
-/* Toggle Switch */
+/* ==========================================================================
+   🔮 HAREKET ANINDA VE BASILI TUTULDUĞUNDA CAMLAŞAN TOGGLE SWITCH
+   ========================================================================== */
+
 .switch {
     position: relative;
     display: inline-block;
-    width: 46px;
-    height: 24px;
+    width: 51px;
+    height: 31px;
 }
 
 .switch input {
@@ -616,6 +873,7 @@ code {
     height: 0;
 }
 
+/* Gövde */
 .slider {
     position: absolute;
     cursor: pointer;
@@ -623,29 +881,59 @@ code {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #3a3a3c;
-    transition: .3s;
-    border-radius: 24px;
+    background-color: #39393d;
+    border: 1.5px solid rgba(255, 255, 255, 0.1);
+    border-radius: 31px;
+    transition: background-color 0.25s ease;
 }
 
+/* İçteki Yuvarlak (Normal dururken ve hareket bittiğinde HER ZAMAN mat beyaz) */
 .slider:before {
     position: absolute;
     content: "";
-    height: 18px;
-    width: 18px;
-    left: 3px;
-    bottom: 3px;
-    background-color: white;
-    transition: .3s;
+    height: 25px;
+    width: 25px;
+    left: 2px;
+    bottom: 2px;
+    background-color: #ffffff;
     border-radius: 50%;
+    transform-origin: left center;
+
+    /* 🌟 Sihir burada: Cam efektinin açılıp kapanma hızını da transition'a bağlıyoruz */
+    transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1),
+        width 0.25s cubic-bezier(0.25, 1, 0.5, 1),
+        background-color 0.2s ease,
+        backdrop-filter 0.2s ease,
+        border 0.2s ease,
+        box-shadow 0.2s ease;
+
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border: 1px solid transparent;
 }
 
+/* 🟢 SWITCH AKTİF OLDUĞUNDA (SAĞA KAYIŞ) */
 input:checked+.slider {
-    background-color: #30d158;
+    background-color: #34c759;
 }
 
 input:checked+.slider:before {
-    transform: translateX(22px);
+    transform: translateX(20px);
+}
+
+/* 🧪 ⚡ BASILI TUTULDUĞU AN (ACTIVE) TETİKLENEN DETAYLAR */
+/* Sen parmağını fare düğmesinden çekene kadar buton bu cam formunda donar: */
+.switch input:active+.slider:before {
+    width: 32px;
+    /* Videodaki esneme payı */
+
+    /* Liquid Glass Kodları */
+    background-color: rgba(255, 255, 255, 0.25) !important;
+    backdrop-filter: blur(6px) !important;
+    -webkit-backdrop-filter: blur(6px) !important;
+
+    /* Kristal kenarlık parlaması ve gölgesi */
+    border: 1px solid rgba(255, 255, 255, 0.45) !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 /* AKILLI TOAST BİLDİRİM SİSTEMİ */
@@ -679,7 +967,9 @@ input:checked+.slider:before {
 }
 
 .light-theme .main-content {
-    background-color: #c3faf9 !important;
+    /* Açık tema için de istersen hafif saydam bir cam yapabilirsin */
+    background-color: rgba(195, 250, 249, 0.7) !important;
+    backdrop-filter: blur(20px);
 }
 
 .light-theme .sidebar {
@@ -724,6 +1014,7 @@ input:checked+.slider:before {
 
 .light-theme .snip-card pre {
     background-color: #ffffff !important;
+    backdrop-filter: none !important;
     border: 1px solid rgba(0, 0, 0, 0.1) !important;
 }
 
@@ -802,21 +1093,7 @@ input:checked+.slider:before {
     /* Aktifken altın sarısı parlasın */
 }
 
-/* Düzenle Buton Tasarımı */
-.edit-btn {
-    background-color: #ffcc00;
-    color: #ffffff;
-    border: none;
-    padding: 4px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 12px;
-    transition: background 0.2s;
-}
 
-.edit-btn:hover {
-    background-color: #ffde5b;
-}
 
 /* Butonların Kapsayıcısı */
 .window-controls {
@@ -987,32 +1264,6 @@ input:checked+.slider:before {
     align-items: center;
 }
 
-/* Paylaş Butonunun Genel Tasarımı */
-.share-btn {
-    background: rgba(255, 193, 7, 0.15);
-    /* Hafif şeffaf sarı/turuncu tonu */
-    border: 1px solid rgba(255, 193, 7, 0.3);
-    color: #ffc107;
-    padding: 4px 10px;
-    border-radius: 6px;
-    font-size: 12px;
-    cursor: pointer;
-    font-family: inherit;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    /* İkon ve metin arası boşluk */
-}
-
-/* Paylaş Butonuna Hover (Fareyle üzerine gelince) Efekti */
-.share-btn:hover {
-    background: #ffc107;
-    color: #111;
-    /* Koyu temada yazı net okunsun diye */
-    box-shadow: 0 0 8px rgba(255, 193, 7, 0.4);
-}
-
 /* Eğer butonların genel bir stili varsa (edit-btn, copy-btn gibi) uyum sağlaması için */
 .card-actions button {
     outline: none;
@@ -1143,7 +1394,7 @@ input:checked+.slider:before {
 .spotlight-item.active .item-category {
     background: #00adb5;
     /* Seçili satırdaki kategori senin neon mavisi rengini alır */
-    color: #fff;
+    color: #ff008c;
 }
 
 /* 📑 SAĞ TARAFTAKİ MINI QUICK LOOK (ÖNİZLEME) PANELİ */
@@ -1229,199 +1480,652 @@ input:checked+.slider:before {
     background: transparent;
 }
 
-
 /* ==========================================================================
-   CodeSnip 26Q3.5 — Light Theme Refinement
+   🎬 CODESNIP MEGA ANIMATION PACK v26Q3-beta1 — COMPLETE 20 ANIMATIONS
    ========================================================================== */
-.light-theme {
-    background: #f5f7fa !important;
-    color: #1d1d1f !important;
+
+/* ==========================================
+   Section 1: Global Keyframes (01 - 06)
+   ========================================== */
+
+/* 01. Aşağıdan Yukarı Süzülme Girişi */
+@keyframes csFadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.light-theme .electron-titlebar {
-    background: rgba(255,255,255,0.88);
-    color: #4b4b4f;
-    border-bottom: 1px solid rgba(0,0,0,0.08);
-    backdrop-filter: blur(18px);
+/* 02. Soldan Sağa Akıcı Giriş */
+@keyframes csFadeInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
-.light-theme .titlebar-drag-zone {
-    color: #5f6368;
+/* 03. macOS Tarzı Esnek Büyüme */
+@keyframes csScalePop {
+    0% {
+        opacity: 0;
+        transform: scale(0.94);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
-.light-theme .sidebar {
-    background: rgba(255,255,255,0.72) !important;
-    border-right: 1px solid rgba(0,0,0,0.08) !important;
-    box-shadow: 4px 0 24px rgba(0,0,0,0.04);
+/* 04. Kopyalama Başarı Sıçraması */
+@keyframes csSuccessBounce {
+    0% {
+        transform: scale(1);
+    }
+
+    30% {
+        transform: scale(1.15);
+        background-color: #34c759 !important;
+        border-color: transparent;
+    }
+
+    50% {
+        transform: scale(0.95);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
-.light-theme .logo-text,
-.light-theme h2,
-.light-theme h3,
-.light-theme strong,
-.light-theme .nav-item,
-.light-theme .sidebar-footer button {
-    color: #202124 !important;
+/* 05. Bildirim Kutusu Sallanma Efekti */
+@keyframes csAlertShake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    20%,
+    60% {
+        transform: translateX(-4px);
+    }
+
+    40%,
+    80% {
+        transform: translateX(4px);
+    }
 }
 
-.light-theme .nav-item {
-    border: 1px solid transparent;
+/* 06. Arka Plan Shimmer (Yükleniyor) Dalgası */
+@keyframes csShimmerWave {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
 }
 
-.light-theme .nav-item:hover {
-    background: rgba(0,122,255,0.07) !important;
-    border-color: rgba(0,122,255,0.12);
+
+/* ==========================================
+   Section 2: Uygulama İçi Bileşenler (07 - 20)
+   ========================================== */
+
+/* 07. Kod Kartları İlk Giriş Efekti (.snip-card) */
+.snip-card {
+    animation: csFadeInUp 0.45s cubic-bezier(0.25, 1, 0.5, 1) both;
 }
 
-.light-theme .nav-item.active {
-    background: rgba(0,122,255,0.11) !important;
-    border-color: rgba(0,122,255,0.16);
+/* 08. Kod Kartları Üzerine Gelince Yükselme (Hover) */
+.snip-card {
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+        box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+        border-color 0.3s ease;
 }
 
-.light-theme .badge {
-    background: rgba(0,0,0,0.07);
-    color: #555 !important;
+.snip-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35) !important;
+    border-color: rgba(255, 255, 255, 0.18) !important;
 }
 
-.light-theme .snip-card.liquid_glass,
-.light-theme .snip-card.no-glass {
-    background: rgba(255,255,255,0.82) !important;
-    border: 1px solid rgba(0,0,0,0.08) !important;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.055);
+/* 09. Sol Menü Elemanları Esnek Sağa Kayma (.nav-item) */
+.nav-item {
+    transition: background-color 0.2s ease,
+        transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+        padding-left 0.25s ease,
+        color 0.2s ease !important;
 }
 
-.light-theme .snip-card:hover {
-    box-shadow: 0 12px 30px rgba(0,0,0,0.09);
-    border-color: rgba(0,122,255,0.18) !important;
+.nav-item:hover {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    padding-left: 26px !important;
+    transform: scale(1.02);
+    color: #ffffff !important;
 }
 
-.light-theme .snip-card pre {
-    background: #f8f9fb !important;
-    border: 1px solid rgba(0,0,0,0.07) !important;
+/* 10. Sol Menü Elemanları Tıklama İçe Çökme (Active) */
+.nav-item:active {
+    transform: scale(0.97);
 }
 
-.light-theme .snip-card pre code {
-    color: #24292f !important;
-    text-shadow: none !important;
+/* 11. Arama Çubuğu Genişleme ve Parlama (Focus) */
+.search-bar-container input,
+input[type="text"] {
+    transition: box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
 }
 
-.light-theme .code-stats {
-    color: #6b7280 !important;
+/* 12. İşlem Butonları Yumuşak Parlama (Hover) */
+.btn-copy,
+.btn-edit,
+.btn-share,
+.main-button {
+    transition: filter 0.2s ease, transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-.light-theme #search-input,
-.light-theme .form-group input,
-.light-theme .form-group textarea,
-.light-theme .form-group select,
-.light-theme .setting-item select {
-    background: rgba(255,255,255,0.94) !important;
-    color: #202124 !important;
-    border: 1px solid rgba(0,0,0,0.12) !important;
+.btn-copy:hover,
+.btn-edit:hover,
+.btn-share:hover,
+.main-button:hover {
+    filter: brightness(1.2);
+    transform: translateY(-1.5px);
 }
 
-.light-theme #search-input:focus,
-.light-theme .form-group input:focus,
-.light-theme .form-group textarea:focus,
-.light-theme .form-group select:focus {
-    border-color: rgba(0,122,255,0.45) !important;
-    box-shadow: 0 0 0 3px rgba(0,122,255,0.09);
+/* 13. İşlem Butonları Tıklama Tepkisi */
+.btn-copy:active,
+.btn-edit:active,
+.btn-share:active,
+.main-button:active {
+    transform: translateY(1px) scale(0.95);
 }
 
-.light-theme .add-panel,
-.light-theme .modal-content {
-    background: rgba(255,255,255,0.94) !important;
-    color: #202124;
-    border: 1px solid rgba(0,0,0,0.09) !important;
-    box-shadow: 0 24px 60px rgba(0,0,0,0.12);
+/* 14. Kopyala Butonu Başarı Zıplaması (.copied sınıfı tetiklendiğinde) */
+.btn-copy.copied {
+    animation: csSuccessBounce 0.4s ease-in-out;
 }
 
-.light-theme .setting-item {
-    background: rgba(0,0,0,0.025);
-    border-color: rgba(0,0,0,0.055);
+/* 15. "+ Yeni Kod Ekle" Butonu Neon Glow Efekti */
+.add-btn {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.light-theme .setting-item p {
-    color: #5f6368 !important;
+.add-btn:hover {
+    transform: scale(1.04);
+    box-shadow: 0 0 18px rgba(52, 152, 219, 0.5) !important;
 }
 
-.light-theme .settings-section h4 {
-    color: #007aff;
+/* 16. Ayarlar / Kod Ekleme Penceresi Pop-up Açılışı (.modal-content) */
+.modal-content {
+    animation: csScalePop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
-.light-theme .close-modal-btn {
-    color: #555 !important;
+/* 17. Modal Kapatma Butonu (X) Kendi Etrafında Dönüşü */
+.modal-close-btn {
+    transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.light-theme .backup-buttons .glass-btn {
-    background: rgba(0,0,0,0.035);
-    color: #202124;
-    border-color: rgba(0,0,0,0.09);
+.modal-close-btn:hover {
+    transform: rotate(90deg) scale(1.15);
 }
 
-.light-theme #spotlight-overlay {
-    background: rgba(255,255,255,0.34);
+/* 18. Dil Seçim Dropdown Menü Yumuşak Aşağı Açılışı (.dropdown-menu) */
+.dropdown-menu {
+    display: block !important;
+    /* Görünürlüğü opacity ile yöneteceğiz */
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.light-theme .spotlight-window {
-    background: rgba(255,255,255,0.82);
-    border-color: rgba(0,0,0,0.10);
-    box-shadow: 0 25px 60px rgba(0,0,0,0.18);
+.dropdown-container:hover .dropdown-menu,
+.dropdown-menu.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
 }
 
-.light-theme .spotlight-search-wrapper {
-    background: rgba(255,255,255,0.48);
-    border-bottom-color: rgba(0,0,0,0.08);
+/* 19. Logo / Başlık Üzerine Gelindiğinde Hafif Sallanma Efekti */
+.app-logo,
+.brand-title {
+    transition: transform 0.3s ease;
 }
 
-.light-theme #spotlight-input {
-    color: #202124;
-    text-shadow: none;
+.app-logo:hover,
+.brand-title:hover {
+    transform: rotate(-3deg) scale(1.05);
 }
 
-.light-theme #spotlight-input::placeholder,
-.light-theme .spotlight-icon {
-    color: rgba(32,33,36,0.45);
+/* 20. Kod Blokları Satır Numaraları Sol Şerit Girişi (.line-numbers) */
+.line-numbers {
+    animation: csFadeInLeft 0.5s cubic-bezier(0.25, 1, 0.5, 1) both;
 }
 
-.light-theme #spotlight-results {
-    background: rgba(245,247,250,0.86) !important;
-    border-top-color: rgba(0,0,0,0.07) !important;
+/* Açık temada sol menüdeki tüm sayı rozetlerinin kesin rengi */
+.light-theme .sidebar .badge {
+    background-color: #007aff !important;
+    color: #ffffff !important;
+    opacity: 1 !important;
 }
 
-.light-theme .spotlight-item {
-    color: rgba(32,33,36,0.72);
+/* Aktif olan menü elemanının sayısının tam beyaz kalması için */
+.light-theme .nav-item.active .badge {
+    background-color: #0056b3 !important;
+    color: #ffffff !important;
 }
 
-.light-theme .spotlight-item:hover,
-.light-theme .spotlight-item.active {
-    background: rgba(0,122,255,0.09);
-    color: #202124;
+/* Eski .add-code-panel kodunu sil, doğrusunu yazıyoruz: */
+.add-panel {
+    overflow: visible !important;
+    /* Listenin dışarı taşarak düzgün açılması için */
 }
 
-.light-theme .item-category {
-    background: rgba(0,0,0,0.06);
-    color: rgba(32,33,36,0.55);
+/* Modal Arka Plan */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    /* O beklediğimiz cam efekti */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
 }
 
-.light-theme .spotlight-item.active .item-category {
+/* Modal İçerik Kutusu - Ana Temayı Giyiyor */
+.modal-content.glass-panel {
+    background: rgba(30, 30, 45, 0.8) !important;
+    /* Koyu tema glass */
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 320px;
+    color: rgb(255, 255, 255);
+}
+
+/* Input ve Select stilleri */
+.modal-input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgb(54, 54, 54);
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+/* Butonlar */
+.modal-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.btn-primary {
+    flex: 1;
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    background: #3498db;
+    color: white;
+    cursor: pointer;
+}
+
+.btn-secondary {
+    flex: 1;
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    background: #444;
+    color: white;
+    cursor: pointer;
+}
+
+/* 4. Kategori Ekle Butonu */
+.add-cat-btn {
+    background: transparent;
+    border: 1px dashed rgba(255, 255, 255, 0.3);
+    color: var(--accent-blue);
+    padding: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.add-cat-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--accent-blue);
+}
+
+/* Favori butonu rengi */
+.nav-favorites {
+    color: #ffcc00;
+}
+
+/* Kategori container düzeni */
+.cat-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Modallar için başlangıç gizleme */
+.hidden-initially {
+    display: none;
+}
+
+.beta-watermark {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    opacity: 0.7;
+    /* Hafif silik görünmesi için */
+    font-size: 20px;
+    font-family: 'Segoe UI', sans-serif;
+    letter-spacing: 1px;
+    pointer-events: none;
+    /* Tıklamaları uygulamaya geçirir, yazıya tıklanmaz */
+    user-select: none;
+    /* Metnin seçilmesini engeller */
+    z-index: 9999;
+    /* En üstte kalmasını sağlar */
+    cursor: pointer;
+    /* Fare imlecini el işareti yap */
+    pointer-events: auto;
+    /* Tıklanabilirliği aç */
+    transition: color 0.3s;
+    /* Tatlı bir geçiş */
+}
+
+.beta-subtitle {
+    font-size: 15px;
+    /* Birinci satırdan daha küçük */
+    opacity: 0.7;
+    /* Biraz daha silik */
+    display: block;
+    /* Alt satıra geçmesini sağlar */
+    margin-top: 2px;
+    /* Satırlar arası boşluk */
+    letter-spacing: 0.5px;
+}
+
+.beta-watermark:hover {
+    color: rgba(255, 255, 255, 0.4);
+    /* Üzerine gelince biraz belirginleşsin */
+}
+
+#about-modal {
+    display: none;
+    /* Başlangıçta gizli */
+}
+
+#about-modal.active {
+    display: flex;
+    /* Açıkken flex yap */
+}
+
+/* =======================================================================AI===
+                    SLIDER METİN HİZALAMASI VE BOZULMA FİXİ
+   ========================================================================== */
+
+/* Kaydırıcıların bulunduğu ayar kutularını özel olarak hizala */
+/* ===========================
+   Modern Glass Slider
+   =========================== */
+/* =======================
+   Glass Slider
+======================= */
+
+.glass-slider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 220px;
+}
+
+.glass-slider span {
+    min-width: 42px;
+    text-align: center;
+    padding: 5px 8px;
+
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, .06);
+    border: 1px solid rgba(255, 255, 255, .08);
+
+    backdrop-filter: blur(10px);
+
+    font-size: 12px;
+    font-weight: 600;
+
     color: #fff;
 }
 
-.light-theme .spotlight-quick-preview {
-    background: rgba(255,255,255,0.72);
-    border-left-color: rgba(0,0,0,0.08);
+.glass-slider input[type=range] {
+    -webkit-appearance: none;
+    appearance: none;
+
+    width: 180px;
+    height: 5px;
+
+    border-radius: 999px;
+
+    background: rgba(255, 255, 255, .12);
+
+    cursor: pointer;
+
+    transition: .25s;
 }
 
-.light-theme ::-webkit-scrollbar-track {
-    background: rgba(0,0,0,0.05);
+.glass-slider input[type=range]:hover {
+    background: rgba(255, 255, 255, .18);
 }
 
-.light-theme ::-webkit-scrollbar-thumb {
-    background: rgba(0,0,0,0.16);
+.glass-slider input[type=range]::-webkit-slider-runnable-track {
+    height: 5px;
+    border-radius: 999px;
 }
 
-/* Prism Tomorrow is dark by design; keep code readable in the light theme. */
-.light-theme .snip-card pre code .token,
-.light-theme .spotlight-quick-preview pre code .token {
-    text-shadow: none !important;
+.glass-slider input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+
+    margin-top: -6px;
+
+    width: 17px;
+    height: 17px;
+
+    border-radius: 50%;
+
+    background: #fcfbfb;
+
+    border: 3px solid var(--theme-color);
+
+    box-shadow:
+        0 0 0 3px rgba(255, 255, 255, .08),
+        0 4px 12px rgba(0, 0, 0, .35);
+
+    transition: .2s;
+}
+
+.glass-slider input[type=range]::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+    box-shadow:
+        0 0 12px var(--theme-color),
+        0 6px 18px rgba(0, 0, 0, .45);
+}
+
+/* Alt açıklama metinlerinin ("Arka planın bulanıklık seviyesi..." vb.) hizası */
+.setting-item:has(input[type="range"]) .setting-description {
+    font-size: 12px;
+    color: #a0a5b1;
+    margin-top: -8px;
+    /* Başlığa biraz daha yaklaştırıp bütünlük sağlar */
+    margin-bottom: 5px;
+}
+
+
+/* ==========================================================================
+   26Q3.5 — Light Theme Refinement (Liquid Glass preserved)
+   Keep translucency, backdrop blur, and layered glass surfaces intact.
+   ========================================================================== */
+.light-theme {
+    --light-surface: rgba(255,255,255,.52);
+    --light-surface-strong: rgba(255,255,255,.68);
+    --light-border: rgba(20,30,45,.12);
+    --light-text: #1d2430;
+    --light-muted: #667085;
+}
+.light-theme .sidebar,
+.light-theme .snip-card,
+.light-theme .add-panel,
+.light-theme .modal-content {
+    background: var(--light-surface) !important;
+    color: var(--light-text);
+    border-color: var(--light-border) !important;
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    box-shadow: 0 8px 28px rgba(31,41,55,.08), inset 0 1px 0 rgba(255,255,255,.42);
+}
+.light-theme .main-content,
+.light-theme header { color: var(--light-text); }
+.light-theme .nav-item { color: #475467 !important; }
+.light-theme .nav-item:hover { background: rgba(0,122,255,.08) !important; color: #111827 !important; }
+.light-theme .nav-item.active { background: rgba(0,122,255,.12) !important; color: #0056b3 !important; }
+.light-theme input[type="text"],
+.light-theme textarea,
+.light-theme select,
+.light-theme .search-container input {
+    background: rgba(255,255,255,.42) !important;
+    color: #1d2430 !important;
+    border-color: rgba(20,30,45,.14) !important;
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+}
+.light-theme input::placeholder,
+.light-theme textarea::placeholder { color: #7b8494 !important; }
+.light-theme pre {
+    background: rgba(245,247,250,.48) !important;
+    border-color: rgba(20,30,45,.08) !important;
+    backdrop-filter: blur(14px) saturate(150%);
+    -webkit-backdrop-filter: blur(14px) saturate(150%);
+}
+.light-theme .code-stats { color: #667085 !important; }
+.light-theme .modal-overlay { background: rgba(15,23,42,.24); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+.light-theme .settings-section h4 { color: #344054; }
+.light-theme .setting-item p { color: #667085; }
+.light-theme .glass-slider span {
+    color: #344054;
+    background: rgba(255,255,255,.42);
+    border-color: rgba(20,30,45,.10);
+    backdrop-filter: blur(14px) saturate(160%);
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+}
+.light-theme .spotlight-window {
+    background: rgba(255,255,255,.62) !important;
+    color: #1d2430;
+    border-color: rgba(20,30,45,.12);
+    backdrop-filter: blur(32px) saturate(190%);
+    -webkit-backdrop-filter: blur(32px) saturate(190%);
+}
+.light-theme .spotlight-item { color: #475467; }
+.light-theme .spotlight-item:hover,
+.light-theme .spotlight-item.active { background: rgba(0,122,255,.10); color: #101828; }
+.light-theme #spotlight-results {
+    background: rgba(248,250,252,.46) !important;
+    border-color: rgba(20,30,45,.08) !important;
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+}
+
+
+/* ==========================================================================
+   26Q3.5 — Subtle 3D Glass Depth
+   No layout movement, no bounce, no generic SaaS hover lift.
+   ========================================================================== */
+
+.snip-card {
+    --card-rotate-x: 0deg;
+    --card-rotate-y: 0deg;
+    --card-glow-x: 50%;
+    --card-glow-y: 50%;
+    position: relative;
+    transform-style: preserve-3d;
+    perspective: 900px;
+    transform: perspective(900px) rotateX(var(--card-rotate-x)) rotateY(var(--card-rotate-y));
+    transition:
+        transform 160ms cubic-bezier(.2,.8,.2,1),
+        box-shadow 220ms ease,
+        background-color 300ms ease,
+        border-color 300ms ease;
+    overflow: hidden;
+}
+
+.snip-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background:
+        radial-gradient(
+            circle 180px at var(--card-glow-x) var(--card-glow-y),
+            rgba(255,255,255,.10),
+            transparent 68%
+        );
+    opacity: 0;
+    transition: opacity 220ms ease;
+}
+
+.snip-card:hover::after {
+    opacity: 1;
+}
+
+.snip-card > * {
+    position: relative;
+    z-index: 1;
+    transform: translateZ(8px);
+}
+
+.snip-card pre,
+.snip-card .card-actions {
+    transform: translateZ(12px);
+}
+
+.snip-card:hover {
+    /* Replace the old lift with depth, not movement. */
+    transform: perspective(900px) rotateX(var(--card-rotate-x)) rotateY(var(--card-rotate-y));
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .snip-card {
+        transform: none !important;
+        transition: background-color 300ms ease, border-color 300ms ease;
+    }
+
+    .snip-card::after {
+        display: none;
+    }
+
+    .snip-card > *,
+    .snip-card pre,
+    .snip-card .card-actions {
+        transform: none;
+    }
 }
