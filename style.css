@@ -1979,3 +1979,50 @@ input[type="text"] {
     /* Başlığa biraz daha yaklaştırıp bütünlük sağlar */
     margin-bottom: 5px;
 }
+
+
+/* ==========================================================================
+   26Q3.5 — Light Theme Refinement
+   ========================================================================== */
+.light-theme {
+    --light-surface: rgba(255,255,255,.72);
+    --light-surface-strong: rgba(255,255,255,.9);
+    --light-border: rgba(20,30,45,.10);
+    --light-text: #1d2430;
+    --light-muted: #667085;
+}
+.light-theme .sidebar,
+.light-theme .snip-card,
+.light-theme .add-panel,
+.light-theme .modal-content {
+    background: var(--light-surface) !important;
+    color: var(--light-text);
+    border-color: var(--light-border) !important;
+    box-shadow: 0 8px 28px rgba(31,41,55,.08);
+}
+.light-theme .main-content,
+.light-theme header { color: var(--light-text); }
+.light-theme .nav-item { color: #475467 !important; }
+.light-theme .nav-item:hover { background: rgba(0,122,255,.08) !important; color: #111827 !important; }
+.light-theme .nav-item.active { background: rgba(0,122,255,.12) !important; color: #0056b3 !important; }
+.light-theme input[type="text"],
+.light-theme textarea,
+.light-theme select,
+.light-theme .search-container input {
+    background: rgba(255,255,255,.78) !important;
+    color: #1d2430 !important;
+    border-color: rgba(20,30,45,.14) !important;
+}
+.light-theme input::placeholder,
+.light-theme textarea::placeholder { color: #98a2b3 !important; }
+.light-theme pre { background: rgba(245,247,250,.9) !important; border-color: rgba(20,30,45,.08) !important; }
+.light-theme .code-stats { color: #667085 !important; }
+.light-theme .modal-overlay { background: rgba(15,23,42,.32); }
+.light-theme .settings-section h4 { color: #344054; }
+.light-theme .setting-item p { color: #667085; }
+.light-theme .glass-slider span { color: #344054; background: rgba(255,255,255,.8); border-color: rgba(20,30,45,.10); }
+.light-theme .spotlight-window { background: rgba(255,255,255,.94) !important; color: #1d2430; border-color: rgba(20,30,45,.12); }
+.light-theme .spotlight-item { color: #475467; }
+.light-theme .spotlight-item:hover,
+.light-theme .spotlight-item.active { background: rgba(0,122,255,.10); color: #101828; }
+.light-theme #spotlight-results { background: rgba(248,250,252,.9) !important; border-color: rgba(20,30,45,.08) !important; }
