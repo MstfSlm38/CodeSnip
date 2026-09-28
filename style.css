@@ -1228,3 +1228,200 @@ input:checked+.slider:before {
 ::-webkit-scrollbar-corner {
     background: transparent;
 }
+
+
+/* ==========================================================================
+   CodeSnip 26Q3.5 — Light Theme Refinement
+   ========================================================================== */
+.light-theme {
+    background: #f5f7fa !important;
+    color: #1d1d1f !important;
+}
+
+.light-theme .electron-titlebar {
+    background: rgba(255,255,255,0.88);
+    color: #4b4b4f;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    backdrop-filter: blur(18px);
+}
+
+.light-theme .titlebar-drag-zone {
+    color: #5f6368;
+}
+
+.light-theme .sidebar {
+    background: rgba(255,255,255,0.72) !important;
+    border-right: 1px solid rgba(0,0,0,0.08) !important;
+    box-shadow: 4px 0 24px rgba(0,0,0,0.04);
+}
+
+.light-theme .logo-text,
+.light-theme h2,
+.light-theme h3,
+.light-theme strong,
+.light-theme .nav-item,
+.light-theme .sidebar-footer button {
+    color: #202124 !important;
+}
+
+.light-theme .nav-item {
+    border: 1px solid transparent;
+}
+
+.light-theme .nav-item:hover {
+    background: rgba(0,122,255,0.07) !important;
+    border-color: rgba(0,122,255,0.12);
+}
+
+.light-theme .nav-item.active {
+    background: rgba(0,122,255,0.11) !important;
+    border-color: rgba(0,122,255,0.16);
+}
+
+.light-theme .badge {
+    background: rgba(0,0,0,0.07);
+    color: #555 !important;
+}
+
+.light-theme .snip-card.liquid_glass,
+.light-theme .snip-card.no-glass {
+    background: rgba(255,255,255,0.82) !important;
+    border: 1px solid rgba(0,0,0,0.08) !important;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.055);
+}
+
+.light-theme .snip-card:hover {
+    box-shadow: 0 12px 30px rgba(0,0,0,0.09);
+    border-color: rgba(0,122,255,0.18) !important;
+}
+
+.light-theme .snip-card pre {
+    background: #f8f9fb !important;
+    border: 1px solid rgba(0,0,0,0.07) !important;
+}
+
+.light-theme .snip-card pre code {
+    color: #24292f !important;
+    text-shadow: none !important;
+}
+
+.light-theme .code-stats {
+    color: #6b7280 !important;
+}
+
+.light-theme #search-input,
+.light-theme .form-group input,
+.light-theme .form-group textarea,
+.light-theme .form-group select,
+.light-theme .setting-item select {
+    background: rgba(255,255,255,0.94) !important;
+    color: #202124 !important;
+    border: 1px solid rgba(0,0,0,0.12) !important;
+}
+
+.light-theme #search-input:focus,
+.light-theme .form-group input:focus,
+.light-theme .form-group textarea:focus,
+.light-theme .form-group select:focus {
+    border-color: rgba(0,122,255,0.45) !important;
+    box-shadow: 0 0 0 3px rgba(0,122,255,0.09);
+}
+
+.light-theme .add-panel,
+.light-theme .modal-content {
+    background: rgba(255,255,255,0.94) !important;
+    color: #202124;
+    border: 1px solid rgba(0,0,0,0.09) !important;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.12);
+}
+
+.light-theme .setting-item {
+    background: rgba(0,0,0,0.025);
+    border-color: rgba(0,0,0,0.055);
+}
+
+.light-theme .setting-item p {
+    color: #5f6368 !important;
+}
+
+.light-theme .settings-section h4 {
+    color: #007aff;
+}
+
+.light-theme .close-modal-btn {
+    color: #555 !important;
+}
+
+.light-theme .backup-buttons .glass-btn {
+    background: rgba(0,0,0,0.035);
+    color: #202124;
+    border-color: rgba(0,0,0,0.09);
+}
+
+.light-theme #spotlight-overlay {
+    background: rgba(255,255,255,0.34);
+}
+
+.light-theme .spotlight-window {
+    background: rgba(255,255,255,0.82);
+    border-color: rgba(0,0,0,0.10);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.18);
+}
+
+.light-theme .spotlight-search-wrapper {
+    background: rgba(255,255,255,0.48);
+    border-bottom-color: rgba(0,0,0,0.08);
+}
+
+.light-theme #spotlight-input {
+    color: #202124;
+    text-shadow: none;
+}
+
+.light-theme #spotlight-input::placeholder,
+.light-theme .spotlight-icon {
+    color: rgba(32,33,36,0.45);
+}
+
+.light-theme #spotlight-results {
+    background: rgba(245,247,250,0.86) !important;
+    border-top-color: rgba(0,0,0,0.07) !important;
+}
+
+.light-theme .spotlight-item {
+    color: rgba(32,33,36,0.72);
+}
+
+.light-theme .spotlight-item:hover,
+.light-theme .spotlight-item.active {
+    background: rgba(0,122,255,0.09);
+    color: #202124;
+}
+
+.light-theme .item-category {
+    background: rgba(0,0,0,0.06);
+    color: rgba(32,33,36,0.55);
+}
+
+.light-theme .spotlight-item.active .item-category {
+    color: #fff;
+}
+
+.light-theme .spotlight-quick-preview {
+    background: rgba(255,255,255,0.72);
+    border-left-color: rgba(0,0,0,0.08);
+}
+
+.light-theme ::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.05);
+}
+
+.light-theme ::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.16);
+}
+
+/* Prism Tomorrow is dark by design; keep code readable in the light theme. */
+.light-theme .snip-card pre code .token,
+.light-theme .spotlight-quick-preview pre code .token {
+    text-shadow: none !important;
+}

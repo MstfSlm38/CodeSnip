@@ -3,6 +3,23 @@ const { ipcRenderer } = require('electron');
 let currentCategory = 'all';
 let currentLang = 'tr';
 
+const spanishTranslations = {
+  'Tüm Kodlar':'Todos los snippets','All Snippets':'Todos los snippets','Favoriler':'Favoritos','Favorites':'Favoritos',
+  'Ayarlar':'Configuración','Settings':'Configuración','Yeni Kod Ekle':'Añadir código','Add New Code':'Añadir código',
+  'Yeni Kod Kartı Oluştur':'Crear nuevo snippet','Create New Snippet Card':'Crear nuevo snippet','Kod Kartını Düzenle':'Editar snippet','Edit Snippet Card':'Editar snippet',
+  'Kaydet':'Guardar','Save':'Guardar','Güncelle':'Actualizar','Update':'Actualizar','İptal':'Cancelar','Cancel':'Cancelar',
+  'Başlık':'Título','Title':'Título','Kod veya prompt ara...':'Buscar código o prompt...','Search code or prompt...':'Buscar código o prompt...',
+  'Kod bloğunu buraya yapıştır...':'Pega aquí el código...','Paste code block here...':'Pega aquí el código...','Kopyala':'Copiar','Copy':'Copiar',
+  'Sil':'Eliminar','Delete':'Eliminar','Düzenle':'Editar','Edit':'Editar','Paylaş':'Compartir','Share':'Compartir',
+  'satır':'líneas','lines':'líneas','karakter':'caracteres','characters':'caracteres',
+  'Yenile':'Recargar','Reload':'Recargar','Koyu Tema':'Tema oscuro','Dark Theme':'Tema oscuro','Açık Tema':'Tema claro','Light Theme':'Tema claro',
+  'Liquid Glass Efekti':'Efecto Liquid Glass','Liquid Glass Effect':'Efecto Liquid Glass','Uygulama Dili':'Idioma de la aplicación','Application Language':'Idioma de la aplicación',
+  'Kopyalama Bildirimi':'Notificación de copia','Copy Notification':'Notificación de copia','Kod Satırlarını Kaydır':'Ajuste de línea','Word Wrap':'Ajuste de línea',
+  'Tehlike Bölgesi':'Zona de peligro','Danger Zone':'Zona de peligro','Tüm Verileri Sıfırla':'Restablecer todos los datos','Reset All Data':'Restablecer todos los datos',
+  'Fabrika Ayarları':'Restablecer','Factory Reset':'Restablecer'
+};
+function t(tr,en){return currentLang==='tr'?tr:currentLang==='es'?(spanishTranslations[tr]||spanishTranslations[en]||en):en;}
+
 const defaultInitialSnips = [
     { id: 'snip-1', title: 'HTML Koyu Mod Temeli', category: 'web', code: '<!DOCTYPE html>\n<html>\n<body style="background:#1e1e1e; color:#fff;">\n   <h1>Hello, World!</h1>\n</body>\n</html>', isFavorite: false },
     { id: 'snip-2', title: 'CSS Flexbox Ortalaması', category: 'web', code: '.ortala {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n}', isFavorite: false },
@@ -74,18 +91,18 @@ function renderSnips() {
         card.setAttribute('data-category', snip.category);
 
         const safeCode = snip.code.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-        const copyBtnText = currentLang === 'tr' ? 'Kopyala' : 'Copy';
-        const deleteBtnText = currentLang === 'tr' ? 'Sil' : 'Delete';
-        const editBtnText = currentLang === 'tr' ? 'Düzenle' : 'Edit';
-        const shareBtnText = currentLang === 'tr' ? 'Paylaş' : 'Share';
+        const copyBtnText = t('Kopyala','Copy');
+        const deleteBtnText = t('Sil','Delete');
+        const editBtnText = t('Düzenle','Edit');
+        const shareBtnText = t('Paylaş','Share');
 
         const favIcon = snip.isFavorite ? '★' : '☆';
         const favClass = snip.isFavorite ? 'fav-active' : '';
 
         const lineCount = snip.code.split('\n').length;
         const charCount = snip.code.length;
-        const linesTxt = currentLang === 'tr' ? 'satır' : 'lines';
-        const charsTxt = currentLang === 'tr' ? 'karakter' : 'characters';
+        const linesTxt = t('satır','lines');
+        const charsTxt = t('karakter','characters');
 
         let langClass = 'language-none';
         if (snip.category === 'web') {
@@ -286,18 +303,19 @@ function applySettings() {
     }
 
     currentLang = lang;
+    document.documentElement.lang = lang;
     document.querySelectorAll('.lang-txt').forEach(el => {
-        el.innerText = el.getAttribute(`data-${lang}`) || el.innerText;
+        const trText=el.getAttribute('data-tr')||el.innerText; const enText=el.getAttribute('data-en')||trText; el.innerText=lang==='tr'?trText:lang==='es'?(spanishTranslations[trText]||spanishTranslations[enText]||enText):enText;
     });
 
     const searchInput = document.getElementById('search-input');
-    if (searchInput) searchInput.placeholder = lang === 'tr' ? 'Kod veya prompt ara...' : 'Search code or prompt...';
+    if (searchInput) searchInput.placeholder = t('Kod veya prompt ara...','Search code or prompt...');
 
     const newTitle = document.getElementById('new-title');
-    if (newTitle) newTitle.placeholder = lang === 'tr' ? 'Başlık' : 'Title';
+    if (newTitle) newTitle.placeholder = t('Başlık','Title');
 
     const newCode = document.getElementById('new-code');
-    if (newCode) newCode.placeholder = lang === 'tr' ? 'Kod bloğunu buraya yapıştır...' : 'Paste code block here...';
+    if (newCode) newCode.placeholder = t('Kod bloğunu buraya yapıştır...','Paste code block here...');
 
     const scratchPad = document.getElementById('scratchpad');
     if (scratchPad) scratchPad.placeholder = lang === 'tr' ? 'Notları buraya karala...' : 'Scratch your notes here...';
@@ -324,14 +342,14 @@ window.copyCode = function (id, event) {
     navigator.clipboard.writeText(codeText);
 
     const btn = event.target;
-    btn.innerText = currentLang === 'tr' ? "Kopyalandı!" : "Copied!";
+    btn.innerText = t('Kopyalandı!','Copied!');
 
     const settingToast = document.getElementById('setting-toast');
     const toastEnabled = settingToast ? settingToast.checked : true;
     if (toastEnabled) {
         const toast = document.getElementById('toast-notification');
         if (toast) {
-            toast.innerText = currentLang === 'tr' ? "Kod panoya kopyalandı!" : "Code copied to clipboard!";
+            toast.innerText = t('Kod panoya kopyalandı!','Code copied to clipboard!');
             toast.classList.add('show');
             setTimeout(() => toast.classList.remove('show'), 2000);
         }
@@ -349,16 +367,16 @@ window.filterCategory = function (category, element) {
     element.classList.add('active');
 
     const titleMap = {
-        all: { tr: 'Tüm Kodlar', en: 'All Snippets' },
-        favorites: { tr: 'Favori Kodlarım', en: 'Favorite Snippets' },
-        web: { tr: 'HTML / CSS Şablonları', en: 'HTML / CSS Templates' },
-        ai: { tr: 'Yapay Zeka Promptları', en: 'AI Prompts' },
-        minecraft: { tr: 'Minecraft Teknik Notlar', en: 'Minecraft Technical Notes' },
-        unix: { tr: 'Unix / Linux Komutları', en: 'Unix / Linux Commands' },
-        windows_terminal: { tr: 'Windows Terminal Kodları', en: 'Windows Terminal Snippets' }
+        all: { tr: 'Tüm Kodlar', en: 'All Snippets', es: 'Todos los snippets' },
+        favorites: { tr: 'Favori Kodlarım', en: 'Favorite Snippets', es: 'Snippets favoritos' },
+        web: { tr: 'HTML / CSS Şablonları', en: 'HTML / CSS Templates', es: 'Plantillas HTML / CSS' },
+        ai: { tr: 'Yapay Zeka Promptları', en: 'AI Prompts', es: 'Prompts de IA' },
+        minecraft: { tr: 'Minecraft Teknik Notlar', en: 'Minecraft Technical Notes', es: 'Notas técnicas de Minecraft' },
+        unix: { tr: 'Unix / Linux Komutları', en: 'Unix / Linux Commands', es: 'Comandos Unix / Linux' },
+        windows_terminal: { tr: 'Windows Terminal Kodları', en: 'Windows Terminal Snippets', es: 'Snippets de Windows Terminal' }
     };
 
-    document.getElementById('page-title').innerText = titleMap[category][currentLang];
+    document.getElementById('page-title').innerText = titleMap[category][currentLang] || titleMap[category].en;
     renderSnips();
 }
 

@@ -1,7 +1,7 @@
 
 # CodeSnip — Next-Generation Code & Prompt Manager
 <p align="center">
-  <img src="https://img.shields.io/badge/Version-26Q3.1-00adb5?style=for-the-badge" alt="Version">
+  <img src="https://img.shields.io/badge/Version-26Q3.5-00adb5?style=for-the-badge" alt="Version">
   <img src="https://img.shields.io/badge/Built%20With-Electron-47848F?style=for-the-badge" alt="Built With">
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="MIT License">
 </p>
@@ -32,7 +32,7 @@ All data is stored locally on your device, and the application works without req
 - Liquid Glass user interface
 - Global Spotlight search (`Ctrl + Space`)
 - Base64-based sharing system
-- Turkish and English language support
+- Turkish, English, and Spanish language support
 - Completely offline operation
 - Local data storage
 - Built-in category system
@@ -128,7 +128,7 @@ Shortcut	## Keyboard Shortcuts
   - [x] 26Q2.5 — JSON Export/Import, Improved Spotlight, and Version Naming Update
 - [x] 26Q3 — Linux Support (Debian, Arch, Red Hat), Improved Appearance, Customization, and Category Management
   - [x] 26Q3.1 — Critical Hotfixes
-  - [ ] 26Q3.5 — Important Hotfixes, New Spanish Language Support, and Light Theme Improvements
+  - [x] 26Q3.5 — Important Hotfixes, New Spanish Language Support, and Light Theme Improvements
  - [ ] 26Q4 — Application Optimization, Full macOS and Linux Support (Slackware and Gentoo)
  - [ ] 27Q1 — Plugin System and Code Preview
 
