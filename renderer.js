@@ -885,3 +885,43 @@ function toggleAboutModal() {
     if (!modal) return;
     modal.style.display = (modal.style.display === 'none' || modal.style.display === '') ? 'flex' : 'none';
 }
+
+
+// Subtle Liquid Glass 3D depth — intentionally restrained.
+// It changes the light/depth of a card without moving it around the page.
+function initGlass3D() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    document.addEventListener('mousemove', (event) => {
+        const card = event.target.closest('.snip-card');
+        if (!card) return;
+
+        const rect = card.getBoundingClientRect();
+        const x = Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width));
+        const y = Math.max(0, Math.min(1, (event.clientY - rect.top) / rect.height));
+
+        // Very small angles: depth, not a spinning card effect.
+        const rotateY = (x - 0.5) * 3;
+        const rotateX = (0.5 - y) * 3;
+
+        card.style.setProperty('--card-rotate-x', rotateX.toFixed(2) + 'deg');
+        card.style.setProperty('--card-rotate-y', rotateY.toFixed(2) + 'deg');
+        card.style.setProperty('--card-glow-x', (x * 100).toFixed(1) + '%');
+        card.style.setProperty('--card-glow-y', (y * 100).toFixed(1) + '%');
+    });
+
+    document.addEventListener('mouseleave', () => {
+        document.querySelectorAll('.snip-card').forEach(card => {
+            card.style.setProperty('--card-rotate-x', '0deg');
+            card.style.setProperty('--card-rotate-y', '0deg');
+            card.style.setProperty('--card-glow-x', '50%');
+            card.style.setProperty('--card-glow-y', '50%');
+        });
+    }, true);
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initGlass3D);
+} else {
+    initGlass3D();
+}
