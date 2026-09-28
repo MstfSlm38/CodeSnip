@@ -2053,3 +2053,79 @@ input[type="text"] {
     backdrop-filter: blur(18px) saturate(160%);
     -webkit-backdrop-filter: blur(18px) saturate(160%);
 }
+
+
+/* ==========================================================================
+   26Q3.5 — Subtle 3D Glass Depth
+   No layout movement, no bounce, no generic SaaS hover lift.
+   ========================================================================== */
+
+.snip-card {
+    --card-rotate-x: 0deg;
+    --card-rotate-y: 0deg;
+    --card-glow-x: 50%;
+    --card-glow-y: 50%;
+    position: relative;
+    transform-style: preserve-3d;
+    perspective: 900px;
+    transform: perspective(900px) rotateX(var(--card-rotate-x)) rotateY(var(--card-rotate-y));
+    transition:
+        transform 160ms cubic-bezier(.2,.8,.2,1),
+        box-shadow 220ms ease,
+        background-color 300ms ease,
+        border-color 300ms ease;
+    overflow: hidden;
+}
+
+.snip-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background:
+        radial-gradient(
+            circle 180px at var(--card-glow-x) var(--card-glow-y),
+            rgba(255,255,255,.10),
+            transparent 68%
+        );
+    opacity: 0;
+    transition: opacity 220ms ease;
+}
+
+.snip-card:hover::after {
+    opacity: 1;
+}
+
+.snip-card > * {
+    position: relative;
+    z-index: 1;
+    transform: translateZ(8px);
+}
+
+.snip-card pre,
+.snip-card .card-actions {
+    transform: translateZ(12px);
+}
+
+.snip-card:hover {
+    /* Replace the old lift with depth, not movement. */
+    transform: perspective(900px) rotateX(var(--card-rotate-x)) rotateY(var(--card-rotate-y));
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .snip-card {
+        transform: none !important;
+        transition: background-color 300ms ease, border-color 300ms ease;
+    }
+
+    .snip-card::after {
+        display: none;
+    }
+
+    .snip-card > *,
+    .snip-card pre,
+    .snip-card .card-actions {
+        transform: none;
+    }
+}
