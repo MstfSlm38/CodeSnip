@@ -2,7 +2,7 @@ name: Deploy CodeSnip to GitHub Pages
 
 on:
   push:
-    branches: ["26Q3.5"]
+    branches: ["26Q2.5"]
   workflow_dispatch:
 
 permissions:
