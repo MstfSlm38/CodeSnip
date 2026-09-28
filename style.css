@@ -1982,12 +1982,13 @@ input[type="text"] {
 
 
 /* ==========================================================================
-   26Q3.5 — Light Theme Refinement
+   26Q3.5 — Light Theme Refinement (Liquid Glass preserved)
+   Keep translucency, backdrop blur, and layered glass surfaces intact.
    ========================================================================== */
 .light-theme {
-    --light-surface: rgba(255,255,255,.72);
-    --light-surface-strong: rgba(255,255,255,.9);
-    --light-border: rgba(20,30,45,.10);
+    --light-surface: rgba(255,255,255,.52);
+    --light-surface-strong: rgba(255,255,255,.68);
+    --light-border: rgba(20,30,45,.12);
     --light-text: #1d2430;
     --light-muted: #667085;
 }
@@ -1998,7 +1999,9 @@ input[type="text"] {
     background: var(--light-surface) !important;
     color: var(--light-text);
     border-color: var(--light-border) !important;
-    box-shadow: 0 8px 28px rgba(31,41,55,.08);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    box-shadow: 0 8px 28px rgba(31,41,55,.08), inset 0 1px 0 rgba(255,255,255,.42);
 }
 .light-theme .main-content,
 .light-theme header { color: var(--light-text); }
@@ -2009,20 +2012,44 @@ input[type="text"] {
 .light-theme textarea,
 .light-theme select,
 .light-theme .search-container input {
-    background: rgba(255,255,255,.78) !important;
+    background: rgba(255,255,255,.42) !important;
     color: #1d2430 !important;
     border-color: rgba(20,30,45,.14) !important;
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
 }
 .light-theme input::placeholder,
-.light-theme textarea::placeholder { color: #98a2b3 !important; }
-.light-theme pre { background: rgba(245,247,250,.9) !important; border-color: rgba(20,30,45,.08) !important; }
+.light-theme textarea::placeholder { color: #7b8494 !important; }
+.light-theme pre {
+    background: rgba(245,247,250,.48) !important;
+    border-color: rgba(20,30,45,.08) !important;
+    backdrop-filter: blur(14px) saturate(150%);
+    -webkit-backdrop-filter: blur(14px) saturate(150%);
+}
 .light-theme .code-stats { color: #667085 !important; }
-.light-theme .modal-overlay { background: rgba(15,23,42,.32); }
+.light-theme .modal-overlay { background: rgba(15,23,42,.24); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
 .light-theme .settings-section h4 { color: #344054; }
 .light-theme .setting-item p { color: #667085; }
-.light-theme .glass-slider span { color: #344054; background: rgba(255,255,255,.8); border-color: rgba(20,30,45,.10); }
-.light-theme .spotlight-window { background: rgba(255,255,255,.94) !important; color: #1d2430; border-color: rgba(20,30,45,.12); }
+.light-theme .glass-slider span {
+    color: #344054;
+    background: rgba(255,255,255,.42);
+    border-color: rgba(20,30,45,.10);
+    backdrop-filter: blur(14px) saturate(160%);
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+}
+.light-theme .spotlight-window {
+    background: rgba(255,255,255,.62) !important;
+    color: #1d2430;
+    border-color: rgba(20,30,45,.12);
+    backdrop-filter: blur(32px) saturate(190%);
+    -webkit-backdrop-filter: blur(32px) saturate(190%);
+}
 .light-theme .spotlight-item { color: #475467; }
 .light-theme .spotlight-item:hover,
 .light-theme .spotlight-item.active { background: rgba(0,122,255,.10); color: #101828; }
-.light-theme #spotlight-results { background: rgba(248,250,252,.9) !important; border-color: rgba(20,30,45,.08) !important; }
+.light-theme #spotlight-results {
+    background: rgba(248,250,252,.46) !important;
+    border-color: rgba(20,30,45,.08) !important;
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+}
