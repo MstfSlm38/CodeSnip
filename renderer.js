@@ -3,6 +3,65 @@ const { ipcRenderer } = require('electron');
 let currentCategory = 'all';
 let currentLang = 'tr';
 
+const spanishTranslations = {
+        "All Snippets": "Todos los fragmentos",
+        "Favorites": "Favoritos",
+        "Add Category": "Añadir categoría",
+        "Settings": "Ajustes",
+        "Reload Application": "Recargar aplicación",
+        "Instantly reloads the application.": "Recarga la aplicación al instante.",
+        "Appearance Design": "Diseño de apariencia",
+        "Interface Theme": "Tema de interfaz",
+        "Changes the color palette of the app.": "Cambia la paleta de colores de la aplicación.",
+        "Dark Theme": "Tema oscuro",
+        "Light Theme": "Tema claro",
+        "Liquid Glass Effect": "Efecto Liquid Glass",
+        "Controls frosted glass and transparency effects.": "Controla los efectos de cristal esmerilado y transparencia.",
+        "Glass Blur": "Desenfoque del cristal",
+        "Adjusts the background blur level.": "Ajusta el nivel de desenfoque del fondo.",
+        "Glass Opacity": "Opacidad del cristal",
+        "Determines the opacity of the glass layer.": "Determina la opacidad de la capa de cristal.",
+        "Theme Accent Color": "Color de acento",
+        "Changes the color of buttons and active elements.": "Cambia el color de los botones y elementos activos.",
+        "Background Type": "Tipo de fondo",
+        "Determines if the background is a color or an image.": "Determina si el fondo es un color o una imagen.",
+        "Solid Color": "Color sólido",
+        "Custom Image (URL / Path)": "Imagen personalizada (URL / ruta)",
+        "Background Color": "Color de fondo",
+        "Sets the main background color of the app.": "Establece el color de fondo principal de la aplicación.",
+        "Background Image": "Imagen de fondo",
+        "Enter image link (URL) or local file path.": "Introduce un enlace de imagen (URL) o una ruta local.",
+        "Font Size (Codes)": "Tamaño de fuente (código)",
+        "Adjusts text size of code blocks.": "Ajusta el tamaño del texto de los bloques de código.",
+        "Small (12px)": "Pequeño (12px)",
+        "Normal (14px)": "Normal (14px)",
+        "Large (16px)": "Grande (16px)",
+        "Smart Features": "Funciones inteligentes",
+        "Application Language": "Idioma de la aplicación",
+        "Changes the display language.": "Cambia el idioma de visualización.",
+        "Save": "Guardar",
+        "Cancel": "Cancelar",
+        "Update": "Actualizar",
+        "Create New Snippet Card": "Crear nueva tarjeta de fragmento",
+        "Add New Code": "Añadir código",
+        "Search code or prompt...": "Buscar código o prompt...",
+        "Copied!": "¡Copiado!",
+        "Copy": "Copiar",
+        "Delete": "Eliminar",
+        "Edit": "Editar",
+        "Share": "Compartir",
+        "Quick Add:": "Añadir rápido:",
+        "No matching code found.": "No se encontraron coincidencias.",
+        "Successfully added to": "Añadido correctamente a",
+        "Invalid import code!": "¡Código de importación no válido!",
+        "Data successfully restored! App will reload.": "¡Datos restaurados correctamente! La aplicación se recargará.",
+};
+
+function t(tr, en) {
+    if (currentLang === 'es') return spanishTranslations[en] || tr;
+    return currentLang === 'tr' ? tr : en;
+}
+
 const defaultInitialSnips = [
     { id: 'snip-1', title: 'HTML Koyu Mod Temeli', category: 'web', code: '<!DOCTYPE html>\n<html>\n<body style="background:#1e1e1e; color:#fff;">\n   <h1>Hello, World!</h1>\n</body>\n</html>', isFavorite: false },
     { id: 'snip-2', title: 'CSS Flexbox Ortalaması', category: 'web', code: '.ortala {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n}', isFavorite: false },
@@ -107,18 +166,18 @@ function renderSnips() {
         card.setAttribute('data-category', snip.category);
 
         const safeCode = snip.code.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-        const copyBtnText = currentLang === 'tr' ? 'Kopyala' : 'Copy';
-        const deleteBtnText = currentLang === 'tr' ? 'Sil' : 'Delete';
-        const editBtnText = currentLang === 'tr' ? 'Düzenle' : 'Edit';
-        const shareBtnText = currentLang === 'tr' ? 'Paylaş' : 'Share';
+        const copyBtnText = t('Kopyala', 'Copy');
+        const deleteBtnText = t('Sil', 'Delete');
+        const editBtnText = t('Düzenle', 'Edit');
+        const shareBtnText = t('Paylaş', 'Share');
 
         const favIcon = snip.isFavorite ? '★' : '☆';
         const favClass = snip.isFavorite ? 'fav-active' : '';
 
         const lineCount = snip.code.split('\n').length;
         const charCount = snip.code.length;
-        const linesTxt = currentLang === 'tr' ? 'satır' : 'lines';
-        const charsTxt = currentLang === 'tr' ? 'karakter' : 'characters';
+        const linesTxt = currentLang === 'tr' ? 'satır' : currentLang === 'es' ? 'líneas' : 'lines';
+        const charsTxt = currentLang === 'tr' ? 'karakter' : currentLang === 'es' ? 'caracteres' : 'characters';
 
         let langClass = 'language-none';
         if (snip.category === 'web') {
@@ -393,11 +452,11 @@ function applySettings() {
 
     currentLang = lang;
     document.querySelectorAll('.lang-txt').forEach(el => {
-        el.innerText = el.getAttribute(`data-${lang}`) || el.innerText;
+        el.innerText = lang === 'es' ? (spanishTranslations[el.getAttribute('data-en')] || el.innerText) : (el.getAttribute(`data-${lang}`) || el.innerText);
     });
 
     const searchInput = document.getElementById('search-input');
-    if (searchInput) searchInput.placeholder = lang === 'tr' ? 'Kod veya prompt ara...' : 'Search code or prompt...';
+    if (searchInput) searchInput.placeholder = lang === 'tr' ? 'Kod veya prompt ara...' : lang === 'es' ? 'Buscar código o prompt...' : 'Search code or prompt...';
 
     localStorage.setItem('app_settings', JSON.stringify({
         theme, glass, fontSize, lang, toastEnabled, wrapEnabled,
@@ -454,14 +513,14 @@ window.copyCode = function (id, event) {
     navigator.clipboard.writeText(codeElem.innerText);
 
     const btn = event.target;
-    btn.innerText = currentLang === 'tr' ? "Kopyalandı!" : "Copied!";
+    btn.innerText = t('Kopyalandı!', 'Copied!');
 
     const settingToast = document.getElementById('setting-toast');
     const toastEnabled = settingToast ? settingToast.checked : true;
     if (toastEnabled) {
         const toast = document.getElementById('toast-notification');
         if (toast) {
-            toast.innerText = currentLang === 'tr' ? "Kod panoya kopyalandı!" : "Code copied to clipboard!";
+            toast.innerText = t('Kod panoya kopyalandı!', 'Code copied to clipboard!');
             toast.classList.add('show');
             setTimeout(() => toast.classList.remove('show'), 2000);
         }
