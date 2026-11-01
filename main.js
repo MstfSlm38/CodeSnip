@@ -15,8 +15,10 @@ function createWindow() {
         titleBarStyle: isMac ? 'hidden' : 'default',
         trafficLightPosition: isMac ? { x: 18, y: 18 } : undefined,
         webPreferences: {
-            nodeIntegration: true,
-            contextIsolation: false
+            preload: path.join(__dirname, 'preload.js'),
+            nodeIntegration: false,
+            contextIsolation: true,
+            sandbox: true
         }
     });
 
