@@ -1,5 +1,3 @@
-const { ipcRenderer } = require('electron');
-
 let currentCategory = 'all';
 let currentLang = 'tr';
 
@@ -102,16 +100,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const maxBtn = document.getElementById('max-btn');
     const closeBtn = document.getElementById('close-btn');
 
-    if (minBtn) minBtn.addEventListener('click', () => ipcRenderer.send('window-minimize'));
-    if (maxBtn) maxBtn.addEventListener('click', () => ipcRenderer.send('window-maximize'));
-    if (closeBtn) closeBtn.addEventListener('click', () => ipcRenderer.send('window-close'));
+    if (minBtn) minBtn.addEventListener('click', () => window.codeSnipAPI.minimize());
+    if (maxBtn) maxBtn.addEventListener('click', () => window.codeSnipAPI.maximize());
+    if (closeBtn) closeBtn.addEventListener('click', () => window.codeSnipAPI.close());
 
     const allCodesBtn = document.querySelector('.sidebar-menu li:first-child');
     if (allCodesBtn) allCodesBtn.classList.add('active');
 
     // ⚡ IPC Dinleyici Bellek Temizliği (Global Spotlight)
-    ipcRenderer.removeAllListeners('global-spotlight-trigger');
-    ipcRenderer.on('global-spotlight-trigger', () => {
+    window.codeSnipAPI.onGlobalSpotlight(() => {
         const spotlightOverlay = document.getElementById('spotlight-overlay');
         const spotlightInput = document.getElementById('spotlight-input');
         if (spotlightOverlay && spotlightInput) {
@@ -822,7 +819,7 @@ window.exportCodeSnipData = async function () {
             alert(currentLang === 'tr' ? 'Yedeklenecek herhangi bir kod veya prompt bulunamadı!' : 'No snippets found to backup!');
             return;
         }
-        const result = await ipcRenderer.invoke('export-data', localData);
+        const result = await window.codeSnipAPI.exportData(localData);
         if (result && result.success) alert(result.message);
     } catch (error) {
         console.error("Export hatası:", error);
@@ -835,7 +832,7 @@ window.importCodeSnipData = async function () {
     if (!onay) return;
 
     try {
-        const result = await ipcRenderer.invoke('import-data');
+        const result = await window.codeSnipAPI.importData();
         if (result && result.success) {
             localStorage.setItem('all_snippets_data', result.data);
             alert(currentLang === 'tr' ? 'Verileriniz başarıyla geri yüklendi! Uygulama yenilenecektir.' : 'Data successfully restored! App will reload.');
