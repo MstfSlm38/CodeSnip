@@ -1,8 +1,10 @@
 :root {
   color-scheme: dark;
+
   --background: #000000;
   --foreground: #f5f5f7;
   --muted: #86868b;
+
   --mint: #e0f2e9;
   --sand: #f1cd8d;
   --green: #78f5c1;
@@ -22,23 +24,78 @@ html {
 body {
   min-height: 100vh;
   min-height: 100svh;
+
   margin: 0;
   padding: 32px 24px;
+
   display: grid;
   place-items: center;
-  overflow-x: hidden;
-  background: var(--background);
+
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+
+  background:
+    /* Merkezde yumuşak mint ışığı */
+    radial-gradient(
+      ellipse 35% 38% at 50% 48%,
+      rgba(224, 242, 233, 0.12),
+      transparent 75%
+    ),
+
+    /* Sol üst: mavi */
+    radial-gradient(
+      ellipse 45% 55% at 0% 5%,
+      rgba(37, 108, 205, 0.23),
+      transparent 75%
+    ),
+
+    /* Sağ üst: altın */
+    radial-gradient(
+      ellipse 42% 48% at 100% 5%,
+      rgba(241, 205, 141, 0.19),
+      transparent 75%
+    ),
+
+    /* Sol alt: çelik mavisi */
+    radial-gradient(
+      ellipse 45% 50% at 0% 100%,
+      rgba(91, 116, 132, 0.22),
+      transparent 75%
+    ),
+
+    /* Sağ alt: yeşil */
+    radial-gradient(
+      ellipse 45% 55% at 100% 100%,
+      rgba(120, 245, 193, 0.17),
+      transparent 75%
+    ),
+
+    /* Siyah temel */
+    #000000;
+
   color: var(--foreground);
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
-    "SF Pro Text", "Segoe UI", sans-serif;
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "SF Pro Text",
+    "Segoe UI",
+    sans-serif;
+
   text-align: center;
   -webkit-font-smoothing: antialiased;
 }
+
+/* Ana bakım ekranı */
 
 .maintenance {
   width: min(100%, 640px);
   animation: appear 850ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
+
+/* CodeSnip logosu */
 
 .logo {
   display: block;
@@ -48,30 +105,45 @@ body {
   object-fit: contain;
 }
 
+/* Başlık */
+
 h1 {
   margin: 0 0 18px;
+
   color: var(--foreground);
+
   font-size: clamp(2.25rem, 7vw, 3.5rem);
   font-weight: 650;
+
   letter-spacing: -0.055em;
   line-height: 1.08;
 }
 
+/* Açıklama */
+
 .message {
   max-width: 440px;
   margin: 0 auto;
+
   color: var(--muted);
+
   font-size: clamp(1rem, 2.5vw, 1.125rem);
   font-weight: 400;
+
   line-height: 1.65;
   letter-spacing: -0.015em;
 }
 
+/* Renk geçişli küçük çizgi */
+
 .accent {
   width: 44px;
   height: 3px;
+
   margin: 34px auto 0;
+
   border-radius: 999px;
+
   background: linear-gradient(
     90deg,
     var(--mint),
@@ -80,8 +152,11 @@ h1 {
     var(--steel),
     var(--sand)
   );
+
   opacity: 0.9;
 }
+
+/* Giriş animasyonu */
 
 @keyframes appear {
   from {
@@ -95,6 +170,8 @@ h1 {
   }
 }
 
+/* Mobil uyumluluk */
+
 @media (max-width: 480px) {
   body {
     padding-inline: 26px;
@@ -106,6 +183,8 @@ h1 {
     margin-bottom: 32px;
   }
 }
+
+/* Hareket azaltma tercihi */
 
 @media (prefers-reduced-motion: reduce) {
   .maintenance {
