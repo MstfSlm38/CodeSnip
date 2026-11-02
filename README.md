@@ -47,7 +47,7 @@ All data is stored locally on your device, and the application works without req
 - npm
 ### 1- Clone the Repository
 ```bash
-git clone https://github.com/MstfSlm38/CodeSnip.git
+git clone https://github.com/CodeSnip-DevTeam/CodeSnip.git
 ```
 
 ### 2- Navigate to the Created Folder
@@ -128,7 +128,7 @@ Shortcut	## Keyboard Shortcuts
   - [x] 26Q2.5 — JSON Export/Import, Improved Spotlight, and Version Naming Update
 - [x] 26Q3 — Linux Support (Debian, Arch, Red Hat), Improved Appearance, Customization, and Category Management
   - [x] 26Q3.1 — Critical Hotfixes
-  - [x] 26Q3.5 — Important Hotfixes, New Spanish Language Support, and Light Theme Improvements
+  - [ ] 26Q3.5 — Important bug fixes, Spanish language support, light theme improvements, and visual refresh
  - [ ] 26Q4 — Application Optimization, Full macOS and Linux Support (Slackware and Gentoo)
  - [ ] 27Q1 — Plugin System and Code Preview
 
