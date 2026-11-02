@@ -112,19 +112,18 @@ npm run dist
 - [Node.js](https://nodejs.org/)
 
 ## Yol Haritası
+- [x] v1.0 — İlk Sürüm
+  - [x] v1.1 — Hotfix ve Favorileme Özelliği
+- [x] 26Q2 (v2.0) — Spotlight, Paylaşım ve Yenilenen Liquid Glass Tasarımı
+  - [x] 26Q2.5 — JSON dışa/içe aktarma, Daha İyi Spotlight ve Sürüm İsmi Değişikliği
+- [x] 26Q3 — Linux (Debian, Arch, Red Hat) Desteği, Daha iyi Görünüm, Kişiselleştirme ve Kategori Yönetimi
+	- [x] 26Q3.1 — Kritik Hotfixler
+	- [ ] 26Q3.5 — Önemli hata düzeltmeleri, İspanyolca dil desteği, açık tema iyileştirmeleri ve görsel yenileme
+- [ ] 26Q4 — Uygulama Optimizasyonu, macOS Linux İçin Tam Destek (Slackware ve Gentoo)
+- [ ] 27Q1 — Eklenti (Plugin) sistemi ve Kod Önizlemesi
 
-- [x] **v1.0** — İlk sürüm
-- [x] **v1.1** — Hata düzeltmeleri ve favoriler özelliği
-- [x] **26Q2 (v2.0)** — Spotlight, kod paylaşımı ve yeniden tasarlanan Liquid Glass arayüzü
-  - [x] **26Q2.5** — JSON dışa aktarma/İçe aktarma, Spotlight iyileştirmeleri ve sürüm adlandırmasının güncellenmesi
-- [x] **26Q3** — Linux desteği, görünüm iyileştirmeleri, özelleştirme ve kategori yönetimi
-  - [x] **26Q3.1** — Kritik hata düzeltmeleri
-- [ ] **26Q3.5** — Önemli hata düzeltmeleri, İspanyolca dil desteği, açık tema iyileştirmeleri ve görsel yenileme
-- [ ] **26Q4** — Uygulama optimizasyonu ve Slackware ile Gentoo dâhil genişletilmiş macOS/Linux desteği
-- [ ] **27Q1** — Eklenti sistemi ve kod önizleme
-
-> [!NOTE]
-> Yol haritası, mevcut geliştirme planlarını yansıtır ve önceliklere göre değişebilir. İlgili sürüm yayımlanana kadar özellikler yayımlanmış kabul edilmez.
+>[!NOTE]
+>Yol haritası yeni özelliklerden veya çıkan buglardan dolayı zamanla değişebilir.
 
 ## Katkıda Bulunma
 

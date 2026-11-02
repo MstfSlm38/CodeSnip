@@ -54,7 +54,7 @@ ipcMain.on('window-close', () => {
 ipcMain.handle('export-data', async (event, dataString) => {
     const { canceled, filePath } = await dialog.showSaveDialog(mainWindow, {
         title: 'CodeSnip Verilerini Yedekle',
-        defaultPath: path.join(app.getPath('downloads'), 'codesnip_backup_26Q3.1.json'),
+        defaultPath: path.join(app.getPath('downloads'), 'codesnip_backup_26Q3.5.json'),
         filters: [
             { name: 'JSON Dosyası', extensions: ['json'] }
         ]

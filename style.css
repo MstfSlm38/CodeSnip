@@ -2129,3 +2129,158 @@ input[type="text"] {
         transform: none;
     }
 }
+
+
+/* ==========================================================================
+   CodeSnip 26Q3.5 — Siri-inspired color system and refined light appearance
+   ========================================================================== */
+:root {
+    --brand-blue: #5b8cff;
+    --brand-violet: #a78bfa;
+    --brand-cyan: #62d9e8;
+    --theme-color: #5b8cff;
+}
+body.dark-theme {
+    background-color: #101522;
+    color: #eef2ff;
+}
+.dark-theme .electron-titlebar,
+.dark-theme .sidebar {
+    background: linear-gradient(155deg, #151d31 0%, #101522 72%);
+}
+.dark-theme .main-content {
+    background: linear-gradient(135deg, rgba(27, 39, 65, .48), rgba(18, 24, 39, .72)) !important;
+}
+.dark-theme .nav-item.active,
+.dark-theme .nav-item:hover {
+    background: linear-gradient(105deg, rgba(91,140,255,.20), rgba(167,139,250,.12));
+    color: #f7f8ff;
+}
+.dark-theme .nav-item.active .badge {
+    background: linear-gradient(110deg, var(--brand-blue), var(--brand-violet));
+}
+.dark-theme .add-toggle-btn,
+.dark-theme .copy-btn:hover {
+    background: linear-gradient(110deg, var(--brand-blue), #7b83ef);
+}
+.dark-theme .snip-card {
+    border-color: rgba(151, 174, 235, .13);
+    box-shadow: 0 10px 30px rgba(0,0,0,.14), inset 0 1px rgba(255,255,255,.035);
+}
+.dark-theme .snip-card:hover {
+    border-color: rgba(120, 160, 255, .34);
+    box-shadow: 0 14px 36px rgba(0,0,0,.22), 0 0 24px rgba(91,140,255,.08);
+}
+.dark-theme #search-input:focus,
+.dark-theme .form-group input:focus,
+.dark-theme .form-group textarea:focus {
+    border-color: rgba(91,140,255,.72);
+    box-shadow: 0 0 0 3px rgba(91,140,255,.13);
+}
+
+/* Light theme: consistent surfaces, readable controls and restrained contrast. */
+body.light-theme {
+    background: #f3f6fc !important;
+    color: #20283a !important;
+}
+.light-theme .electron-titlebar {
+    background: #edf1fa !important;
+    border-bottom: 1px solid rgba(39,55,88,.10);
+}
+.light-theme .titlebar-drag-zone,
+.light-theme .logo-text,
+.light-theme .electron-titlebar .control-btn {
+    color: #27334b !important;
+}
+.light-theme .control-btn svg path,
+.light-theme .control-btn svg rect { fill: #34415b !important; }
+.light-theme .sidebar {
+    background: rgba(238,242,251,.94) !important;
+    border-right: 1px solid rgba(40,56,88,.10) !important;
+}
+.light-theme .main-content {
+    background: rgba(246,248,253,.92) !important;
+    color: #20283a !important;
+}
+.light-theme header h2,
+.light-theme .snip-header h3,
+.light-theme .logo-text,
+.light-theme .settings-section h4,
+.light-theme .modal-content h2,
+.light-theme .setting-item strong,
+.light-theme .add-panel h3 {
+    color: #202b42 !important;
+}
+.light-theme .nav-item { color: #58657d !important; }
+.light-theme .nav-item.active,
+.light-theme .nav-item:hover {
+    background: rgba(91,140,255,.12) !important;
+    color: #315fc4 !important;
+}
+.light-theme .snip-card,
+.light-theme .snip-card.liquid_glass,
+.light-theme .snip-card.no-glass {
+    background: rgba(255,255,255,.88) !important;
+    border: 1px solid rgba(48,65,101,.12) !important;
+    box-shadow: 0 5px 18px rgba(32,48,82,.06);
+    color: #27334b !important;
+}
+.light-theme .snip-card pre {
+    background: #f1f4fa !important;
+    border: 1px solid rgba(48,65,101,.10) !important;
+}
+.light-theme .snip-card pre code {
+    color: #27334b !important;
+    text-shadow: none;
+}
+.light-theme .code-stats { color: #68758c !important; }
+.light-theme #search-input,
+.light-theme .form-group input,
+.light-theme .form-group textarea,
+.light-theme .form-group select,
+.light-theme .setting-item select {
+    background: #fff !important;
+    color: #26334c !important;
+    border: 1px solid rgba(48,65,101,.16) !important;
+}
+.light-theme .form-group select { background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23334466'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e"); }
+.light-theme .setting-item {
+    background: rgba(255,255,255,.62);
+    border-color: rgba(48,65,101,.08);
+}
+.light-theme .setting-item p,
+.light-theme .settings-section p { color: #68758c !important; }
+.light-theme .modal-overlay { background: rgba(28,40,65,.28) !important; }
+.light-theme .modal-content,
+.light-theme body.liquid-glass .modal-content {
+    background: #f8faff !important;
+    border: 1px solid rgba(48,65,101,.13) !important;
+    box-shadow: 0 24px 60px rgba(30,45,75,.18) !important;
+}
+.light-theme .modal-header { background: #f8faff !important; }
+.light-theme .copy-btn { background: #e7efff !important; color: #315fc4 !important; }
+.light-theme .edit-btn { background: #fff4d9; color: #8b6412; }
+.light-theme .share-btn { background: #e4f7f5; color: #16766d; }
+.light-theme .delete-btn { background: #fff0ef; color: #c53e36; }
+.light-theme .spotlight-window {
+    background: rgba(250,252,255,.96) !important;
+    color: #202b42 !important;
+    border: 1px solid rgba(48,65,101,.15) !important;
+}
+.light-theme .spotlight-item { color: #475570 !important; }
+.light-theme .spotlight-item.active,
+.light-theme .spotlight-item:hover { background: rgba(91,140,255,.12) !important; color: #244fae !important; }
+.light-theme .spotlight-search-wrapper input { color: #202b42 !important; }
+.light-theme .spotlight-results-hidden,
+.light-theme #spotlight-results { background: rgba(244,247,253,.95) !important; }
+
+@media (max-width: 760px) {
+    .electron-titlebar { height: 40px; }
+    .app-container { height: calc(100vh - 40px); }
+    .sidebar { width: 190px; padding: 14px 10px; }
+    .main-content { padding: 18px 14px; }
+    .snip-header { align-items: flex-start; flex-direction: column; gap: 10px; }
+    .card-actions { flex-wrap: wrap; }
+    .header-actions { align-items: stretch; flex-direction: column; gap: 10px; }
+    .header-actions .search-container { width: 100%; }
+}
