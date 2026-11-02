@@ -1,126 +1,149 @@
+# CodeSnip | Next-Generation Code & Prompt Manager
 
-# CodeSnip — Next-Generation Code & Prompt Manager
 <p align="center">
-  <img src="https://img.shields.io/badge/Version-26Q3.5-00adb5?style=for-the-badge" alt="Version">
-  <img src="https://img.shields.io/badge/Built%20With-Electron-47848F?style=for-the-badge" alt="Built With">
+  <img src="https://img.shields.io/badge/Version-26Q3.5%20Development-00ADB5?style=for-the-badge" alt="Version 26Q3.5 Development">
+  <img src="https://img.shields.io/badge/Built%20with-Electron-47848F?style=for-the-badge" alt="Built with Electron">
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="MIT License">
 </p>
+
 <p align="center">
-  <a href="README_tr.md"><img src="https://img.shields.io/badge/Language-Turkish-red?style=for-the-badge" alt="TR"></a>
-  <a href="README.md"><img src="https://img.shields.io/badge/Language-English-blue?style=for-the-badge" alt="EN"></a>
+  <a href="README_tr.md">
+    <img src="https://img.shields.io/badge/Language-Turkish-red?style=for-the-badge" alt="Türkçe">
+  </a>
+  <a href="README.md">
+    <img src="https://img.shields.io/badge/Language-English-blue?style=for-the-badge" alt="English">
+  </a>
 </p>
-<hr>
+
 <p align="center">
-  A modern, fast, and completely offline desktop code and AI prompt manager.<br>
-  Organize, search, and share your code snippets, terminal commands, and prompts in one application.
+  A modern, fast, offline-first desktop application for managing code snippets, terminal commands, and AI prompts.
 </p>
-<img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/1e01968b-ef57-46bb-a8e7-743f0b2e65e5" />
 
+<p align="center">
+  <img width="1920" alt="CodeSnip application preview" src="https://github.com/user-attachments/assets/1e01968b-ef57-46bb-a8e7-743f0b2e65e5">
+</p>
 
+---
 
-## About
-CodeSnip is a modern Electron application designed for developers, designers, and users who work with artificial intelligence.
-You can organize code snippets into categories, search instantly, copy them with a single click, and create Base64-based sharing links.
-All data is stored locally on your device, and the application works without requiring an internet connection.
+## Overview
 
-> [!TIP]
-> Since the application works completely offline, your data stays on your device.
+**CodeSnip** is an Electron-based desktop application built to help developers and AI enthusiasts organize and reuse code snippets, terminal commands, and prompts.
 
-
+Create categories, search your collection, copy code instantly, and share snippets through Base64-encoded data. CodeSnip stores its application data locally, keeping your personal collection on your device.
 
 ## Features
-- Liquid Glass user interface
-- Global Spotlight search (`Ctrl + Space`)
-- Base64-based sharing system
-- Turkish, English, and Spanish language support
-- Completely offline operation
-- Local data storage
-- Built-in category system
-- Fast search and filtering
-- Electron-based desktop application
 
+- **Snippet Management:** Organize and manage reusable code snippets.
+- **Spotlight Search:** Quickly find content with an intuitive search interface.
+- **Quick Actions:** Add and access snippets directly through supported shortcuts.
+- **Snippet Sharing:** Share snippet data using Base64 encoding.
+- **Multilingual Interface:** Turkish, English, and Spanish language support.
+- **Category Management:** Keep snippets organized into categories.
+- **Local Storage:** Store your collection on your device.
+- **Offline-Oriented Design:** Core functionality is designed to work without an internet connection.
+- **Liquid Glass Interface:** A modern desktop interface with a focus on clarity and usability.
+
+> [!NOTE]
+> CodeSnip is designed for local data storage and offline use. Features that depend on external resources, if any, may require an internet connection.
 
 ## Installation
 
-### Requirements
-- Node.js (v18 or newer)
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) v18 or newer
 - npm
-### 1- Clone the Repository
+- Git
+
+### 1. Clone the repository
+
 ```bash
 git clone https://github.com/CodeSnip-DevTeam/CodeSnip.git
 ```
 
-### 2- Navigate to the Created Folder
+### 2. Enter the project directory
+
 ```bash
-cd codesnip
+cd CodeSnip
 ```
-### 3- Install Dependencies
+
+### 3. Install dependencies
 
 ```bash
 npm install
-npm install electron --save-dev
 ```
 
-### 4- Build the Production Version
+### 4. Build the application
+
 ```bash
 npm run dist
 ```
 
+> [!TIP]
+> If the build command fails, check the scripts defined in `package.json` and make sure all required dependencies are installed.
 
 ## Screenshots
 
 <p align="center">
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/e31ec191-3f60-4b64-9a4b-7a8306fd653d" />
-<br><br>
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/83036436-5c32-43c4-aa88-24eea23bbb24" />
+  <img width="1920" alt="CodeSnip screenshot 1" src="https://github.com/user-attachments/assets/e31ec191-3f60-4b64-9a4b-7a8306fd653d">
+  <br><br>
+  <img width="1920" alt="CodeSnip screenshot 2" src="https://github.com/user-attachments/assets/83036436-5c32-43c4-aa88-24eea23bbb24">
 </p>
-
----
-
-## Beta Screenshots
-<!-- >[!WARNING]
->These are the beta screenshots. It's all subject to change!
-
-<p align="center">
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/413c14b5-32f6-4b5a-944f-2bedb1ea5938" />
-<br><br>
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/846e69bb-3639-41fa-80ab-01f387e39f46" />
-</p> -->
-
->[!NOTE]
->Since there is no beta versions available, there is no beta screenshots. Stay tuned for the beta releases!
-
-
----
-
-
 
 ## Keyboard Shortcuts
 
-Shortcut	## Keyboard Shortcuts
-
 | Shortcut | Description |
-|----------|-------------|
-| `Ctrl + Shift + S` | **Global Shortcut:** Brings the application to the foreground and opens Spotlight search even when the application is running in the background. |
-| `Ctrl + Space` | Opens or closes the Spotlight search panel while the application is active. |
-| `Esc` | Closes the currently open Spotlight search panel. |
-| `Space` | Opens the **Quick Look** preview panel for the selected code while browsing Spotlight search results. |
-| `Arrow Up / Down` | Navigates up and down through Spotlight search results. |
-| `Enter` | Transfers the selected code to the main search bar (or quickly adds a code if the input is in `+category` format).
+|---|---|
+| `Ctrl + Shift + S` | Bring CodeSnip to the foreground and open Spotlight search, including when the application is in the background. |
+| `Ctrl + Space` | Open or close Spotlight search while the application is active. |
+| `Esc` | Close the open Spotlight search panel. |
+| `Space` | Open the Quick Look preview for the selected search result. |
+| `Arrow Up / Down` | Navigate through Spotlight search results. |
+| `Enter` | Transfer the selected code to the main search bar or trigger the supported quick-add action. |
 
+> [!NOTE]
+> Shortcut availability may depend on the current application state and operating system.
 
+## Technologies
 
-## Technologies Used
-
-* Electron
-* JavaScript
-* HTML5
-* CSS3
-* Node.js
-
-
+- [Electron](https://www.electronjs.org/)
+- JavaScript
+- HTML5
+- CSS3
+- [Node.js](https://nodejs.org/)
 
 ## Roadmap
+
+- [x] **v1.0** — Initial release
+- [x] **v1.1** — Hotfixes and favorites
+- [x] **26Q2 (v2.0)** — Spotlight, snippet sharing, and redesigned Liquid Glass interface
+  - [x] **26Q2.5** — JSON export/import, Spotlight improvements, and version naming update
+- [x] **26Q3** — Linux support, appearance improvements, customization, and category management
+  - [x] **26Q3.1** — Critical hotfixes
+- [ ] **26Q3.5** — Important bug fixes, Spanish language support, light theme improvements, and visual refresh
+- [ ] **26Q4** — Application optimization and expanded macOS/Linux support, including Slackware and Gentoo
+- [ ] **27Q1** — Plugin system and code preview
+
+> [!NOTE]
+> The roadmap represents current development plans and may change as priorities evolve. Features are not considered released until the corresponding release is published.
+
+## Contributing
+
+Contributions, bug reports, and suggestions are welcome.
+
+### Reporting a bug
+
+1. Check the existing [Issues](https://github.com/CodeSnip-DevTeam/CodeSnip/issues) to avoid duplicates.
+2. Open a new issue.
+3. Include a clear description of the problem and the steps needed to reproduce it.
+
+### Contributing code
+
+1. Fork the repository.
+2. Create a feature branch:
+
+   ```bash
+   git checkout -b feature/your-feature
+   ```
 
 - [x] v1.0 — Initial Release
 - [x] v1.1 — Hotfixes and Favorites Feature
@@ -132,25 +155,29 @@ Shortcut	## Keyboard Shortcuts
  - [ ] 26Q4 — Application Optimization, Full macOS and Linux Support (Slackware and Gentoo)
  - [ ] 27Q1 — Plugin System and Code Preview
 
->[!NOTE]
->The roadmap may change over time due to new features or newly discovered bugs.
+   ```bash
+   git add .
+   git commit -m "Describe your changes"
+   ```
 
-## Contributing
+5. Push your branch:
 
-Would you like to help improve the project?
+   ```bash
+   git push origin feature/your-feature
+   ```
 
-* Fork this repository by clicking the Fork button.
-* Create a branch for your new feature (git checkout -b new-feature).
-* Commit your changes (git commit -am 'Added new feature').
-* Push your branch (git push origin new-feature).
-* Create a Pull Request.
-* Or, if you find a bug in the project, feel free to report it in the Issues section!
+6. Open a pull request.
 
 ## License
 
-This project is licensed under the MIT License. See the LICENSE⁠￼ file for more details.
+CodeSnip is distributed under the [MIT License](LICENSE).
 
-Developers
+## Developer
 
-* Mustafa Selim AYDENİZ
+**Mustafa Selim AYDENİZ**
 
+---
+
+<p align="center">
+  Made for developers who want to keep their code close at hand.
+</p>
