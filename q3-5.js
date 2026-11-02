@@ -30,6 +30,38 @@
     "Add New Code":"Yeni Kod Ekle","Create New Snippet Card":"Yeni Kod Kartı Oluştur","Save":"Kaydet","Cancel":"İptal","Update":"Güncelle",
     "Copy":"Kopyala","Copied!":"Kopyalandı!","Delete":"Sil","Edit":"Düzenle","Share":"Paylaş","Search code or prompt...":"Kod veya prompt ara..."};
 
+  Object.assign(es, {
+    "Uygulamanın renk paletini değiştirir.":"Cambia la paleta de colores de la aplicación.",
+    "Buzlu cam ve saydamlık efektlerini yönetir.":"Controla los efectos de cristal esmerilado y transparencia.",
+    "Arka planın bulanıklık seviyesini ayarlar.":"Ajusta el desenfoque del fondo.",
+    "Cam katmanın opaklık değerini belirler.":"Define la opacidad de la capa de cristal.",
+    "Butonlar ve aktif elemanların rengini değiştirir.":"Cambia el color de los botones y elementos activos.",
+    "Arka planın renk mi görsel mi olacağını belirler.":"Permite elegir un color o una imagen de fondo.",
+    "Uygulamanın ana arka plan rengini belirler.":"Define el color de fondo principal de la aplicación.",
+    "Görsel linki (URL) veya yerel dosya yolu girin.":"Introduce una URL o selecciona una imagen de tu dispositivo.",
+    "Kod bloklarının metin boyutunu ayarlar.":"Ajusta el tamaño del texto de los fragmentos.",
+    "Görüntüleme dilini değiştirir.":"Cambia el idioma de la interfaz.",
+    "Kod Satırlarını Kaydır":"Ajustar líneas de código",
+    "Yatay kaydırma yerine kodları alt satıra indirir.":"Ajusta las líneas largas en lugar de desplazarlas horizontalmente.",
+    "Kopyalama Bildirimi":"Aviso de copia",
+    "Kod kopyalandığında ekranda mini bildirim açar.":"Muestra un aviso breve al copiar código.",
+    "Kayıtlı tüm verileri ve notları kalıcı olarak siler.":"Elimina permanentemente todos los datos y notas guardados.",
+    "Tüm Kodlar":"Todos los fragmentos","Favoriler":"Favoritos","Kategori Ekle":"Añadir categoría","Ayarlar":"Ajustes",
+    "Arayüzü Yeniden Yükle":"Recargar aplicación","Yenile":"Recargar","Sistem & Çekirdek":"Sistema y núcleo",
+    "Görünüm Tasarımı":"Diseño visual","Arayüz Teması":"Tema de la interfaz","Koyu Tema":"Tema oscuro",
+    "Açık Tema":"Tema claro","Liquid Glass Efekti":"Efecto Liquid Glass","Cam Bulanıklığı (Blur)":"Desenfoque del cristal",
+    "Cam Saydamlığı (Opacity)":"Transparencia del cristal","Tema Vurgu Rengi":"Color de acento",
+    "Arka Plan Tipi":"Tipo de fondo","Düz Renk":"Color sólido","Arka Plan Rengi":"Color de fondo",
+    "Arka Plan Görseli":"Imagen de fondo","Özel Görsel (URL / Yol)":"Imagen personalizada (URL / ruta)",
+    "Yazı Tipi Boyutu (Kodlar)":"Tamaño de fuente del código","Akıllı Özellikler":"Funciones inteligentes",
+    "Uygulama Dili":"Idioma de la aplicación","Veri Yönetimi":"Gestión de datos","Tehlike Bölgesi":"Zona de peligro",
+    "Fabrika Ayarları":"Restablecer valores","Kaydet":"Guardar","İptal":"Cancelar","Güncelle":"Actualizar",
+    "Kopyala":"Copiar","Kopyalandı!":"¡Copiado!","Sil":"Eliminar","Düzenle":"Editar","Paylaş":"Compartir",
+    "Yeni Kod Ekle":"Añadir fragmento","Yeni Kod Kartı Oluştur":"Crear fragmento",
+    "Başlık":"Título","Kod bloğunu buraya yapıştır...":"Pega el código aquí...",
+    "Kod veya prompt ara...":"Buscar código o prompt...","Eşleşen kod bulunamadı.":"No se encontraron fragmentos."
+  });
+
   function lang() { return document.getElementById("setting-lang")?.value || "tr"; }
   function translateStatic() {
     const current = lang();
@@ -113,21 +145,73 @@
   function applyVisualRefresh() {
     const accent = document.getElementById("setting-theme-color");
     const root = document.documentElement;
-    root.style.setProperty("--brand-blue", "#5b8cff");
-    root.style.setProperty("--brand-violet", "#a78bfa");
-    root.style.setProperty("--brand-cyan", "#62d9e8");
+    root.style.setProperty("--brand-blue", "#256ccd");
+    root.style.setProperty("--brand-violet", "#5b7484");
+    root.style.setProperty("--brand-cyan", "#78f5c1");
     root.style.setProperty("--theme-color", accent?.value || "#5b8cff");
+  }
+
+
+  function installBackgroundPicker() {
+    const urlInput = document.getElementById("setting-bg-image");
+    if (!urlInput || document.getElementById("setting-bg-file")) return;
+    const controls = document.createElement("div");
+    controls.className = "background-image-controls";
+    const picker = document.createElement("input");
+    picker.type = "file"; picker.id = "setting-bg-file";
+    picker.accept = "image/png,image/jpeg,image/webp,image/avif"; picker.hidden = true;
+    const choose = document.createElement("button");
+    choose.type = "button"; choose.className = "glass-btn"; choose.id = "choose-bg-image";
+    choose.textContent = lang() === "es" ? "Elegir imagen" : lang() === "en" ? "Choose image" : "Görsel seç";
+    const clear = document.createElement("button");
+    clear.type = "button"; clear.className = "glass-btn"; clear.id = "clear-bg-image";
+    clear.textContent = lang() === "es" ? "Quitar imagen" : lang() === "en" ? "Remove image" : "Görseli kaldır";
+    const status = document.createElement("span"); status.className = "background-image-status";
+    status.textContent = lang() === "es" ? "Elige una imagen de tu dispositivo." : lang() === "en" ? "Choose an image from your device." : "Cihazından bir görsel seç.";
+    const parent = urlInput.parentElement;
+    parent.append(controls); controls.append(picker, choose, clear, status);
+    choose.addEventListener("click", () => picker.click());
+    picker.addEventListener("change", () => {
+      const file = picker.files && picker.files[0];
+      if (!file) return;
+      if (!/^image\/(png|jpeg|webp|avif)$/.test(file.type) || file.size > 4 * 1024 * 1024) {
+        status.textContent = lang() === "es" ? "Usa PNG, JPG, WebP o AVIF de hasta 4 MB." : "PNG, JPG, WebP veya AVIF, en fazla 4 MB seç.";
+        picker.value = ""; return;
+      }
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          localStorage.setItem("codesnip_custom_background", String(reader.result));
+          urlInput.value = String(reader.result);
+          const type = document.getElementById("setting-bg-type"); if (type) type.value = "image";
+          status.textContent = file.name;
+          window.applySettings();
+        } catch (error) {
+          status.textContent = lang() === "es" ? "No se pudo guardar la imagen." : "Görsel kaydedilemedi.";
+        }
+      };
+      reader.readAsDataURL(file);
+    });
+    clear.addEventListener("click", () => {
+      localStorage.removeItem("codesnip_custom_background");
+      urlInput.value = "";
+      const type = document.getElementById("setting-bg-type"); if (type) type.value = "color";
+      status.textContent = lang() === "es" ? "Imagen eliminada." : "Görsel kaldırıldı.";
+      window.applySettings();
+    });
+    const saved = localStorage.getItem("codesnip_custom_background");
+    if (saved) { urlInput.value = saved; status.textContent = lang() === "es" ? "Imagen personalizada guardada." : "Özel görsel kayıtlı."; }
   }
 
   const originalApplySettings = window.applySettings;
   window.applySettings = function () {
     if (typeof originalApplySettings === "function") originalApplySettings();
-    applyVisualRefresh(); translateStatic(); refreshCategories(); safeRenderSnips();
+    applyVisualRefresh(); translateStatic(); refreshCategories(); safeRenderSnips(); installBackgroundPicker();
   };
   window.renderSnips = safeRenderSnips;
   window.searchSnips = safeRenderSnips;
   document.addEventListener("DOMContentLoaded", () => {
-    removeDuplicateSettings(); applyVisualRefresh(); translateStatic(); refreshCategories(); safeRenderSnips();
+    removeDuplicateSettings(); applyVisualRefresh(); translateStatic(); refreshCategories(); safeRenderSnips(); installBackgroundPicker();
   });
   document.addEventListener("change", event => {
     if (event.target?.id === "setting-lang") { translateStatic(); refreshCategories(); safeRenderSnips(); }
