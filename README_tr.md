@@ -57,7 +57,7 @@ Tüm veriler cihazınızda saklanır ve uygulama internet bağlantısı gerektir
 ### 1- Depoyu klonlayın
 
 ```bash
-git clone https://github.com/Light-Bulb-Team/CodeSnip.git
+git clone https://github.com/CodeSnip-DevTeam/CodeSnip.git
 ```
 
 ### 2- Oluşturulan Klasöre Gidin
@@ -132,7 +132,7 @@ npm run dist
   - [x] 26Q2.5 — JSON dışa/içe aktarma, Daha İyi Spotlight ve Sürüm İsmi Değişikliği
 - [x] 26Q3 — Linux (Debian, Arch, Red Hat) Desteği, Daha iyi Görünüm, Kişiselleştirme ve Kategori Yönetimi
 	- [x] 26Q3.1 — Kritik Hotfixler
-	- [x] 26Q3.5 — Önemli Hotfixler, Yeni İspanyolca Dil Desteği ve Açık Tema İyileştirmeleri
+	- [ ] 26Q3.5 — Önemli hata düzeltmeleri, İspanyolca dil desteği, açık tema iyileştirmeleri ve görsel yenileme
 - [ ] 26Q4 — Uygulama Optimizasyonu, macOS Linux İçin Tam Destek (Slackware ve Gentoo)
 - [ ] 27Q1 — Eklenti (Plugin) sistemi ve Kod Önizlemesi
 
