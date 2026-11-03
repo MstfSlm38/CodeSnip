@@ -24,8 +24,8 @@
 
   const dateLabel = document.createElement("p");
   dateLabel.className = "countdown-date";
-  dateLabel.textContent = "3 Ekim Çarşamba, 17:00";
-  dateLabel.setAttribute("aria-label", "Hedef tarih: 3 Ekim Çarşamba, saat 17:00");
+  dateLabel.textContent = "4 Kasım Çarşamba, 17:00";
+  dateLabel.setAttribute("aria-label", "Hedef tarih: 4 Kasım Çarşamba, saat 17:00");
 
   const countdown = document.createElement("div");
   countdown.className = "countdown";
@@ -49,8 +49,8 @@
   dateLabel.insertAdjacentElement("afterend", countdown);
   accent.remove();
 
-  // Bir sonraki 3 Ekim Çarşamba: 2028. Saat Türkiye yerel saatiyle 17.00.
-  const target = new Date("2028-10-03T17:00:00+03:00").getTime();
+  // 4 Kasım 2026 Çarşamba, saat Türkiye yerel saatiyle 17.00.
+  const target = new Date("2026-11-04T17:00:00+03:00").getTime();
   const start = Date.now();
   const total = target - start;
 
