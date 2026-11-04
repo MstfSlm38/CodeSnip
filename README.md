@@ -119,7 +119,7 @@ npm run dist
   - [x] **26Q2.5** — JSON export/import, Spotlight improvements, and version naming update
 - [x] **26Q3** — Linux support, appearance improvements, customization, and category management
   - [x] **26Q3.1** — Critical hotfixes
-- [ ] **26Q3.5** — Important bug fixes, Spanish language support, light theme improvements, and visual refresh
+  - [ ] **26Q3.5** — Important bug fixes, Spanish language support, light theme improvements, and visual refresh
 - [ ] **26Q4** — Application optimization and expanded macOS/Linux support, including Slackware and Gentoo
 - [ ] **27Q1** — Plugin system and code preview
 
@@ -144,16 +144,6 @@ Contributions, bug reports, and suggestions are welcome.
    ```bash
    git checkout -b feature/your-feature
    ```
-
-- [x] v1.0 — Initial Release
-- [x] v1.1 — Hotfixes and Favorites Feature
-- [x] 26Q2 (v2.0) — Spotlight, Sharing, and Redesigned Liquid Glass UI
-  - [x] 26Q2.5 — JSON Export/Import, Improved Spotlight, and Version Naming Update
-- [x] 26Q3 — Linux Support (Debian, Arch, Red Hat), Improved Appearance, Customization, and Category Management
-  - [x] 26Q3.1 — Critical Hotfixes
-  - [ ] 26Q3.5 — Important bug fixes, Spanish language support, light theme improvements, and visual refresh
- - [ ] 26Q4 — Application Optimization, Full macOS and Linux Support (Slackware and Gentoo)
- - [ ] 27Q1 — Plugin System and Code Preview
 
    ```bash
    git add .
