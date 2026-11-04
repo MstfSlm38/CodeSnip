@@ -1,139 +1,360 @@
 <!doctype html>
-<html lang="tr">
+<html lang="tr" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#050608">
-  <meta name="description" content="CodeSnip 26Q3.5 burada. Daha tutarlı bir arayüz, İspanyolca dil desteği ve iyileştirmeler.">
+  <meta name="theme-color" content="#080b10">
+  <meta name="description" content="CodeSnip 26Q3.5. Polished. Very Polished.">
   <link rel="icon" href="https://raw.githubusercontent.com/CodeSnip-DevTeam/CodeSnip/26Q2.5/icon.ico" type="image/x-icon">
-  <title>CodeSnip 26Q3.5 | Polished, Very Polished.</title>
+  <title>CodeSnip 26Q3.5 | Polished. Very Polished.</title>
   <style>
     :root {
       color-scheme: dark;
-      --bg: #050608;
-      --fg: #f5f7f8;
-      --muted: #9ba5ad;
       --mint: #78f5c1;
-      --blue: #256ccd;
+      --pale: #e0f2e9;
       --sand: #f1cd8d;
-      --line: rgba(255,255,255,.12);
+      --blue: #256ccd;
+      --slate: #5b7484;
+      --bg: #080b10;
+      --bg-soft: #0e141c;
+      --fg: #f4f8f6;
+      --muted: #a5b2b9;
+      --line: rgba(224,242,233,.13);
+      --glass: rgba(14,20,28,.68);
+      --card: linear-gradient(145deg,rgba(224,242,233,.085),rgba(91,116,132,.055));
+      --shadow: 0 24px 80px rgba(0,0,0,.24);
+    }
+    html[data-theme="light"] {
+      color-scheme: light;
+      --bg: #f3f7f5;
+      --bg-soft: #e8f0ec;
+      --fg: #14231e;
+      --muted: #52645d;
+      --line: rgba(37,108,205,.16);
+      --glass: rgba(243,247,245,.76);
+      --card: linear-gradient(145deg,rgba(255,255,255,.94),rgba(224,242,233,.72));
+      --shadow: 0 24px 70px rgba(37,108,205,.10);
     }
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; background: var(--bg); }
+    html { scroll-behavior: smooth; scroll-padding-top: 105px; background: var(--bg); }
     body {
-      margin: 0;
-      color: var(--fg);
-      background:
-        radial-gradient(ellipse 48% 34% at 50% 0%, rgba(120,245,193,.13), transparent 72%),
-        radial-gradient(ellipse 35% 42% at 0% 32%, rgba(37,108,205,.15), transparent 75%),
-        radial-gradient(ellipse 35% 40% at 100% 52%, rgba(241,205,141,.09), transparent 75%),
+      margin: 0; color: var(--fg); background:
+        radial-gradient(ellipse 48% 28% at 50% 0%, rgba(120,245,193,.16), transparent 72%),
+        radial-gradient(ellipse 35% 34% at 0% 28%, rgba(37,108,205,.15), transparent 75%),
+        radial-gradient(ellipse 32% 34% at 100% 48%, rgba(241,205,141,.13), transparent 75%),
         var(--bg);
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
-      -webkit-font-smoothing: antialiased;
+      font-family: -apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
+      -webkit-font-smoothing: antialiased; transition: background .25s,color .25s;
     }
     a { color: inherit; }
-    .wrap { width: min(1080px, calc(100% - 40px)); margin: auto; }
-    header { display:flex; align-items:center; justify-content:space-between; padding:24px 0; }
-    .brand { display:flex; align-items:center; gap:12px; font-weight:650; letter-spacing:-.03em; }
-    .brand img { width:34px; height:34px; border-radius:9px; }
-    .version { color:var(--mint); font-size:.82rem; border:1px solid rgba(120,245,193,.3); padding:7px 11px; border-radius:999px; }
-    .hero { text-align:center; padding:100px 0 105px; }
-    .eyebrow { color:var(--mint); text-transform:uppercase; letter-spacing:.16em; font-size:.76rem; font-weight:700; }
-    h1 { margin:18px 0 18px; font-size:clamp(3rem, 9vw, 6.7rem); line-height:.98; letter-spacing:-.075em; }
-    h1 span { color:var(--mint); }
-    .lead { max-width:650px; margin:0 auto; color:var(--muted); font-size:clamp(1.05rem, 2.4vw, 1.25rem); line-height:1.75; }
-    .actions { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:32px; }
-    .button { display:inline-flex; align-items:center; justify-content:center; min-height:46px; padding:0 19px; border-radius:999px; text-decoration:none; font-weight:650; transition:transform .2s, background .2s; }
-    .button:hover { transform:translateY(-2px); }
-    .primary { background:var(--mint); color:#07130e; }
-    .secondary { border:1px solid var(--line); background:rgba(255,255,255,.04); }
-    .section { padding:65px 0; }
-    .section-head { max-width:650px; margin-bottom:28px; }
-    h2 { margin:0 0 12px; font-size:clamp(2rem, 5vw, 3.3rem); letter-spacing:-.055em; }
-    .section-head p { margin:0; color:var(--muted); line-height:1.7; }
-    .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
-    .feature { min-height:190px; padding:26px; border:1px solid var(--line); border-radius:22px; background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.025)); }
-    .feature .number { color:var(--mint); font-size:.78rem; font-weight:700; letter-spacing:.12em; }
-    h3 { margin:17px 0 9px; font-size:1.25rem; letter-spacing:-.025em; }
-    .feature p { margin:0; color:var(--muted); line-height:1.7; }
-    .note { margin:40px 0 70px; padding:28px; border:1px solid rgba(120,245,193,.22); border-radius:22px; background:rgba(120,245,193,.055); }
-    .note strong { color:var(--mint); }
-    footer { border-top:1px solid var(--line); padding:26px 0 36px; color:var(--muted); font-size:.9rem; display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap; }
+    button { font: inherit; }
+    .wrap { width: min(1120px,calc(100% - 40px)); margin: auto; }
+    .navbar {
+      position: fixed; z-index: 20; top: 14px; left: 50%; transform: translateX(-50%);
+      width: min(1120px,calc(100% - 28px)); min-height: 66px; padding: 10px 14px;
+      display: flex; align-items: center; justify-content: space-between; gap: 18px;
+      border: 1px solid var(--line); border-radius: 22px; background: var(--glass);
+      -webkit-backdrop-filter: blur(24px) saturate(165%); backdrop-filter: blur(24px) saturate(165%);
+      box-shadow: var(--shadow);
+    }
+    .brand { display:flex; align-items:center; gap:10px; text-decoration:none; font-weight:750; letter-spacing:-.04em; white-space:nowrap; }
+    .brand img { width:34px; height:34px; border-radius:10px; }
+    .nav-links { display:flex; align-items:center; justify-content:center; gap:clamp(12px,2.2vw,26px); }
+    .nav-links a { color:var(--muted); text-decoration:none; font-size:.9rem; font-weight:600; transition:color .2s; }
+    .nav-links a:hover { color:var(--mint); }
+    .nav-tools { display:flex; align-items:center; gap:8px; }
+    .tool-button,.lang-select {
+      min-height:38px; border:1px solid var(--line); border-radius:12px; padding:0 11px;
+      color:var(--fg); background:rgba(91,116,132,.12); cursor:pointer;
+    }
+    .tool-button:hover,.lang-select:hover { border-color:var(--mint); }
+    .lang-select { max-width:76px; }
+    .hero { text-align:center; padding:190px 0 125px; }
+    .pill { display:inline-flex; align-items:center; gap:8px; padding:8px 13px; border:1px solid rgba(120,245,193,.32); border-radius:999px; color:var(--mint); background:rgba(120,245,193,.075); font-size:.78rem; font-weight:750; letter-spacing:.08em; text-transform:uppercase; }
+    .dot { width:7px; height:7px; border-radius:50%; background:var(--mint); box-shadow:0 0 14px var(--mint); }
+    h1 { margin:26px 0 22px; font-size:clamp(3.5rem,10vw,7.8rem); line-height:.91; letter-spacing:-.085em; }
+    .gradient-text { background:linear-gradient(100deg,var(--mint),var(--pale) 42%,var(--sand) 75%,#fff); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .lead { max-width:720px; margin:auto; color:var(--muted); font-size:clamp(1.08rem,2.2vw,1.3rem); line-height:1.8; }
+    .actions { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:34px; }
+    .button { display:inline-flex; align-items:center; justify-content:center; min-height:48px; padding:0 20px; border-radius:14px; text-decoration:none; font-weight:750; transition:transform .2s,filter .2s; }
+    .button:hover { transform:translateY(-3px); filter:brightness(1.06); }
+    .primary { color:#07130e; background:linear-gradient(110deg,var(--mint),var(--pale)); box-shadow:0 8px 30px rgba(120,245,193,.18); }
+    .secondary { border:1px solid var(--line); background:rgba(91,116,132,.12); }
+    .hero-meta { margin-top:48px; display:flex; justify-content:center; flex-wrap:wrap; gap:28px; color:var(--muted); font-size:.86rem; }
+    .hero-meta strong { color:var(--sand); }
+    .section { padding:88px 0; }
+    .section-head { max-width:720px; margin-bottom:34px; }
+    .eyebrow { color:var(--blue); text-transform:uppercase; letter-spacing:.17em; font-size:.76rem; font-weight:850; }
+    html[data-theme="dark"] .eyebrow { color:var(--mint); }
+    h2 { margin:12px 0 14px; font-size:clamp(2.2rem,5.6vw,4rem); line-height:1.02; letter-spacing:-.065em; }
+    .section-head p,.body-copy { margin:0; color:var(--muted); line-height:1.8; }
+    .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:17px; }
+    .feature,.panel,.stat {
+      border:1px solid var(--line); border-radius:24px; background:var(--card);
+      box-shadow:var(--shadow); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px);
+    }
+    .feature { min-height:220px; padding:29px; position:relative; overflow:hidden; }
+    .feature:after { content:""; position:absolute; width:150px; height:150px; right:-70px; bottom:-85px; border-radius:50%; background:var(--glow,var(--mint)); opacity:.13; filter:blur(10px); }
+    .feature:nth-child(2):after { --glow:var(--blue); }
+    .feature:nth-child(3):after { --glow:var(--sand); }
+    .feature:nth-child(4):after { --glow:var(--slate); }
+    .number { color:var(--slate); font-size:.76rem; font-weight:850; letter-spacing:.14em; }
+    h3 { margin:18px 0 10px; font-size:1.35rem; letter-spacing:-.035em; }
+    .feature p { margin:0; color:var(--muted); line-height:1.75; max-width:470px; }
+    .split { display:grid; grid-template-columns:1fr 1fr; gap:28px; align-items:center; }
+    .panel { padding:clamp(25px,4vw,42px); }
+    .panel-accent { border-color:rgba(241,205,141,.35); background:linear-gradient(135deg,rgba(241,205,141,.12),rgba(37,108,205,.07)); }
+    .panel-accent h3 { color:var(--sand); font-size:1.7rem; }
+    .mini-label { color:var(--blue); font-size:.75rem; font-weight:850; letter-spacing:.14em; text-transform:uppercase; }
+    html[data-theme="dark"] .mini-label { color:var(--mint); }
+    .stats { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:26px; }
+    .stat { padding:22px 18px; }
+    .stat strong { display:block; font-size:1.8rem; letter-spacing:-.06em; color:var(--mint); }
+    .stat span { display:block; margin-top:7px; color:var(--muted); font-size:.86rem; line-height:1.5; }
+    .timeline { display:grid; gap:14px; }
+    .timeline-item { display:grid; grid-template-columns:52px 1fr; gap:17px; align-items:start; padding:22px 0; border-bottom:1px solid var(--line); }
+    .timeline-icon { width:46px; height:46px; display:grid; place-items:center; border-radius:15px; color:#07130e; background:var(--mint); font-weight:900; }
+    .timeline-item:nth-child(2) .timeline-icon { background:var(--sand); }
+    .timeline-item:nth-child(3) .timeline-icon { background:var(--pale); }
+    .timeline-item:nth-child(4) .timeline-icon { color:white; background:var(--blue); }
+    .timeline-item h3 { margin:2px 0 6px; }
+    .timeline-item p { margin:0; color:var(--muted); line-height:1.7; }
+    .quote { padding:clamp(32px,6vw,65px); border-radius:30px; text-align:center; background:linear-gradient(115deg,rgba(120,245,193,.13),rgba(37,108,205,.12),rgba(241,205,141,.13)); border:1px solid var(--line); }
+    .quote p { margin:0; font-size:clamp(1.8rem,5vw,3.5rem); font-weight:800; letter-spacing:-.06em; line-height:1.12; }
+    .quote span { display:block; margin-top:17px; color:var(--muted); }
+    .cta { text-align:center; padding:90px 25px; }
+    .cta .lead { max-width:600px; }
+    footer { border-top:1px solid var(--line); padding:30px 0 42px; color:var(--muted); font-size:.88rem; display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; }
     footer a { color:var(--fg); text-decoration:none; }
-    @media (max-width:650px) {
-      .hero { padding:75px 0 80px; }
+    .footer-links { display:flex; gap:18px; flex-wrap:wrap; }
+    @media(max-width:760px) {
+      .nav-links { display:none; }
+      .hero { padding:155px 0 90px; }
+      .section { padding:65px 0; }
+      .split { grid-template-columns:1fr; }
+      .stats { grid-template-columns:1fr; }
+    }
+    @media(max-width:560px) {
+      .wrap { width:min(100% - 28px,1120px); }
+      .navbar { top:8px; width:calc(100% - 16px); border-radius:18px; }
+      .brand img { width:30px; height:30px; }
+      .tool-button,.lang-select { min-height:35px; padding:0 8px; font-size:.82rem; }
       .grid { grid-template-columns:1fr; }
       .feature { min-height:0; }
+      .hero-meta { gap:13px; }
       footer { flex-direction:column; }
     }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior:auto; }
-      .button { transition:none; }
+    @media(prefers-reduced-motion:reduce) {
+      *,*::before,*::after { scroll-behavior:auto!important; transition:none!important; animation:none!important; }
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="brand">
-        <img src="https://raw.githubusercontent.com/CodeSnip-DevTeam/CodeSnip/26Q2.5/icon.ico" alt="">
-        <span>CodeSnip</span>
+  <nav class="navbar" aria-label="Main navigation">
+    <a class="brand" href="#top"><img src="https://raw.githubusercontent.com/CodeSnip-DevTeam/CodeSnip/26Q2.5/icon.ico" alt=""><span>CodeSnip</span></a>
+    <div class="nav-links">
+      <a href="#highlights" data-i18n="navHighlights">Öne çıkanlar</a>
+      <a href="#details" data-i18n="navDetails">Detaylar</a>
+      <a href="#workflow" data-i18n="navWorkflow">Geliştirme</a>
+      <a href="#about" data-i18n="navAbout">Hakkında</a>
+    </div>
+    <div class="nav-tools">
+      <select class="lang-select" id="language" aria-label="Language">
+        <option value="tr">TR</option><option value="en">EN</option><option value="es">ES</option>
+      </select>
+      <button class="tool-button" id="themeToggle" type="button" aria-label="Toggle color theme">☀︎</button>
+    </div>
+  </nav>
+
+  <main id="top" class="wrap">
+    <section class="hero">
+      <span class="pill"><span class="dot"></span><span data-i18n="releaseBadge">26Q3.5 · ŞİMDİ YAYINDA</span></span>
+      <h1>Polished.<br><span class="gradient-text">Very Polished.</span></h1>
+      <p class="lead" data-i18n="heroLead">CodeSnip 26Q3.5; daha tutarlı bir görünüm, geliştirilmiş kullanıcı deneyimi ve yeni dil desteğiyle karşında.</p>
+      <div class="actions">
+        <a class="button primary" href="https://github.com/CodeSnip-DevTeam/CodeSnip/releases" data-i18n="releaseButton">Sürümleri keşfet</a>
+        <a class="button secondary" href="https://github.com/CodeSnip-DevTeam/CodeSnip" data-i18n="repoButton">GitHub deposu</a>
       </div>
-      <span class="version">26Q3.5 · ŞİMDİ YAYINDA</span>
-    </header>
+      <div class="hero-meta">
+        <span><strong>26Q3.5</strong> <span data-i18n="metaVersion">sürümü</span></span>
+        <span data-i18n="metaPolish">İnce ayar odaklı güncelleme</span>
+        <span data-i18n="metaTeam">CodeSnip Development Team</span>
+      </div>
+    </section>
 
-    <main>
-      <section class="hero">
-        <p class="eyebrow">Yeni sürüm burada</p>
-        <h1>Polished.<br><span>Very Polished.</span></h1>
-        <p class="lead">CodeSnip 26Q3.5; daha tutarlı bir görünüm, geliştirilmiş kullanıcı deneyimi ve yeni dil desteğiyle karşında.</p>
-        <div class="actions">
-          <a class="button primary" href="https://github.com/CodeSnip-DevTeam/CodeSnip/releases">Sürümleri keşfet</a>
-          <a class="button secondary" href="https://github.com/CodeSnip-DevTeam/CodeSnip">GitHub deposu</a>
-        </div>
-      </section>
+    <section class="section" id="highlights">
+      <div class="section-head">
+        <p class="eyebrow" data-i18n="highlightsEyebrow">26Q3.5 İLE GELENLER</p>
+        <h2 data-i18n="highlightsTitle">Detaylarda fark yaratır.</h2>
+        <p data-i18n="highlightsLead">Bu sürümün odağında yepyeni bir uygulamadan çok, CodeSnip'in günlük kullanımını daha keyifli ve tutarlı hâle getiren dokunuşlar var.</p>
+      </div>
+      <div class="grid">
+        <article class="feature"><span class="number">01 / LANGUAGE</span><h3 data-i18n="feature1Title">¡Hola! İspanyolca desteği</h3><p data-i18n="feature1Text">İspanyolca çeviriler eklendi. CodeSnip artık daha fazla kullanıcıya kendi dilinde ulaşabiliyor.</p></article>
+        <article class="feature"><span class="number">02 / APPEARANCE</span><h3 data-i18n="feature2Title">Daha iyi açık tema</h3><p data-i18n="feature2Text">Renkler, kontrast, yüzeyler ve giriş bileşenleri daha dengeli ve tutarlı bir görünüm için elden geçirildi.</p></article>
+        <article class="feature"><span class="number">03 / LIQUID GLASS</span><h3 data-i18n="feature3Title">Liquid Glass dokunuşları</h3><p data-i18n="feature3Text">Şeffaflık, bulanıklık ve yüzey stillerindeki iyileştirmelerle arayüzün görsel dili geliştirildi.</p></article>
+        <article class="feature"><span class="number">04 / UI & UX</span><h3 data-i18n="feature4Title">Daha pürüzsüz deneyim</h3><p data-i18n="feature4Text">Spotlight, kartlar, pencereler ve giriş alanlarında görsel ve kullanılabilirlik iyileştirmeleri yapıldı.</p></article>
+      </div>
+    </section>
 
-      <section class="section" aria-labelledby="features-title">
-        <div class="section-head">
-          <p class="eyebrow">26Q3.5 ile gelenler</p>
-          <h2>Detaylarda fark yaratır.</h2>
-          <p>Bu sürümün odağında yepyeni bir uygulamadan çok, CodeSnip'in günlük kullanımını daha keyifli ve tutarlı hâle getiren dokunuşlar var.</p>
-        </div>
+    <section class="section split" id="details">
+      <div>
+        <p class="eyebrow" data-i18n="designEyebrow">TASARIM FELSEFESİ</p>
+        <h2 data-i18n="designTitle">Her pikselin bir amacı var.</h2>
+        <p class="body-copy" data-i18n="designText">26Q3.5, arayüzün farklı bölümlerini aynı tasarım dilinde buluşturmaya odaklanıyor. Daha dengeli renkler, daha anlaşılır yüzeyler ve daha özenli etkileşimler: küçük dokunuşlar, daha bütünlüklü bir deneyim.</p>
+      </div>
+      <div class="panel panel-accent">
+        <span class="mini-label" data-i18n="designCardLabel">THE POLISH UPDATE</span>
+        <h3 data-i18n="designCardTitle">Az ama yerinde değişiklik.</h3>
+        <p class="body-copy" data-i18n="designCardText">Bu sürüm büyük bir özellik listesi sunmaya çalışmıyor. Bunun yerine var olan deneyimi iyileştiriyor ve CodeSnip'in temel hissini daha tutarlı hâle getiriyor.</p>
+      </div>
+    </section>
 
-        <div class="grid">
-          <article class="feature">
-            <span class="number">01 / LANGUAGE</span>
-            <h3>¡Hola! İspanyolca desteği</h3>
-            <p>İspanyolca çeviriler eklendi. CodeSnip artık daha fazla kullanıcıya kendi dilinde ulaşabiliyor.</p>
-          </article>
-          <article class="feature">
-            <span class="number">02 / APPEARANCE</span>
-            <h3>Daha iyi açık tema</h3>
-            <p>Renkler, kontrast, yüzeyler ve giriş bileşenleri daha dengeli ve tutarlı bir görünüm için elden geçirildi.</p>
-          </article>
-          <article class="feature">
-            <span class="number">03 / LIQUID GLASS</span>
-            <h3>Liquid Glass dokunuşları</h3>
-            <p>Şeffaflık, bulanıklık ve yüzey stillerindeki iyileştirmelerle arayüzün görsel dili geliştirildi.</p>
-          </article>
-          <article class="feature">
-            <span class="number">04 / UI & UX</span>
-            <h3>Daha pürüzsüz deneyim</h3>
-            <p>Spotlight, kartlar, pencereler ve giriş alanlarında görsel ve kullanılabilirlik iyileştirmeleri yapıldı.</p>
-          </article>
-        </div>
-      </section>
+    <section class="section" id="workflow">
+      <div class="section-head">
+        <p class="eyebrow" data-i18n="workflowEyebrow">SAHNE ARKASINDA</p>
+        <h2 data-i18n="workflowTitle">Sadece görünenler değil.</h2>
+        <p data-i18n="workflowLead">Kullanıcı deneyiminin yanında geliştirme sürecinde de küçük ama anlamlı bir iyileştirme var.</p>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item"><div class="timeline-icon">01</div><div><h3 data-i18n="work1Title">Daha akıllı Windows CI</h3><p data-i18n="work1Text">Electron Builder araçları için önbellekleme eklendi. Tekrarlanan Windows derlemelerinde kurulum adımlarındaki gereksiz işi azaltmak hedefleniyor.</p></div></div>
+        <div class="timeline-item"><div class="timeline-icon">02</div><div><h3 data-i18n="work2Title">Tutarlı arayüz</h3><p data-i18n="work2Text">Bileşenler arasındaki renk, kontrast ve yüzey farklılıkları gözden geçirildi.</p></div></div>
+        <div class="timeline-item"><div class="timeline-icon">03</div><div><h3 data-i18n="work3Title">Daha geniş erişim</h3><p data-i18n="work3Text">İspanyolca desteğiyle CodeSnip'in dil seçenekleri genişletildi.</p></div></div>
+        <div class="timeline-item"><div class="timeline-icon">04</div><div><h3 data-i18n="work4Title">İnce ayarlar</h3><p data-i18n="work4Text">Spotlight, kartlar, modallar ve giriş alanları gibi temel alanlarda kullanım iyileştirmeleri yapıldı.</p></div></div>
+      </div>
+      <div class="stats">
+        <div class="stat"><strong>3</strong><span data-i18n="stat1">Web sitesinde kullanılabilen dil</span></div>
+        <div class="stat"><strong>4</strong><span data-i18n="stat2">Öne çıkan iyileştirme alanı</span></div>
+        <div class="stat"><strong>∞</strong><span data-i18n="stat3">Yazmak ve üretmek için fikir</span></div>
+      </div>
+    </section>
 
-      <section class="note">
-        <strong>Biraz daha cilalı, biraz daha tutarlı.</strong>
-        <p>Windows CI iş akışında Electron Builder araçları için önbellekleme de eklendi. Böylece tekrarlanan derlemelerde hazırlık süresinin azaltılması hedefleniyor.</p>
-      </section>
-    </main>
+    <section class="section">
+      <div class="quote">
+        <p class="gradient-text" data-i18n="quote">Daha pürüzsüz. Daha tutarlı. Daha CodeSnip.</p>
+        <span data-i18n="quoteCaption">26Q3.5 · Polished. Very Polished.</span>
+      </div>
+    </section>
+
+    <section class="cta" id="about">
+      <p class="eyebrow" data-i18n="ctaEyebrow">ŞİMDİ SIRA SENDE</p>
+      <h2 data-i18n="ctaTitle">Üretmeye devam et.</h2>
+      <p class="lead" data-i18n="ctaText">Yeni sürümü keşfet, fikirlerini koda dönüştür ve bir sonraki projene başla.</p>
+      <div class="actions">
+        <a class="button primary" href="https://github.com/CodeSnip-DevTeam/CodeSnip/releases" data-i18n="ctaButton">CodeSnip'i keşfet</a>
+      </div>
+    </section>
 
     <footer>
-      <span>© CodeSnip Development Team · 26Q3.5</span>
-      <a href="https://github.com/CodeSnip-DevTeam/CodeSnip/releases">GitHub Releases ↗</a>
+      <span data-i18n="footerCopyright">© CodeSnip Development Team · 26Q3.5</span>
+      <div class="footer-links">
+        <a href="https://github.com/CodeSnip-DevTeam/CodeSnip" data-i18n="footerRepo">GitHub deposu</a>
+        <a href="https://github.com/CodeSnip-DevTeam/CodeSnip/releases" data-i18n="footerReleases">Sürümler</a>
+      </div>
     </footer>
-  </div>
+  </main>
+
+  <script>
+    const translations = {
+      tr: {
+        navHighlights:"Öne çıkanlar",navDetails:"Detaylar",navWorkflow:"Geliştirme",navAbout:"Hakkında",
+        releaseBadge:"26Q3.5 · ŞİMDİ YAYINDA",heroLead:"CodeSnip 26Q3.5; daha tutarlı bir görünüm, geliştirilmiş kullanıcı deneyimi ve yeni dil desteğiyle karşında.",
+        releaseButton:"Sürümleri keşfet",repoButton:"GitHub deposu",metaVersion:"sürümü",metaPolish:"İnce ayar odaklı güncelleme",metaTeam:"CodeSnip Development Team",
+        highlightsEyebrow:"26Q3.5 İLE GELENLER",highlightsTitle:"Detaylarda fark yaratır.",highlightsLead:"Bu sürümün odağında yepyeni bir uygulamadan çok, CodeSnip'in günlük kullanımını daha keyifli ve tutarlı hâle getiren dokunuşlar var.",
+        feature1Title:"¡Hola! İspanyolca desteği",feature1Text:"İspanyolca çeviriler eklendi. CodeSnip artık daha fazla kullanıcıya kendi dilinde ulaşabiliyor.",
+        feature2Title:"Daha iyi açık tema",feature2Text:"Renkler, kontrast, yüzeyler ve giriş bileşenleri daha dengeli ve tutarlı bir görünüm için elden geçirildi.",
+        feature3Title:"Liquid Glass dokunuşları",feature3Text:"Şeffaflık, bulanıklık ve yüzey stillerindeki iyileştirmelerle arayüzün görsel dili geliştirildi.",
+        feature4Title:"Daha pürüzsüz deneyim",feature4Text:"Spotlight, kartlar, pencereler ve giriş alanlarında görsel ve kullanılabilirlik iyileştirmeleri yapıldı.",
+        designEyebrow:"TASARIM FELSEFESİ",designTitle:"Her pikselin bir amacı var.",designText:"26Q3.5, arayüzün farklı bölümlerini aynı tasarım dilinde buluşturmaya odaklanıyor. Daha dengeli renkler, daha anlaşılır yüzeyler ve daha özenli etkileşimler: küçük dokunuşlar, daha bütünlüklü bir deneyim.",
+        designCardLabel:"THE POLISH UPDATE",designCardTitle:"Az ama yerinde değişiklik.",designCardText:"Bu sürüm büyük bir özellik listesi sunmaya çalışmıyor. Bunun yerine var olan deneyimi iyileştiriyor ve CodeSnip'in temel hissini daha tutarlı hâle getiriyor.",
+        workflowEyebrow:"SAHNE ARKASINDA",workflowTitle:"Sadece görünenler değil.",workflowLead:"Kullanıcı deneyiminin yanında geliştirme sürecinde de küçük ama anlamlı bir iyileştirme var.",
+        work1Title:"Daha akıllı Windows CI",work1Text:"Electron Builder araçları için önbellekleme eklendi. Tekrarlanan Windows derlemelerinde kurulum adımlarındaki gereksiz işi azaltmak hedefleniyor.",
+        work2Title:"Tutarlı arayüz",work2Text:"Bileşenler arasındaki renk, kontrast ve yüzey farklılıkları gözden geçirildi.",
+        work3Title:"Daha geniş erişim",work3Text:"İspanyolca desteğiyle CodeSnip'in dil seçenekleri genişletildi.",
+        work4Title:"İnce ayarlar",work4Text:"Spotlight, kartlar, modallar ve giriş alanları gibi temel alanlarda kullanım iyileştirmeleri yapıldı.",
+        stat1:"Web sitesinde kullanılabilen dil",stat2:"Öne çıkan iyileştirme alanı",stat3:"Yazmak ve üretmek için fikir",
+        quote:"Daha pürüzsüz. Daha tutarlı. Daha CodeSnip.",quoteCaption:"26Q3.5 · Polished. Very Polished.",
+        ctaEyebrow:"ŞİMDİ SIRA SENDE",ctaTitle:"Üretmeye devam et.",ctaText:"Yeni sürümü keşfet, fikirlerini koda dönüştür ve bir sonraki projene başla.",ctaButton:"CodeSnip'i keşfet",
+        footerCopyright:"© CodeSnip Development Team · 26Q3.5",footerRepo:"GitHub deposu",footerReleases:"Sürümler"
+      },
+      en: {
+        navHighlights:"Highlights",navDetails:"Details",navWorkflow:"Under the hood",navAbout:"About",
+        releaseBadge:"26Q3.5 · OUT NOW",heroLead:"CodeSnip 26Q3.5 is here with a more consistent look, a refined user experience, and expanded language support.",
+        releaseButton:"Explore releases",repoButton:"GitHub repository",metaVersion:"release",metaPolish:"A refinement-focused update",metaTeam:"CodeSnip Development Team",
+        highlightsEyebrow:"WHAT'S NEW IN 26Q3.5",highlightsTitle:"The difference is in the details.",highlightsLead:"Rather than reinventing the app, this release focuses on thoughtful refinements that make CodeSnip more enjoyable and consistent every day.",
+        feature1Title:"¡Hola! Spanish support",feature1Text:"Spanish translations have arrived, making CodeSnip accessible to more people in their own language.",
+        feature2Title:"A better light theme",feature2Text:"Colors, contrast, surfaces, and input elements have been refined for a more balanced and consistent appearance.",
+        feature3Title:"Liquid Glass refinements",feature3Text:"Refined transparency, blur, and surface styling bring a more cohesive visual language to the interface.",
+        feature4Title:"A smoother experience",feature4Text:"Visual and usability improvements across Spotlight, cards, dialogs, and input fields.",
+        designEyebrow:"DESIGN PHILOSOPHY",designTitle:"Every pixel has a purpose.",designText:"26Q3.5 brings different parts of the interface closer together through a shared design language. More balanced colors, clearer surfaces, and more thoughtful interactions: small details that create a more cohesive experience.",
+        designCardLabel:"THE POLISH UPDATE",designCardTitle:"Fewer changes. Better details.",designCardText:"This release isn't trying to deliver a huge list of new features. Instead, it improves the experience that is already there and makes the core feel of CodeSnip more consistent.",
+        workflowEyebrow:"BEHIND THE SCENES",workflowTitle:"More than what meets the eye.",workflowLead:"Alongside the user-facing refinements, there's also a small but meaningful improvement to the development workflow.",
+        work1Title:"Smarter Windows CI",work1Text:"Caching for Electron Builder tools has been added, aiming to reduce repeated setup work in Windows builds.",
+        work2Title:"A consistent interface",work2Text:"Color, contrast, and surface differences between components have been reviewed and refined.",
+        work3Title:"Wider reach",work3Text:"Spanish support expands the language options available in CodeSnip.",
+        work4Title:"Finishing touches",work4Text:"Usability refinements have been made to key areas such as Spotlight, cards, modals, and input fields.",
+        stat1:"Languages available on this website",stat2:"Highlighted improvement areas",stat3:"Ideas to write and create",
+        quote:"Smoother. More consistent. More CodeSnip.",quoteCaption:"26Q3.5 · Polished. Very Polished.",
+        ctaEyebrow:"YOUR NEXT MOVE",ctaTitle:"Keep creating.",ctaText:"Explore the release, turn your ideas into code, and start your next project.",ctaButton:"Explore CodeSnip",
+        footerCopyright:"© CodeSnip Development Team · 26Q3.5",footerRepo:"GitHub repository",footerReleases:"Releases"
+      },
+      es: {
+        navHighlights:"Novedades",navDetails:"Detalles",navWorkflow:"Desarrollo",navAbout:"Acerca de",
+        releaseBadge:"26Q3.5 · YA DISPONIBLE",heroLead:"CodeSnip 26Q3.5 llega con una apariencia más coherente, una experiencia de usuario mejorada y más opciones de idioma.",
+        releaseButton:"Explorar versiones",repoButton:"Repositorio de GitHub",metaVersion:"versión",metaPolish:"Una actualización centrada en los detalles",metaTeam:"CodeSnip Development Team",
+        highlightsEyebrow:"NOVEDADES DE 26Q3.5",highlightsTitle:"La diferencia está en los detalles.",highlightsLead:"En lugar de reinventar la aplicación, esta versión se centra en pequeños refinamientos que hacen que CodeSnip sea más agradable y coherente en el día a día.",
+        feature1Title:"¡Hola! Soporte en español",feature1Text:"Se han añadido traducciones al español para que más personas puedan utilizar CodeSnip en su propio idioma.",
+        feature2Title:"Un tema claro mejorado",feature2Text:"Se han ajustado los colores, el contraste, las superficies y los campos de entrada para lograr una apariencia más equilibrada.",
+        feature3Title:"Mejoras de Liquid Glass",feature3Text:"Los ajustes de transparencia, desenfoque y superficies aportan un lenguaje visual más coherente a la interfaz.",
+        feature4Title:"Una experiencia más fluida",feature4Text:"Mejoras visuales y de usabilidad en Spotlight, tarjetas, ventanas y campos de entrada.",
+        designEyebrow:"FILOSOFÍA DE DISEÑO",designTitle:"Cada píxel tiene un propósito.",designText:"26Q3.5 busca unificar distintas partes de la interfaz mediante un lenguaje de diseño compartido. Colores más equilibrados, superficies más claras e interacciones más cuidadas: pequeños detalles que crean una experiencia más coherente.",
+        designCardLabel:"THE POLISH UPDATE",designCardTitle:"Menos cambios, mejores detalles.",designCardText:"Esta versión no intenta ofrecer una enorme lista de funciones nuevas. En su lugar, mejora la experiencia existente y hace que la esencia de CodeSnip sea más coherente.",
+        workflowEyebrow:"ENTRE BASTIDORES",workflowTitle:"Más allá de lo que se ve.",workflowLead:"Además de las mejoras para los usuarios, también hay un pequeño pero importante avance en el flujo de desarrollo.",
+        work1Title:"CI de Windows más inteligente",work1Text:"Se ha añadido caché para las herramientas de Electron Builder con el objetivo de reducir tareas repetidas en las compilaciones de Windows.",
+        work2Title:"Una interfaz coherente",work2Text:"Se han revisado las diferencias de color, contraste y superficies entre los componentes.",
+        work3Title:"Mayor alcance",work3Text:"El soporte en español amplía las opciones de idioma disponibles en CodeSnip.",
+        work4Title:"Últimos retoques",work4Text:"Se han mejorado la usabilidad de áreas clave como Spotlight, tarjetas, ventanas modales y campos de entrada.",
+        stat1:"Idiomas disponibles en este sitio",stat2:"Áreas de mejora destacadas",stat3:"Ideas para escribir y crear",
+        quote:"Más fluido. Más coherente. Más CodeSnip.",quoteCaption:"26Q3.5 · Polished. Very Polished.",
+        ctaEyebrow:"AHORA TE TOCA A TI",ctaTitle:"Sigue creando.",ctaText:"Explora la versión, convierte tus ideas en código y empieza tu próximo proyecto.",ctaButton:"Descubre CodeSnip",
+        footerCopyright:"© CodeSnip Development Team · 26Q3.5",footerRepo:"Repositorio de GitHub",footerReleases:"Versiones"
+      }
+    };
+
+    const root = document.documentElement;
+    const languageSelect = document.getElementById("language");
+    const themeButton = document.getElementById("themeToggle");
+
+    function setLanguage(language) {
+      const dictionary = translations[language] || translations.tr;
+      root.lang = language;
+      document.querySelectorAll("[data-i18n]").forEach(element => {
+        const key = element.dataset.i18n;
+        if (dictionary[key]) element.textContent = dictionary[key];
+      });
+      languageSelect.value = language;
+      try { localStorage.setItem("codesnip-site-language", language); } catch (_) {}
+    }
+
+    function setTheme(theme) {
+      root.dataset.theme = theme;
+      themeButton.textContent = theme === "dark" ? "☀︎" : "☾";
+      themeButton.setAttribute("aria-label", theme === "dark" ? "Switch to light theme" : "Switch to dark theme");
+      const metaTheme = document.querySelector('meta[name="theme-color"]');
+      if (metaTheme) metaTheme.content = theme === "dark" ? "#080b10" : "#f3f7f5";
+      try { localStorage.setItem("codesnip-site-theme", theme); } catch (_) {}
+    }
+
+    languageSelect.addEventListener("change", event => setLanguage(event.target.value));
+    themeButton.addEventListener("click", () => setTheme(root.dataset.theme === "dark" ? "light" : "dark"));
+
+    let savedLanguage = "tr";
+    let savedTheme = "dark";
+    try {
+      savedLanguage = localStorage.getItem("codesnip-site-language") || "tr";
+      savedTheme = localStorage.getItem("codesnip-site-theme") || "dark";
+    } catch (_) {}
+    setLanguage(translations[savedLanguage] ? savedLanguage : "tr");
+    setTheme(savedTheme === "light" ? "light" : "dark");
+  </script>
 </body>
 </html>
