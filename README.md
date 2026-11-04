@@ -1,7 +1,7 @@
 # CodeSnip | Next-Generation Code & Prompt Manager
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Version-26Q3.5%20Development-00ADB5?style=for-the-badge" alt="Version 26Q3.5 Development">
+  <img src="https://img.shields.io/badge/Version-26Q3.5%20-00ADB5?style=for-the-badge" alt="Version 26Q3.5 Development">
   <img src="https://img.shields.io/badge/Built%20with-Electron-47848F?style=for-the-badge" alt="Built with Electron">
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="MIT License">
 </p>
