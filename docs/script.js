@@ -1,16 +1,14 @@
 (() => {
   const headline = document.getElementById("headline");
 
-  if (!headline) {
-    return;
-  }
+  if (!headline) return;
 
   const random = Math.random();
 
   if (random < 0.70) {
     headline.textContent = "Hemen geleceğiz.";
   } else if (random < 0.85) {
-    headline.textContent = "Bizde heyecanlıyız.";
+    headline.textContent = "Biz de heyecanlıyız.";
   } else {
     headline.textContent = "Erken gelmişsin.";
   }
@@ -18,9 +16,7 @@
   const message = document.querySelector(".message");
   const accent = document.querySelector(".accent");
 
-  if (!message || !accent) {
-    return;
-  }
+  if (!message || !accent) return;
 
   const dateLabel = document.createElement("p");
   dateLabel.className = "countdown-date";
@@ -49,18 +45,24 @@
   dateLabel.insertAdjacentElement("afterend", countdown);
   accent.remove();
 
-  // 4 Kasım 2026 Çarşamba, saat Türkiye yerel saatiyle 17.00.
+  // 4 Kasım 2026, Türkiye saatiyle 17.00.
   const target = new Date("2026-11-04T17:00:00+03:00").getTime();
   const start = Date.now();
   const total = target - start;
+  let redirected = false;
 
   const updateCountdown = () => {
     const remaining = target - Date.now();
 
     if (remaining <= 0) {
-      time.textContent = "Beklenen zaman geldi.";
+      time.textContent = "CodeSnip 26Q3.5 yayında!";
       fill.style.width = "100%";
-      countdown.setAttribute("aria-label", "Hedef zamana ulaşıldı");
+      countdown.setAttribute("aria-label", "Yeni CodeSnip sayfasına yönlendiriliyor");
+
+      if (!redirected) {
+        redirected = true;
+        window.location.replace("release.html");
+      }
       return;
     }
 
