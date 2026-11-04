@@ -37,6 +37,14 @@ jobs:
         shell: pwsh
         run: npm pkg set version=26.2.5
 
+      - name: Cache Electron Builder tools
+        uses: actions/cache@v4
+        with:
+          path: ~\AppData\Local\electron-builder\Cache
+          key: electron-builder-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            electron-builder-${{ runner.os }}-
+
       - name: Build Windows application
         run: npx electron-builder --win portable --publish never
         env:
