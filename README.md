@@ -119,13 +119,17 @@ npm run dist
   - [x] **26Q2.5** — JSON export/import, Spotlight improvements, and version naming update
 - [x] **26Q3** — Linux support, appearance improvements, customization, and category management
   - [x] **26Q3.1** — Critical hotfixes
-  - [ ] **26Q3.5** — Important bug fixes, Spanish language support, light theme improvements, and visual refresh
-- [ ] **26Q4** — Application optimization and expanded macOS/Linux support, including Slackware and Gentoo
-- [ ] **27Q1** — Plugin system and code preview
+  - [x] **26Q3.5** — Important bug fixes, Spanish language support, light theme improvements, and visual refresh
+  - [ ] **26Q3.6** — Maintenance updates, bug fixes and stability improvements
+- [ ] **26Q4** — Application optimization, resource management improvements, and expanded macOS/Linux support, including Slackware and Gentoo
+- [ ] **27Q1** — Plugin system, code preview, major performance improvements and a **BIG** surprise
+- [ ] **27Q2** — Developer ecosystem expansion, Plugin Marketplace, manual plugin installation, Developer API, and advanced snippet organization
+- [ ] **27Q3** — Optional cloud synchronization, cross-device data management, local-first storage, automated backups, and synchronization conflict resolution
+- [ ] **27Q4** — AI integration, local AI model support, external AI API integrations, intelligent code categorization, and advanced prompt management
 
 > [!NOTE]
-> The roadmap represents current development plans and may change as priorities evolve. Features are not considered released until the corresponding release is published.
-
+> The roadmap represents current development plans and may change as priorities evolve. Features are not considered released until the corresponding release is published. Cloud synchronization and AI integrations are intended to remain optional.
+> 
 ## Contributing
 
 Contributions, bug reports, and suggestions are welcome.
